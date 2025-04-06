@@ -3,7 +3,7 @@ title: "pico-jxglib で Pico ボードに USB キーボード・マウスを接�
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["RaspberryPiPico", "LVGL", "USB", "Keyboard", "Mouse"]
-published: false
+published: true
 ---
 [**pico-jxglib**](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
