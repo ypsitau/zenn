@@ -37,7 +37,7 @@ USB キーボードとマウスを実際に動かしてみます。Stdio を使�
 
 ### 開発環境のセットアップ
 
-Visual Studio Code や Git ツール、Pico SDK のセットアップが済んでいない方は[「Pico SDK ことはじめ」](https://qiita.com/ypsitau/items/afd020cad554910a6a9e#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83)をご覧ください。
+Visual Studio Code や Git ツール、Pico SDK のセットアップが済んでいない方は[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83) をご覧ください。
 
 **pico-jxglib** は GitHub からレポジトリをクローンすることで入手できます。
 ```
@@ -56,7 +56,7 @@ git pull
 
 ### プロジェクトの作成
 
-VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://qiita.com/ypsitau/items/afd020cad554910a6a9e#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90) を参照ください。
+VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E7%B7%A8%E9%9B%86) を参照ください。
 
 - **Name** ... プロジェクト名を入力します。今回は例として `usbhosttest` を入力します
 - **Board type** ... ボード種別を選択します
