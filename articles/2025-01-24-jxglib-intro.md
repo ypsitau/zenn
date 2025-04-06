@@ -23,14 +23,14 @@ published: true
 
 最初に、リンク機構の仕組みを知りたくてロボットアームを作りました。
 
-![RobotArm.jpg](/images/RobotArm.jpg)
+![RobotArm.jpg](/images/2025-01-24-jxglib-intro/RobotArm.jpg)
 
 
 それぞれの関節やローテーションテーブルにサーボモータを仕込んであります。コントロールボックスにはボリュームつまみがついていて、この操作でサーボモータに PWM 信号を送ります。ちなみに、ロボットアームやコントロールボックス、ボリュームつまみもすべて 3D プリンタで作ったものです。エレキ関連以外の既製品はタミヤのユニバーサルプレートと M3x5 のネジくらい。3D プリンタってすごいなあ。
 
 次に作ったのがこれ。Wi-Fi でコマンドを受信して動くラジコンカーです。
 
-![RobotCar.jpg](/images/RobotCar.jpg)
+![RobotCar.jpg](/images/2025-01-24-jxglib-intro/RobotCar.jpg)
 
 ステッピングモータで動いてます。Wi-Fi の接続状況や IP アドレスなどの表示のために OLED をつけてます。
 
