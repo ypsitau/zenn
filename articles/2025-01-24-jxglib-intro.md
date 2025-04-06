@@ -67,7 +67,7 @@ target_include_directories(hoge PRIVATE
 
 `target_` で始まるコマンドは、以下のように一つのコマンド呼び出しにまとめて書いても:
 
-```
+```cmake
 target_link_libraries(hoge
     pico_stdlib
     hardware_i2c)
@@ -75,7 +75,7 @@ target_link_libraries(hoge
 
 以下のように分割して書いても OK です。
 
-```
+```cmake
 target_link_libraries(hoge
     pico_stdlib)
 
