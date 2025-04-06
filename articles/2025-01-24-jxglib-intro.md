@@ -7,13 +7,7 @@ published: false
 ---
 **pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
-今回の記事は、**pico-jxglib** の概要と導入方法について説明します。ライブラリの詳細については以下の記事を参照ください。
-
-:arrow_forward: [pico-jxglib と TFT LCD の話](https://qiita.com/ypsitau/items/300472e2dee582361303)
-:arrow_forward: [pico-jxblib と TFT LCD の話 (続き)](https://qiita.com/ypsitau/items/6117e654e1f303e770f6)
-:arrow_forward: [pico-jxglib と LVGL の話](https://qiita.com/ypsitau/items/be620ca50c23b115e00a)
-:arrow_forward: [pico-jxglib と Terminal の話](https://qiita.com/ypsitau/items/bbccd9f9b5fc5d48d2f1)
-:arrow_forward: [pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話](https://qiita.com/ypsitau/items/14e305f4e0fefcdc1b33)
+今回の記事は、**pico-jxglib** の概要と導入方法について説明します。
 
 ## 作成のきっかけ
 
@@ -23,14 +17,14 @@ published: false
 
 最初に、リンク機構の仕組みを知りたくてロボットアームを作りました。
 
-![RobotArm.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/5e84bb60-4cc1-3022-4958-b2c8386f6dec.jpeg)
+![RobotArm.jpg](/images/RobotArm.jpg)
 
 
 それぞれの関節やローテーションテーブルにサーボモータを仕込んであります。コントロールボックスにはボリュームつまみがついていて、この操作でサーボモータに PWM 信号を送ります。ちなみに、ロボットアームやコントロールボックス、ボリュームつまみもすべて 3D プリンタで作ったものです。エレキ関連以外の既製品はタミヤのユニバーサルプレートと M3x5 のネジくらい。3D プリンタってすごいなあ。
 
 次に作ったのがこれ。Wi-Fi でコマンドを受信して動くラジコンカーです。
 
-![RobotCar.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/bd176555-bc07-8a20-90aa-a35b09493522.jpeg)
+![RobotCar.jpg](/images/RobotCar.jpg)
 
 ステッピングモータで動いてます。Wi-Fi の接続状況や IP アドレスなどの表示のために OLED をつけてます。
 
@@ -236,10 +230,8 @@ int main()
 
 [^namespace]: **pico-jxglib** の関数やクラス、グローバル変数は、名前がほかのライブラリとバッティングしないよう `jxglib` という識別子をもつ名前空間の中で定義されています。例えばこのコード内の `GPIO15` は、名前空間の識別子を先頭につけて `jxglib::GPIO15` と記述する必要があるのですが、記述が長くなるので `using namespace` を使って省略できるようにしています。
 
-ビルド方法とボードへの書き込み方は [前回の記事](https://qiita.com/ypsitau/items/afd020cad554910a6a9e#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89) を参照してください。
+ビルド方法とボードへの書き込み方は [「Pico SDK ことはじめ」](/articles/2025-01-17-picosdk) を参照してください。
 
 ## 次回の記事
 
 **pico-jxglib** を使って TFT LCD の描画をします。
-
-https://qiita.com/ypsitau/items/300472e2dee582361303
