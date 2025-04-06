@@ -21,13 +21,13 @@ Pico で工作をしているとボタン入力などが必要になることが
 
 数ある USB 周辺機器の中でも、USB キーボードやマウスは特に種類が豊富で価格もお手頃ですね。ワイヤレスタイプのものでも、キーボードとマウスのセットが 2,000 円程度で入手できました。
 
-![USB-Keyboard-Mouse.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/81ec3017-3608-4ec8-93b6-7d26ab4fd408.jpeg)
+![USB-Keyboard-Mouse.jpg](/images/USB-Keyboard-Mouse.jpg)
 
 これでタクトスイッチよりもはるかに操作性が向上しますし、ワイヤレスなら遠隔操作も可能になって工作の幅が広がりそうです。
 
 ところで、Pico の USB 端子は microB タイプなので、ホストとして使うにはこれを A タイプに変換するアダプタが必要になります。400 円程度で入手できます。
 
-![USB-MicroB-A-Adapter-Zoom.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/d394541e-f937-42bb-8e9c-8ad00d8488f6.jpeg)
+![USB-MicroB-A-Adapter-Zoom.jpg](/images/USB-MicroB-A-Adapter-Zoom.jpg)
 
 USB の操作には、Pico SDK とともに導入されている tinyusb ライブラリを使います。tinyusb のディレクトリ中 `tinyusb/examples/host/cdc_msc_hid` に USB ホスト機能のサンプルがありましたので、これを参考にして USB キーボードやマウスをより簡便に操作できる API を **pico-jxglib** に実装しました。
 
@@ -81,7 +81,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 ブレッドボードの配線イメージを以下に示します。
 
-![circuit-usbhost.png](images/circuit-usbhost.png)
+![circuit-usbhost.png](/images/circuit-usbhost.png)
 
 Pico を USB デバイス として動かす場合は USB 端子から Pico に電源を供給できますが、今回は Pico 自体がホストになるので VBUS (40 番ピン) に 5V の電源を外部から供給します。VSYS (39 番ピン) に電源をつなぐと、逆流防止のダイオードのため USB バスに電源が供給されないので注意してください。
 
@@ -119,19 +119,19 @@ using namespace jxglib;
 
 int main()
 {
-	GPIO18.init().set_dir_OUT();
-	GPIO19.init().set_dir_OUT();
-	GPIO20.init().set_dir_OUT();
-	GPIO21.init().set_dir_OUT();
-	USBHost::Initialize();
-	Keyboard& keyboard = USBHost::GetKeyboard();
-	for (;;) {
-		GPIO18.put(keyboard.IsPressed(VK_V));
-		GPIO19.put(keyboard.IsPressed(VK_C));
-		GPIO20.put(keyboard.IsPressed(VK_X));
-		GPIO21.put(keyboard.IsPressed(VK_Z));
-		Tickable::Sleep(50);
-	}
+    GPIO18.init().set_dir_OUT();
+    GPIO19.init().set_dir_OUT();
+    GPIO20.init().set_dir_OUT();
+    GPIO21.init().set_dir_OUT();
+    USBHost::Initialize();
+    Keyboard& keyboard = USBHost::GetKeyboard();
+    for (;;) {
+        GPIO18.put(keyboard.IsPressed(VK_V));
+        GPIO19.put(keyboard.IsPressed(VK_C));
+        GPIO20.put(keyboard.IsPressed(VK_X));
+        GPIO21.put(keyboard.IsPressed(VK_Z));
+        Tickable::Sleep(50);
+    }
 }
 ```
 
@@ -148,21 +148,21 @@ using namespace jxglib;
 
 int main()
 {
-	GPIO18.init().set_dir_OUT();
-	GPIO19.init().set_dir_OUT();
-	GPIO20.init().set_dir_OUT();
-	GPIO21.init().set_dir_OUT();
-	USBHost::Initialize();
-	Keyboard& keyboard = USBHost::GetKeyboard();
-	for (;;) {
-		uint8_t keyCode;
-		bool rtn = keyboard.GetKeyCodeNB(&keyCode);
-		GPIO18.put(rtn && keyCode == VK_V);
-		GPIO19.put(rtn && keyCode == VK_C);
-		GPIO20.put(rtn && keyCode == VK_X);
-		GPIO21.put(rtn && keyCode == VK_Z);
-		Tickable::Sleep(50);
-	}
+    GPIO18.init().set_dir_OUT();
+    GPIO19.init().set_dir_OUT();
+    GPIO20.init().set_dir_OUT();
+    GPIO21.init().set_dir_OUT();
+    USBHost::Initialize();
+    Keyboard& keyboard = USBHost::GetKeyboard();
+    for (;;) {
+        uint8_t keyCode;
+        bool rtn = keyboard.GetKeyCodeNB(&keyCode);
+        GPIO18.put(rtn && keyCode == VK_V);
+        GPIO19.put(rtn && keyCode == VK_C);
+        GPIO20.put(rtn && keyCode == VK_X);
+        GPIO21.put(rtn && keyCode == VK_Z);
+        Tickable::Sleep(50);
+    }
 }
 
 ```
@@ -196,20 +196,20 @@ using namespace jxglib;
 
 int main()
 {
-	GPIO18.init().set_dir_OUT();
-	GPIO19.init().set_dir_OUT();
-	GPIO20.init().set_dir_OUT();
-	GPIO21.init().set_dir_OUT();
-	USBHost::Initialize();
-	Mouse& mouse = USBHost::GetMouse();
-	for (;;) {
-		Mouse::Status status = mouse.CaptureStatus();
-		GPIO21.put(status.GetDeltaX() < 0);
-		GPIO20.put(status.GetDeltaX() > 0);
-		GPIO19.put(status.GetButtonLeft());
-		GPIO18.put(status.GetButtonRight());
-		Tickable::Sleep(50);
-	}
+    GPIO18.init().set_dir_OUT();
+    GPIO19.init().set_dir_OUT();
+    GPIO20.init().set_dir_OUT();
+    GPIO21.init().set_dir_OUT();
+    USBHost::Initialize();
+    Mouse& mouse = USBHost::GetMouse();
+    for (;;) {
+        Mouse::Status status = mouse.CaptureStatus();
+        GPIO21.put(status.GetDeltaX() < 0);
+        GPIO20.put(status.GetDeltaX() > 0);
+        GPIO19.put(status.GetButtonLeft());
+        GPIO18.put(status.GetButtonRight());
+        Tickable::Sleep(50);
+    }
 }
 ```
 
@@ -217,13 +217,13 @@ int main()
 
 LVGL は組込み機器で GUI を実装するためのライブラリです。詳しくは以下の記事を参照してください。
 
-https://qiita.com/ypsitau/items/be620ca50c23b115e00a
+https://zenn.dev/ypsitau/articles/2025-02-04-lvgl
 
 LVGL のユーザインターフェースにはタッチスクリーンを使うことが多いのですが、ここでは USB キーボードとマウスをつなげてみます。TFT LCD には ST7789 を使用します。他のデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd) を参照してください。
 
 ブレッドボードの配線イメージを以下に示します。
 
-![circuit-usbhost-st7789.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/6ed6addc-db0f-4569-b815-0ae464daf870.png)
+![circuit-usbhost-st7789.png](/images/circuit-usbhost-st7789.png)
 
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
@@ -247,23 +247,23 @@ using namespace jxglib;
 
 int main()
 {
-	::stdio_init_all();
-	::spi_init(spi1, 125 * 1000 * 1000);
-	GPIO14.set_function_SPI1_SCK();
-	GPIO15.set_function_SPI1_TX();
-	USBHost::Initialize();
-	ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
-	display.Initialize(Display::Dir::Rotate90);
-	LVGL::Initialize(5);
-	LVGL::Adapter lvglAdapter;
-	lvglAdapter.AttachDisplay(display)
-		.AttachKeyboard(USBHost::GetKeyboard())
-		.AttachMouse(USBHost::GetMouse());
-	::lv_example_keyboard_1();
-	for (;;) Tickable::Tick();
+    ::stdio_init_all();
+    ::spi_init(spi1, 125 * 1000 * 1000);
+    GPIO14.set_function_SPI1_SCK();
+    GPIO15.set_function_SPI1_TX();
+    USBHost::Initialize();
+    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+    display.Initialize(Display::Dir::Rotate90);
+    LVGL::Initialize(5);
+    LVGL::Adapter lvglAdapter;
+    lvglAdapter.AttachDisplay(display)
+        .AttachKeyboard(USBHost::GetKeyboard())
+        .AttachMouse(USBHost::GetMouse());
+    ::lv_example_keyboard_1();
+    for (;;) Tickable::Tick();
 }
 ```
 
-![lvgl-usbhid.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/7e0218e8-3e5e-403e-9612-e40f45c9f998.jpeg)
+![lvgl-usbhid.jpg](/images/lvgl-usbhid.jpg)
 
 `LVGL::Adapter` インスタンスに対して `AttachKeyboard()` や `AttachMouse()` を実行することで、USB キーボード・マウスを LVGL に接続します。`Tickable::Tick()` は tinyusb や LVGL、**pico-jxglib** のタスク処理を実行します。
