@@ -231,7 +231,3 @@ int main()
 [^namespace]: **pico-jxglib** の関数やクラス、グローバル変数は、名前がほかのライブラリとバッティングしないよう `jxglib` という識別子をもつ名前空間の中で定義されています。例えばこのコード内の `GPIO15` は、名前空間の識別子を先頭につけて `jxglib::GPIO15` と記述する必要があるのですが、記述が長くなるので `using namespace` を使って省略できるようにしています。
 
 ビルド方法とボードへの書き込み方は [「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk) を参照してください。
-
-## 次回の記事
-
-**pico-jxglib** を使って TFT LCD の描画をします。

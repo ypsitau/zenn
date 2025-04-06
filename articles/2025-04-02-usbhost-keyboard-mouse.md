@@ -5,13 +5,13 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["RaspberryPiPico", "LVGL", "USB", "Keyboard", "Mouse"]
 published: false
 ---
-[**pico-jxglib**](https://qiita.com/ypsitau/items/ca5fb14f0bda56e84486) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
+[**pico-jxglib**](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
 前の記事では、文字情報を TFT LCD や OLED に表示できる Terminal について説明しました。
 
-https://qiita.com/items/bbccd9f9b5fc5d48d2f1
+https://zenn.dev/ypsitau/articles/2025-02-19-terminal
 
-今回は Pico の USB ホスト機能を使って、USB キーボードとマウスを接続します。Pico ボードに主要な入力デバイスがつながると、独立したマイコンになって楽しいですよー。この記事では、GUI ツールキット [LVGL](https://qiita.com/ypsitau/items/be620ca50c23b115e00a) にキーボード・マウス入力機能をつける方法まで説明していきます。
+今回は Pico の USB ホスト機能を使って、USB キーボードとマウスを接続します。Pico ボードに主要な入力デバイスがつながると、独立したマイコンになって楽しいですよー。この記事では、GUI ツールキット [LVGL](https://zenn.dev/ypsitau/articles/2025-02-04-lvgl) にキーボード・マウス入力機能をつける方法まで説明していきます。
 
 ## Pico の USB ホスト機能について
 
@@ -267,7 +267,3 @@ int main()
 ![lvgl-usbhid.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/7e0218e8-3e5e-403e-9612-e40f45c9f998.jpeg)
 
 `LVGL::Adapter` インスタンスに対して `AttachKeyboard()` や `AttachMouse()` を実行することで、USB キーボード・マウスを LVGL に接続します。`Tickable::Tick()` は tinyusb や LVGL、**pico-jxglib** のタスク処理を実行します。
-
-## 次回の記事
-
-次回は Terminal に readline 風の文字列入力機能を実装します。
