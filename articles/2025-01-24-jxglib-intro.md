@@ -208,7 +208,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 
 ソースファイルを以下のように編集します。
 
-```c++:blink.cpp
+```cpp:blink.cpp
 #include "pico/stdlib.h"
 #include "jxglib/Common.h"
 
@@ -230,7 +230,7 @@ int main()
 
 [^namespace]: **pico-jxglib** の関数やクラス、グローバル変数は、名前がほかのライブラリとバッティングしないよう `jxglib` という識別子をもつ名前空間の中で定義されています。例えばこのコード内の `GPIO15` は、名前空間の識別子を先頭につけて `jxglib::GPIO15` と記述する必要があるのですが、記述が長くなるので `using namespace` を使って省略できるようにしています。
 
-ビルド方法とボードへの書き込み方は [「Pico SDK ことはじめ」](/articles/2025-01-17-picosdk) を参照してください。
+ビルド方法とボードへの書き込み方は [「Pico SDK ことはじめ」](/ypsitau/articles/2025-01-17-picosdk) を参照してください。
 
 ## 次回の記事
 
