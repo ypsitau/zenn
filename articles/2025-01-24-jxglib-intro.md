@@ -7,7 +7,13 @@ published: true
 ---
 **pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
-今回の記事は、**pico-jxglib** の概要と導入方法について説明します。
+今回の記事は、**pico-jxglib** の概要と導入方法について説明します。ライブラリの詳細については以下の記事を参照ください。
+
+▶️ [pico-jxglib と TFT LCD の話](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd)
+▶️ [pico-jxblib と TFT LCD の話 (続き)](https://zenn.dev/ypsitau/articles/2025-01-31-tft-lcd-cont)
+▶️ [pico-jxglib と LVGL の話](https://zenn.dev/ypsitau/articles/2025-02-04-lvgl)
+▶️ [pico-jxglib と Terminal の話](https://zenn.dev/ypsitau/articles/2025-02-19-terminal)
+▶️ [pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse)
 
 ## 作成のきっかけ
 
