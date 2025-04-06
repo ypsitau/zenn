@@ -46,7 +46,7 @@ cd pico-jxglib
 git submodule update --init
 ```
 
-:::note warn
+:::message
 **pico-jxglib** はほぼ毎日更新されています。すでにクローンしている場合は、`pico-jxglib` ディレクトリで以下のコマンドを実行して最新のものにしてください。
 
 ```
@@ -81,7 +81,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 ブレッドボードの配線イメージを以下に示します。
 
-![circuit-usbhost.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/48975/ab5267d2-c18f-4a00-9b2d-7a82e77878d4.png)
+![circuit-usbhost.png](images/circuit-usbhost.png)
 
 Pico を USB デバイス として動かす場合は USB 端子から Pico に電源を供給できますが、今回は Pico 自体がホストになるので VBUS (40 番ピン) に 5V の電源を外部から供給します。VSYS (39 番ピン) に電源をつなぐと、逆流防止のダイオードのため USB バスに電源が供給されないので注意してください。
 
@@ -219,7 +219,7 @@ LVGL は組込み機器で GUI を実装するためのライブラリです。�
 
 https://qiita.com/ypsitau/items/be620ca50c23b115e00a
 
-LVGL のユーザインターフェースにはタッチスクリーンを使うことが多いのですが、ここでは USB キーボードとマウスをつなげてみます。TFT LCD には ST7789 を使用します。他のデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://qiita.com/ypsitau/items/300472e2dee582361303) を参照してください。
+LVGL のユーザインターフェースにはタッチスクリーンを使うことが多いのですが、ここでは USB キーボードとマウスをつなげてみます。TFT LCD には ST7789 を使用します。他のデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd) を参照してください。
 
 ブレッドボードの配線イメージを以下に示します。
 
