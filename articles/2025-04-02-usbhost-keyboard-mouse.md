@@ -21,13 +21,13 @@ Pico で工作をしているとボタン入力などが必要になることが
 
 数ある USB 周辺機器の中でも、USB キーボードやマウスは特に種類が豊富で価格もお手頃ですね。ワイヤレスタイプのものでも、キーボードとマウスのセットが 2,000 円程度で入手できました。
 
-![USB-Keyboard-Mouse.jpg](/images/USB-Keyboard-Mouse.jpg)
+![USB-Keyboard-Mouse.jpg](/images/2025-04-02-usbhost-keyboard-mouse/USB-Keyboard-Mouse.jpg)
 
 これでタクトスイッチよりもはるかに操作性が向上しますし、ワイヤレスなら遠隔操作も可能になって工作の幅が広がりそうです。
 
 ところで、Pico の USB 端子は microB タイプなので、ホストとして使うにはこれを A タイプに変換するアダプタが必要になります。400 円程度で入手できます。
 
-![USB-MicroB-A-Adapter-Zoom.jpg](/images/USB-MicroB-A-Adapter-Zoom.jpg)
+![USB-MicroB-A-Adapter-Zoom.jpg](/images/2025-04-02-usbhost-keyboard-mouse/USB-MicroB-A-Adapter-Zoom.jpg)
 
 USB の操作には、Pico SDK とともに導入されている tinyusb ライブラリを使います。tinyusb のディレクトリ中 `tinyusb/examples/host/cdc_msc_hid` に USB ホスト機能のサンプルがありましたので、これを参考にして USB キーボードやマウスをより簡便に操作できる API を **pico-jxglib** に実装しました。
 
@@ -81,7 +81,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 ブレッドボードの配線イメージを以下に示します。
 
-![circuit-usbhost.png](/images/circuit-usbhost.png)
+![circuit-usbhost.png](/images/2025-04-02-usbhost-keyboard-mouse/circuit-usbhost.png)
 
 Pico を USB デバイス として動かす場合は USB 端子から Pico に電源を供給できますが、今回は Pico 自体がホストになるので VBUS (40 番ピン) に 5V の電源を外部から供給します。VSYS (39 番ピン) に電源をつなぐと、逆流防止のダイオードのため USB バスに電源が供給されないので注意してください。
 
@@ -223,7 +223,7 @@ LVGL のユーザインターフェースにはタッチスクリーンを使う
 
 ブレッドボードの配線イメージを以下に示します。
 
-![circuit-usbhost-st7789.png](/images/circuit-usbhost-st7789.png)
+![circuit-usbhost-st7789.png](/images/2025-04-02-usbhost-keyboard-mouse/circuit-usbhost-st7789.png)
 
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
@@ -264,6 +264,6 @@ int main()
 }
 ```
 
-![lvgl-usbhid.jpg](/images/lvgl-usbhid.jpg)
+![lvgl-usbhid.jpg](/images/2025-04-02-usbhost-keyboard-mouse/lvgl-usbhid.jpg)
 
 `LVGL::Adapter` インスタンスに対して `AttachKeyboard()` や `AttachMouse()` を実行することで、USB キーボード・マウスを LVGL に接続します。`Tickable::Tick()` は tinyusb や LVGL、**pico-jxglib** のタスク処理を実行します。
