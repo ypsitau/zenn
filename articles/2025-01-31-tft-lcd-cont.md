@@ -2,7 +2,7 @@
 title: "pico-jxblib と TFT LCD の話 (続き)"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["RaspberryPiPico", "TFTLCD", "library", "Cpp"]
+topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico"]
 published: true
 ---
 [**pico-jxglib**](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。

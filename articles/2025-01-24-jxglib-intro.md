@@ -2,7 +2,7 @@
 title: "Pico SDK と pico-jxglib の話"
 emoji: "🕌"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["RaspberryPiPico", "PicoSDK", "Cpp"]
+topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico"]
 published: true
 ---
 **pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
