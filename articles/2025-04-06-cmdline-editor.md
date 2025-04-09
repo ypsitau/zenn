@@ -230,7 +230,7 @@ GPIO に接続したキーボードマトリクス接続します。ここでは
 
 ブレッドボードの配線イメージを以下に示します。5V の電源をPico ボードの VBUS (40 番ピン) につなげていることに注意してください。
 
-![circuit-usbhost-ssd1306.png](/images/2025-04-06-cmdline-editor/circuit-usbhost-ssd1306.png)
+![circuit-usbhost-ssd1306.png](/images/2025-04-06-cmdline-editor/circuit-keymatrix-st7789.png)
 
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
