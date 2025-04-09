@@ -1,4 +1,5 @@
 /build
+/samples/pico-jxglib
 .vscode
 node_modules
 .DS_Store

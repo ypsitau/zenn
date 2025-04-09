@@ -5,11 +5,9 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "usb"]
 published: true
 ---
-[**pico-jxglib**](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
+**pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
-前の記事では、文字情報を TFT LCD や OLED に表示できる Terminal について説明しました。
-
-https://zenn.dev/ypsitau/articles/2025-02-19-terminal
+https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
 今回は Pico の USB ホスト機能を使って、USB キーボードとマウスを接続します。Pico ボードに主要な入力デバイスがつながると、独立したマイコンになって楽しいですよー。この記事では、GUI ツールキット [LVGL](https://zenn.dev/ypsitau/articles/2025-02-04-lvgl) にキーボード・マウス入力機能をつける方法まで説明していきます。
 

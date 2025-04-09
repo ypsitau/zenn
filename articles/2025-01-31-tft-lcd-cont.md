@@ -5,11 +5,9 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico"]
 published: true
 ---
-[**pico-jxglib**](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
+**pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
-前の記事では、このライブラリを使って TFT LCD の描画をしました。
-
-https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd
+https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
 今回は TFT LCD の初期化と描画方法についての詳細、そして複数の LCD を接続する方法について説明します。
 
