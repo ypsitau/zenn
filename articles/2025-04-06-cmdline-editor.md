@@ -40,8 +40,8 @@ Pico ボードに接続したディスプレイを使う場合はさらに以下
 
 コマンドライン編集機能は、以下の二つの Terminal で利用できます。
 
-- `Display::Terminal` ... Pico ボードに接続したディスプレイに文字を描画します。ほかのデバイスを必要とせず、Pico 単独でコマンド入力を受け付けることができます
-- `Serial::Terminal` .. PC などのホストとシリアル通信をします。コマンドの実行内容などをホスト側で保存したりできます
+- `Display::Terminal` ... Pico ボードに接続したディスプレイを使ってコマンドライン入力をします。Pico 単独でコマンド編集ができます
+- `Serial::Terminal` .. シリアル通信を使ってコマンドライン入力をします。Pico に接続したホスト PC のターミナルソフト上でコマンド編集をします
 
 `Display::Terminal` は `ST7789` などのディスプレイデバイスを出力先に指定し、入力機器として `USBHost::Keyboard` (USB キーボード)、`Stdio::Keyboard` (Stdio を経由したホストからのキーボード入力)、`GPIO::Keyboard` (GPIO のスイッチ入力)、`GPIO::KeyboardMatrix` (GPIO にマトリクス接続されたスイッチ入力) を設定します。
 
@@ -102,11 +102,15 @@ git pull
 ```
 :::
 
-### プロジェクトの作成
+### Display::Terminal を使う
+
+Pico ボードにキーボードとディスプレイをつなげて、Pico ボード単体でコマンド入力ができます。いろいろな組み合わせが可能なので、いくつか具体例を紹介します。
+
+#### プロジェクトの作成
 
 VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E7%B7%A8%E9%9B%86) を参照ください。
 
-- **Name** ... プロジェクト名を入力します。今回は例として `cmdedittest` を入力します
+- **Name** ... プロジェクト名を入力します。今回は例として `cmd-display-test` を入力します
 - **Board type** ... ボード種別を選択します
 - **Location** ... プロジェクトディレクトリを作る一つ上のディレクトリを選択します
 - **Stdio support** .. Stdio に接続するポート (UART または USB) を選択しますが、USB はこのプログラムで使うので選択できません。UART のみ選択するか、どちらも未チェックのままにしておきます
@@ -117,17 +121,13 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 ```
 +-[pico-jxglib]
-+-[cmdedittest]
++-[cmd-display-test]
   +-CMakeLists.txt
-  +-cmdedittest.cpp
+  +-cmd-display-test.cpp
   +- ...
 ```
 
 以下、このプロジェクトをもとに `CMakeLists.txt` やソースファイルを編集してプログラムを作成していきます。
-
-### Display::Terminal を使う
-
-Pico ボードにキーボードとディスプレイをつなげて、Pico ボード単体でコマンド入力ができます。いろいろな組み合わせが可能なので、いくつか具体例を紹介します。
 
 #### USB キーボード + TFT LCD
 
@@ -141,14 +141,14 @@ USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedittest jxglib_USBHost jxglib_ST7789)
+target_link_libraries(cmd-display-test jxglib_USBHost jxglib_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
-jxglib_configure_USBHost(cmdedittest CFG_TUH_HID 3)
+jxglib_configure_USBHost(cmd-display-test CFG_TUH_HID 3)
 ```
 
 ソースファイルを以下のように編集します。
 
-```cpp:cmdedittest.cpp
+```cpp:cmd-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/USBHost.h"
@@ -187,14 +187,14 @@ USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedittest jxglib_USBHost jxglib_SSD1306)
+target_link_libraries(cmd-display-test jxglib_USBHost jxglib_SSD1306)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
-jxglib_configure_USBHost(cmdedittest CFG_TUH_HID 3)
+jxglib_configure_USBHost(cmd-display-test CFG_TUH_HID 3)
 ```
 
 ソースファイルを以下のように編集します。
 
-```cpp:cmdedittest.cpp
+```cpp:cmd-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/USBHost.h"
@@ -235,13 +235,13 @@ GPIO に接続したキーボードマトリクス接続します。ここでは
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedittest jxglib_USBHost jxglib_ST7789)
+target_link_libraries(cmd-display-test jxglib_USBHost jxglib_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
 
 ソースファイルを以下のように編集します。
 
-```cpp:cmdedittest.cpp
+```cpp:cmd-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/ST7789.h"
@@ -283,3 +283,54 @@ int main()
 
 ### Serial::Terminal を使う
 
+Pico ボードをシリアル回線で PC に接続します。
+
+#### プロジェクトの作成
+
+VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E7%B7%A8%E9%9B%86) を参照ください。
+
+- **Name** ... プロジェクト名を入力します。今回は例として `cmd-serial-test` を入力します
+- **Board type** ... ボード種別を選択します
+- **Location** ... プロジェクトディレクトリを作る一つ上のディレクトリを選択します
+- **Stdio support** .. Stdio に接続するポート (UART または USB) を選択します
+- **Code generation options** ... **`Generate C++ code` にチェックをつけます**
+
+
+プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
+
+```
++-[pico-jxglib]
++-[cmd-serial-test]
+  +-CMakeLists.txt
+  +-cmd-serial-test.cpp
+  +- ...
+```
+
+`CMakeLists.txt` の最後に以下の行を追加してください。
+
+```cmake:CMakeLists.txt
+target_link_libraries(cmd-display-test jxglib_Serial)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
+```
+
+ソースファイルを以下のように編集します。
+
+```cpp:cmd-serial-test.cpp
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "jxglib/Serial.h"
+
+using namespace jxglib;
+
+Serial::Terminal terminal;
+
+int main()
+{
+    ::stdio_init_all();
+    terminal.Initialize();
+    terminal.Println("ReadLine Test Program");
+    for (;;) {
+        ::printf("%s\n", terminal.ReadLine(">"));
+    }
+}
+```
