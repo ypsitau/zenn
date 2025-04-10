@@ -292,14 +292,14 @@ int main()
 
 キーボードマトリクスには、回り込み防止用のダイオードが入ったものとないものがあります。回り込み防止用のダイオードが入っている場合、ダイオードの極性によって以下にようにコードを変更してください。
 
-- **極性が col -> row の場合** `keyColTbl` 中の GPIO の設定を `pull_up()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicNeg` を設定してください。
-- **極性が row -> col の場合** `keyColTbl` 中の GPIO の設定を `pull_down()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicPos` を設定してください。
+- **極性が col → row の場合** `keyColTbl` 中の GPIO の設定を `pull_up()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicNeg` を設定してください。
+- **極性が row → col の場合** `keyColTbl` 中の GPIO の設定を `pull_down()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicPos` を設定してください。
 
 ダイオードが入っていない場合はどちらでもかまいません。
 
 ### Serial::Terminal を使う
 
-Pico ボードをシリアル回線で PC に接続します。
+シリアル回線で Pico ボードを PC に接続します。
 
 #### Serial::Terminal 用プロジェクトの作成
 
