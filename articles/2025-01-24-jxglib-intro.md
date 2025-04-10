@@ -14,6 +14,7 @@ published: true
 ▶️ [pico-jxglib と LVGL の話](https://zenn.dev/ypsitau/articles/2025-02-04-lvgl)
 ▶️ [pico-jxglib と Terminal の話](https://zenn.dev/ypsitau/articles/2025-02-19-terminal)
 ▶️ [pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse)
+▶️ [pico-jxglib とコマンドライン編集機能の話](https://zenn.dev/ypsitau/articles/2025-04-06-cmdline-editor)
 
 ## 作成のきっかけ
 
