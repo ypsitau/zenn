@@ -181,6 +181,10 @@ int main()
 
 `terminal.ReadLine()` は入力された文字列へのポインタを返します。
 
+![cmdedit-display-test.jpg](/images/2025-04-06-cmdline-editor/cmdedit-display-test.jpg)
+
+写真では分かりませんが、カーソルもしっかり点滅しています。キーボード入力ができると、Pico ボードがいよいよ独立したマイコンになった気がしますね。
+
 #### USB キーボード + OLED (SSD1306)
 
 USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って接続します。OLED は SSD1306 を使用します。
