@@ -60,7 +60,7 @@ graph TD
     D4(ILI9488)
     D5(SSD1306)
   end
-  Keyboard-->T(Display::Terminal)-->Display
+  Keyboard--"AttachKeyboard()"-->T(Display::Terminal)--"AttachDisplay()"-->Display
 ```
 
 `Serial::Terminal` は Stdio を出力先に指定します[^serial-output]。入力機器として `USBHost::Keyboard`、`Stdio::Keyboard`、`GPIO::Keyboard`、`GPIO::KeyboardMatrix` を設定します。
@@ -78,7 +78,7 @@ graph TD
   subgraph Printable
     P1(Stdio)
   end
-  Keyboard-->T(Serial::Terminal)-->Printable
+  Keyboard--"AttachKeyboard()"-->T(Serial::Terminal)--"AttachPrintable()"-->Printable
 ```
 
 ## 実際のプロジェクト
@@ -88,7 +88,8 @@ graph TD
 Visual Studio Code や Git ツール、Pico SDK のセットアップが済んでいない方は[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83) をご覧ください。
 
 **pico-jxglib** は GitHub からレポジトリをクローンすることで入手できます。
-```
+
+```console
 git clone https://github.com/ypsitau/pico-jxglib.git
 cd pico-jxglib
 git submodule update --init
@@ -97,9 +98,10 @@ git submodule update --init
 :::message
 **pico-jxglib** はほぼ毎日更新されています。すでにクローンしている場合は、`pico-jxglib` ディレクトリで以下のコマンドを実行して最新のものにしてください。
 
-```
+```console
 git pull
 ```
+
 :::
 
 ### Display::Terminal を使う
@@ -116,10 +118,9 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 - **Stdio support** .. Stdio に接続するポート (UART または USB) を選択しますが、USB はこのプログラムで使うので選択できません。UART のみ選択するか、どちらも未チェックのままにしておきます
 - **Code generation options** ... **`Generate C++ code` にチェックをつけます**
 
-
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
-```
+```text
 +-[pico-jxglib]
 +-[cmd-display-test]
   +-CMakeLists.txt
@@ -129,7 +130,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 以下、このプロジェクトをもとに `CMakeLists.txt` やソースファイルを編集してプログラムを作成していきます。
 
-#### USB キーボード + TFT LCD
+#### USB キーボード + TFT LCD (ST7789)
 
 USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って接続します。TFT LCD は ST7789 を使用しますが、他のディスプレイデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd) を参照してください。
 。
@@ -168,15 +169,20 @@ int main()
     GPIO15.set_function_SPI1_TX();
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
-    terminal.SetFont(Font::shinonome16).AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
+    terminal.SetFont(Font::shinonome16)
+      .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
     terminal.Println("ReadLine Test Program");
     for (;;) {
-        terminal.Printf("%s\n", terminal.ReadLine(">"));
+        char* str = terminal.ReadLine(">");
+        terminal.Printf("%s\n", str);
     }
 }
 ```
 
-#### USB キーボード + OLED
+`terminal.ReadLine()` は入力された文字列へのポインタを返します。
+
+
+#### USB キーボード + OLED (SSD1306)
 
 USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って接続します。OLED は SSD1306 を使用します。
 
@@ -214,15 +220,17 @@ int main()
     GPIO5.set_function_I2C0_SCL().pull_up();
     SSD1306 display(i2c0, 0x3c);
     display.Initialize();
-    terminal.SetFont(Font::shinonome12).AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
+    terminal.SetFont(Font::shinonome12)
+      .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
     terminal.Println("ReadLine Test Program");
     for (;;) {
-        terminal.Printf("%s\n", terminal.ReadLine(">"));
+        char* str = terminal.ReadLine(">");
+        terminal.Printf("%s\n", str);
     }
 }
 ```
 
-#### GPIO キーボードマトリクス + TFT LCD
+#### GPIO キーボードマトリクス + TFT LCD (ST7789)
 
 GPIO に接続したキーボードマトリクス接続します。ここでは Amazon などで容易に入手できる 4x4 マトリクスタイプのものを使用します。
 
@@ -255,31 +263,40 @@ int main()
 {
     ::stdio_init_all();
     GPIO::KeyboardMatrix keyboard;
-    const GPIO::KeySet keySetTbl[] = {
+    const Keyboard::KeySet keySetTbl[] = {
         VK_1,    VK_2, VK_3,     VK_BACK,
         VK_4,    VK_5, VK_6,     VK_UP,
         VK_7,    VK_8, VK_9,     VK_DOWN,
         VK_LEFT, VK_0, VK_RIGHT, VK_RETURN,
     };
     const GPIO::KeyRow keyRowTbl[] = { GPIO16, GPIO17, GPIO18, GPIO19 };
-    const GPIO::KeyCol keyColTbl[] = { GPIO20.pull_up(), GPIO21.pull_up(), GPIO26.pull_up(), GPIO27.pull_up() };
-    keyboard.Initialize(keySetTbl, keyRowTbl, count_of(keyRowTbl), keyColTbl, count_of(keyColTbl), GPIO::LogicNeg);
+    const GPIO::KeyCol keyColTbl[] = {
+        GPIO20.pull_up(), GPIO21.pull_up(), GPIO26.pull_up(), GPIO27.pull_up()
+    };
+    keyboard.Initialize(keySetTbl,
+        keyRowTbl, count_of(keyRowTbl),
+        keyColTbl, count_of(keyColTbl), GPIO::LogicNeg);
     ::spi_init(spi1, 125 * 1000 * 1000);
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
-    terminal.SetFont(Font::shinonome16).AttachDisplay(display).AttachKeyboard(keyboard);
+    terminal.SetFont(Font::shinonome16)
+      .AttachDisplay(display).AttachKeyboard(keyboard);
     terminal.Println("ReadLine Test Program");
     for (;;) {
-        terminal.Printf("%s\n", terminal.ReadLine(">"));
+        char* str = terminal.ReadLine(">");
+        terminal.Printf("%s\n", str);
     }
 }
 ```
 
+キーボードマトリクスには、回り込み防止用のダイオードが入ったものとないものがあります。回り込み防止用のダイオードが入っている場合、ダイオードの極性によって以下にようにコードを変更してください。
 
+- **極性が col -> row の場合** `keyColTbl` 中の GPIO の設定を `pull_up()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicNeg` を設定してください。
+- **極性が row -> col の場合** `keyColTbl` 中の GPIO の設定を `pull_down()` にして、`keyboard.Initialize()` の最後の引数に `GPIO::LogicPos` を設定してください。
 
-`keyColTbl` 中の `pull_up()` を `pull_down()` にして、`keyboardInitialize()` の `GPIO::LogicNeg` を `GPIO::LogicPos` にしてください。
+ダイオードが入っていない場合はどちらでもかまいません。
 
 ### Serial::Terminal を使う
 
@@ -295,10 +312,9 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 - **Stdio support** .. Stdio に接続するポート (UART または USB) を選択します
 - **Code generation options** ... **`Generate C++ code` にチェックをつけます**
 
-
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
-```
+```text
 +-[pico-jxglib]
 +-[cmd-serial-test]
   +-CMakeLists.txt
@@ -312,6 +328,8 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 target_link_libraries(cmd-display-test jxglib_Serial)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
+
+#### Stdio 経由でホスト PC と接続
 
 ソースファイルを以下のように編集します。
 
@@ -328,9 +346,13 @@ int main()
 {
     ::stdio_init_all();
     terminal.Initialize();
+    terminal.AttachPrintable(Stdio::Instance).AttachKeyboard(Stdio::GetKeyboard());
     terminal.Println("ReadLine Test Program");
     for (;;) {
-        ::printf("%s\n", terminal.ReadLine(">"));
+        char* str = terminal.ReadLine(">");
+        terminal.Printf("%s\n", str);
     }
 }
 ```
+
+UART または USB でホスト PC に接続し、ターミナルソフト (通信速度 115200 bps) を起動すると、編集しながらコマンドラインの入力ができます。
