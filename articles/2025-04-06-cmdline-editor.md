@@ -327,14 +327,14 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
   +- ...
 ```
 
+#### Stdio 経由でホスト PC と接続
+
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
 target_link_libraries(cmdedit-serial-test jxglib_Serial)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
-
-#### Stdio 経由でホスト PC と接続
 
 ソースファイルを以下のように編集します。
 
