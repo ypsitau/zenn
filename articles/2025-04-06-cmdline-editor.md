@@ -246,7 +246,7 @@ GPIO に接続したキーボードマトリクス接続します。ここでは
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_ST7789)
+target_link_libraries(cmdedit-display-test jxglib_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
 
