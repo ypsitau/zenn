@@ -208,7 +208,7 @@ jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 #include "pico/stdlib.h"
 #include "jxglib/USBHost.h"
 #include "jxglib/SSD1306.h"
-#include "jxglib/Font/shinonome12"
+#include "jxglib/Font/shinonome12.h"
 
 using namespace jxglib;
 
