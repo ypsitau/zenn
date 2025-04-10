@@ -170,7 +170,7 @@ int main()
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
     terminal.SetFont(Font::shinonome16)
-      .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
+        .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
     terminal.Println("ReadLine Test Program");
     for (;;) {
         char* str = terminal.ReadLine(">");
@@ -220,7 +220,7 @@ int main()
     SSD1306 display(i2c0, 0x3c);
     display.Initialize();
     terminal.SetFont(Font::shinonome12)
-      .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
+        .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
     terminal.Println("ReadLine Test Program");
     for (;;) {
         char* str = terminal.ReadLine(">");
@@ -281,7 +281,7 @@ int main()
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
     terminal.SetFont(Font::shinonome16)
-      .AttachDisplay(display).AttachKeyboard(keyboard);
+        .AttachDisplay(display).AttachKeyboard(keyboard);
     terminal.Println("ReadLine Test Program");
     for (;;) {
         char* str = terminal.ReadLine(">");
