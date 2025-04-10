@@ -89,7 +89,7 @@ Visual Studio Code や Git ツール、Pico SDK のセットアップが済ん�
 
 **pico-jxglib** は GitHub からレポジトリをクローンすることで入手できます。
 
-```console
+```bash
 git clone https://github.com/ypsitau/pico-jxglib.git
 cd pico-jxglib
 git submodule update --init
@@ -98,7 +98,7 @@ git submodule update --init
 :::message
 **pico-jxglib** はほぼ毎日更新されています。すでにクローンしている場合は、`pico-jxglib` ディレクトリで以下のコマンドを実行して最新のものにしてください。
 
-```console
+```bash
 git pull
 ```
 
@@ -108,7 +108,7 @@ git pull
 
 Pico ボードにキーボードとディスプレイをつなげて、Pico ボード単体でコマンド入力ができます。いろいろな組み合わせが可能なので、いくつか具体例を紹介します。
 
-#### プロジェクトの作成
+#### Display::Terminal 用プロジェクトの作成
 
 VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E7%B7%A8%E9%9B%86) を参照ください。
 
@@ -180,7 +180,6 @@ int main()
 ```
 
 `terminal.ReadLine()` は入力された文字列へのポインタを返します。
-
 
 #### USB キーボード + OLED (SSD1306)
 
@@ -302,7 +301,7 @@ int main()
 
 Pico ボードをシリアル回線で PC に接続します。
 
-#### プロジェクトの作成
+#### Serial::Terminal 用プロジェクトの作成
 
 VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行し、以下の内容でプロジェクトを作成します。Pico SDK プロジェクト作成の詳細や、ビルド、ボードへの書き込み方法については[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E7%B7%A8%E9%9B%86) を参照ください。
 

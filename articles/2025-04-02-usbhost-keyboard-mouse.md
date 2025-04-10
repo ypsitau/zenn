@@ -38,7 +38,8 @@ USB キーボードとマウスを実際に動かしてみます。Stdio を使�
 Visual Studio Code や Git ツール、Pico SDK のセットアップが済んでいない方は[「Pico SDK ことはじめ」](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83) をご覧ください。
 
 **pico-jxglib** は GitHub からレポジトリをクローンすることで入手できます。
-```
+
+```bash
 git clone https://github.com/ypsitau/pico-jxglib.git
 cd pico-jxglib
 git submodule update --init
@@ -47,9 +48,10 @@ git submodule update --init
 :::message
 **pico-jxglib** はほぼ毎日更新されています。すでにクローンしている場合は、`pico-jxglib` ディレクトリで以下のコマンドを実行して最新のものにしてください。
 
-```
+```bash
 git pull
 ```
+
 :::
 
 ### プロジェクトの作成
@@ -65,7 +67,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
-```
+```text
 +-[pico-jxglib]
 +-[usbhosttest]
   +-CMakeLists.txt
@@ -134,7 +136,6 @@ int main()
 ```
 
 メインループ中の `Tickable::Sleep()` は、遅延時間を msec で指定します。この関数の中で tinyusb や **pico-jxglib** のタスク処理が行われます。
-
 
 以下に `Keyboard::GetKeyCodeNB()` を使った例を示します。押したキーに対応する LED がリピート処理の結果を受けて点滅します。
 

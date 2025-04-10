@@ -137,7 +137,7 @@ target_link_libraries(pico_stdlib INTERFACE
 
 **pico-jxglib** は GitHub から以下のようにクローンすることで最新版を入手できます。
 
-```
+```bash
 git clone https://github.com/ypsitau/pico-jxglib.git
 cd pico-jxglib
 git submodule update --init
@@ -147,7 +147,7 @@ git submodule update --init
 
 - 以下のように `pico-jxglib` ディレクトリをプロジェクトディレクトリ配下に置いた場合は:
 
-  ```
+  ```text
   +-[your-project]
     +-[pico-jxglib]
     +-CMakeLists.txt
@@ -163,7 +163,7 @@ git submodule update --init
 
 - 以下のように `pico-jxglib` ディレクトリをプロジェクトの `CMakeLists.txt` よりも上のディレクトリに置いた場合は:
 
-  ```
+  ```text
   +-[pico-jxglib]
   +-[your-project]
     +-CMakeLists.txt
@@ -194,7 +194,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 このプロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
-```
+```text
 +-[pico-jxglib]
 +-[blink]
   +-CMakeLists.txt
@@ -206,7 +206,6 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 ```cmake:CMakeLists.txt
 target_link_libraries(blink jxglib_Common)
-
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
 
