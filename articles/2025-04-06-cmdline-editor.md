@@ -328,6 +328,8 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 #### Stdio 経由でホスト PC と接続
 
+Pico ボードを UART または USB 経由でホスト PC と接続します (詳細は[こちら](https://zenn.dev/ypsitau/articles/2025-01-17-picosdk#stdio-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6))。
+
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
@@ -359,4 +361,4 @@ int main()
 }
 ```
 
-UART または USB でホスト PC に接続し、ターミナルソフト (通信速度 115200 bps) を起動すると、コマンドラインの編集入力ができます。
+ホスト PC のターミナルソフトで、コマンドラインの編集入力ができます。
