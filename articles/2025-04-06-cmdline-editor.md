@@ -134,7 +134,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 
 #### USB キーボード + TFT LCD (ST7789)
 
-USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って接続します。TFT LCD は ST7789 を使用しますが、他のディスプレイデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd) を参照してください。
+USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って接続します (詳細は[こちら](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse))。TFT LCD は ST7789 を使用しますが、他のディスプレイデバイスを接続する場合は[「pico-jxblib と TFT LCD の話」](https://zenn.dev/ypsitau/articles/2025-01-27-tft-lcd) を参照してください。
 
 ブレッドボードの配線イメージを以下に示します。5V の電源をPico ボードの VBUS (40 番ピン) につなげていることに注意してください。
 
