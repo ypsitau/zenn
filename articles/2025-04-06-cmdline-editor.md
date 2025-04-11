@@ -9,7 +9,7 @@ published: true
 
 https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
-[「pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話」](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse) で、Pico ボードに USB キーボードをつなげました。今回はそれを使って Linux の bash シェルで使われている readline に似たコマンドライン編集機能を Pico ボードで実現する話です。
+[「pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話」](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse) で、Pico ボードに USB キーボードをつなげました。今回はそれを使って Linux の bash シェルなどで使われている readline に似たコマンドライン編集機能を Pico ボードで実現する話です。
 
 USB キーボードのほかに、タクトスイッチやキーボードマトリクスも入力デバイスとして使えますし、PC とのシリアル通信上でもコマンドライン編集が可能になります。
 
