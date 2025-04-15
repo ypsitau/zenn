@@ -20,7 +20,7 @@ int main()
     GPIO5.set_function_I2C0_SCL().pull_up();
     SSD1306 display(i2c0, 0x3c);
 #else
-    // http://www.ze.em-net.ne.jp/~kenken/picogames/index.html
+    // compatible with http://www.ze.em-net.ne.jp/~kenken/picogames/index.html
 	::spi_init(spi0, 125 * 1000 * 1000);	// for displays
 	GPIO18.set_function_SPI0_SCK();
 	GPIO19.set_function_SPI0_TX();
