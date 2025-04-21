@@ -55,6 +55,6 @@ target_include_directories(lvgltest PRIVATE
 
 pico_add_extra_outputs(lvgltest)
 
-target_link_libraries(lvgltest jxglib_Stdio jxglib_ST7789 jxglib_LVGL lvgl_examples)
+target_link_libraries(lvgltest jxglib_ST7789 jxglib_LVGL lvgl_examples)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_LVGL(lvgltest LV_FONT_MONTSERRAT_14)
