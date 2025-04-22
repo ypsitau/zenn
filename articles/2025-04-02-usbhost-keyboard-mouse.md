@@ -200,7 +200,7 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    Mouse& mouse = USBHost::GetMouse();
+    USBHose::Mouse mouse;
     for (;;) {
         Mouse::Status status = mouse.CaptureStatus();
         GPIO21.put(status.GetDeltaX() < 0);
@@ -252,13 +252,14 @@ int main()
     GPIO15.set_function_SPI1_TX();
     USBHost::Initialize();
     USBHost::Keyboard keyboard;
+    USBHost::Mouse mouse;
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate90);
     LVGL::Initialize(5);
     LVGL::Adapter lvglAdapter;
     lvglAdapter.AttachDisplay(display)
         .AttachKeyboard(keyboard)
-        .AttachMouse(USBHost::GetMouse());
+        .AttachMouse(mouse);
     ::lv_example_keyboard_1();
     for (;;) Tickable::Tick();
 }
