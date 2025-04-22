@@ -124,7 +124,7 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    USBHose::Keyboard keyboard;
+    USBHost::Keyboard keyboard;
     for (;;) {
         GPIO18.put(keyboard.IsPressed(VK_V));
         GPIO19.put(keyboard.IsPressed(VK_C));
