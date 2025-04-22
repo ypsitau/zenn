@@ -10,12 +10,14 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    USBHose::Keyboard keyboard;
+    USBHost::Keyboard keyboard;
     for (;;) {
-        GPIO18.put(keyboard.IsPressed(VK_V));
-        GPIO19.put(keyboard.IsPressed(VK_C));
-        GPIO20.put(keyboard.IsPressed(VK_X));
-        GPIO21.put(keyboard.IsPressed(VK_Z));
+        uint8_t keyCode;
+        bool rtn = keyboard.GetKeyCodeNB(&keyCode);
+        GPIO18.put(rtn && keyCode == VK_V);
+        GPIO19.put(rtn && keyCode == VK_C);
+        GPIO20.put(rtn && keyCode == VK_X);
+        GPIO21.put(rtn && keyCode == VK_Z);
         Tickable::Sleep(50);
     }
 }

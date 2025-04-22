@@ -170,7 +170,7 @@ int main()
 
 USB マウスの機能も USBHost クラスで実装されています。
 
-`USBHost::GetMouse()` で `USBHost::Mouse` インスタンスを取得し、`Mouse::CaptureStatus()` 関数でマウスの状態を表す `Mouse::Status` インスタンスを取得します。得られる情報は以下の通りです。
+`USBHost::Mouse` インスタンスを生成し、`Mouse::CaptureStatus()` 関数でマウスの状態を表す `Mouse::Status` インスタンスを取得します。得られる情報は以下の通りです。
 
 - マウスの現在位置
 - 移動量
