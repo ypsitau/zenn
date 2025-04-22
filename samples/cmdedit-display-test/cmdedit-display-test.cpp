@@ -14,6 +14,7 @@ int main()
 {
     ::stdio_init_all();
     USBHost::Initialize();
+    USBHost::Keyboard keyboard;
 #if 1
     ::i2c_init(i2c0, 400 * 1000);
     GPIO4.set_function_I2C0_SDA().pull_up();
@@ -28,7 +29,7 @@ int main()
 #endif
     display.Initialize();
     terminal.SetFont(Font::shinonome16)
-        .AttachDisplay(display).AttachKeyboard(USBHost::GetKeyboard());
+        .AttachDisplay(display).AttachKeyboard(keyboard);
     terminal.Println("ReadLine Test Program");
     for (;;) {
         char* str = terminal.ReadLine(">");

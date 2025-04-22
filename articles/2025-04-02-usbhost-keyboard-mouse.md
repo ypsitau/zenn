@@ -89,7 +89,7 @@ Pico を USB デバイス として動かす場合は USB 端子から Pico に�
 
 **pico-jxglib** で USB のホスト機能を使うには `USBHost`クラスを使います。
 
-`USBHost::GetKeyboard()` で `USBHost::Keyboard` インスタンスを取得し、以下の API でキーボード情報を取得します。
+`USBHost::Keyboard` インスタンスを生成し、以下の API でキーボード情報を取得します。
 
 - `Keyboard::IsPressed()` 指定されたキーが押されているかチェックします
 - `Keyboard::ScanKeyCode()` 押されているキーのキーコードを返します
@@ -124,7 +124,7 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    Keyboard& keyboard = USBHost::GetKeyboard();
+    USBHose::Keyboard keyboard;
     for (;;) {
         GPIO18.put(keyboard.IsPressed(VK_V));
         GPIO19.put(keyboard.IsPressed(VK_C));
@@ -152,7 +152,7 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    Keyboard& keyboard = USBHost::GetKeyboard();
+    USBHost::Keyboard keyboard;
     for (;;) {
         uint8_t keyCode;
         bool rtn = keyboard.GetKeyCodeNB(&keyCode);
@@ -251,12 +251,13 @@ int main()
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
     USBHost::Initialize();
+    USBHost::Keyboard keyboard;
     ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate90);
     LVGL::Initialize(5);
     LVGL::Adapter lvglAdapter;
     lvglAdapter.AttachDisplay(display)
-        .AttachKeyboard(USBHost::GetKeyboard())
+        .AttachKeyboard(keyboard)
         .AttachMouse(USBHost::GetMouse());
     ::lv_example_keyboard_1();
     for (;;) Tickable::Tick();
