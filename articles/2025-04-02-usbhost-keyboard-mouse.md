@@ -200,7 +200,7 @@ int main()
     GPIO20.init().set_dir_OUT();
     GPIO21.init().set_dir_OUT();
     USBHost::Initialize();
-    USBHose::Mouse mouse;
+    USBHost::Mouse mouse;
     for (;;) {
         Mouse::Status status = mouse.CaptureStatus();
         GPIO21.put(status.GetDeltaX() < 0);
