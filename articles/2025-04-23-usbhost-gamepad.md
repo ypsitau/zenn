@@ -10,3 +10,12 @@ published: false
 https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
 今回は Pico の USB ホスト機能を使って、USB ゲームパッドを接続します。
+
+
+DirectInput と XInput
+
+
+
+Vid_045E Pid_028E
+
+https://github.com/mdqinc/SDL_GameControllerDB

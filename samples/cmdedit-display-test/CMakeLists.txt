@@ -55,6 +55,6 @@ target_include_directories(cmdedit-display-test PRIVATE
 
 pico_add_extra_outputs(cmdedit-display-test)
 
-target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_SSD1306 jxglib_ILI9341)
+target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_SSD1306 jxglib_ILI9341 jxglib_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
