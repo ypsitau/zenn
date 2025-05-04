@@ -3,13 +3,14 @@ title: "pico-jxglib で Pico ボードに USB ゲームパッドを接続して�
 emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "usb"]
-published: false
+published: true
 ---
 **pico-jxglib** は、ワンボードマイコン Raspberry Pi Pico の Pico SDK プログラミングをサポートするライブラリです。
 
 https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
-今回は Pico の USB ホスト機能を使って、Pico ボードに USB ゲームパッドを接続します。
+
+以前に[「pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話」](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse)という記事を上げましたが、今回は Pico の USB ホスト機能を使って、Pico ボードに USB ゲームパッドを接続します。
 
 ## USB ゲームパッドについて
 
