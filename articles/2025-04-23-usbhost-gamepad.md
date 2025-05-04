@@ -200,6 +200,8 @@ UF2 ファイル
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picopacman/raw/refs/heads/main/bin/lcd-pacman-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picopacman/raw/refs/heads/main/bin/lcd-pacman-pico2-st7789.uf2)
 
+![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picopacman.jpg)
+
 ### テトリス
 
 UF2 ファイル
@@ -208,6 +210,8 @@ UF2 ファイル
 - [Pico ボード + ST7789](https://github.com/ypsitau/picotetris/raw/refs/heads/main/bin/tetrispico-pico-st7789.uf2)
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picotetris/raw/refs/heads/main/bin/tetrispico-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picotetris/raw/refs/heads/main/bin/tetrispico-pico2-st7789.uf2)
+
+![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picotetris.jpg)
 
 ### インベーダーゲーム
 
@@ -218,8 +222,12 @@ UF2 ファイル
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picoinvader/raw/refs/heads/main/bin/invaderpico-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picoinvader/raw/refs/heads/main/bin/invaderpico-pico2-st7789.uf2)
 
+![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picoinvader.jpg)
+
 ### 箱入り娘パズル
 
+![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picohakomusu.jpg)
 
 ### ペグソリティア
 
+![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picopegsol.jpg)
