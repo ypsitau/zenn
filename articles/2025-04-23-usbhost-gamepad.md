@@ -9,7 +9,6 @@ published: true
 
 https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 
-
 以前に[「pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話」](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse)という記事を上げましたが、今回は Pico の USB ホスト機能を使って、Pico ボードに USB ゲームパッドを接続します。ゲームも楽しみますよ。
 
 ## USB ゲームパッドについて
