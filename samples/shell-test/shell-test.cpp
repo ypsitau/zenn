@@ -7,6 +7,14 @@
 
 using namespace jxglib;
 
+ShellCmd(argtest, "tests command line arguments")
+{
+    for (int i = 0; i < argc; i++) {
+        terminal.Printf("argv[%d] \"%s\"\n", i, argv[i]);
+    }
+    return 0;
+}
+
 int main()
 {
     ::stdio_init_all();
