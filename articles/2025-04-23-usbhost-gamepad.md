@@ -1,6 +1,6 @@
 ---
 title: "pico-jxglib で Pico ボードに USB ゲームパッドを接続してゲームを楽しむ話"
-emoji: "📚"
+emoji: "🎮"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "usb"]
 published: true

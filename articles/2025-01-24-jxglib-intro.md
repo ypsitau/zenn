@@ -15,6 +15,8 @@ published: true
 ▶️ [pico-jxglib と Terminal の話](https://zenn.dev/ypsitau/articles/2025-02-19-terminal)
 ▶️ [pico-jxglib で Pico ボードに USB キーボード・マウスを接続する話](https://zenn.dev/ypsitau/articles/2025-04-02-usbhost-keyboard-mouse)
 ▶️ [pico-jxglib とコマンドライン編集機能の話](https://zenn.dev/ypsitau/articles/2025-04-06-cmdline-editor)
+▶️ [pico-jxglib で Pico ボードに USB ゲームパッドを接続してゲームを楽しむ話](https://zenn.dev/ypsitau/articles/2025-04-23-usbhost-gamepad)
+▶️ [pico-jxglib で pico ボードにシェルを実装する話](https://zenn.dev/ypsitau/articles/2025-05-08-shell)
 
 ## 作成のきっかけ
 
