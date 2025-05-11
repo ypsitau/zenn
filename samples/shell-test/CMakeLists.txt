@@ -55,6 +55,6 @@ target_include_directories(shell-test PRIVATE
 
 pico_add_extra_outputs(shell-test)
 
-target_link_libraries(shell-test jxglib_Serial jxglib_USBHost jxglib_SSD1306 jxglib_Shell jxglib_ShellCmd_Basic)
+target_link_libraries(shell-test jxglib_Serial jxglib_USBHost jxglib_ST7789 jxglib_SSD1306 jxglib_Shell jxglib_ShellCmd_Basic)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(shell-test CFG_TUH_HID 3)

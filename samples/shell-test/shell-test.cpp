@@ -2,27 +2,26 @@
 #include "pico/stdlib.h"
 #include "jxglib/SSD1306.h"
 #include "jxglib/USBHost.h"
-#include "jxglib/Serial.h"
 #include "jxglib/Shell.h"
 #include "jxglib/Font/shinonome12.h"
 
 using namespace jxglib;
 
-ShellCmd(argtest, "tests command line arguments")
-{
-    for (int i = 0; i < argc; i++) {
-        out.Printf("argv[%d] \"%s\"\n", i, argv[i]);
-    }
-    return 0;
-}
-
 int main()
 {
     ::stdio_init_all();
     //-------------------------------------------------------------------------
-    Serial::Terminal terminal;
-    Shell::AttachTerminal(terminal.Initialize());
-    terminal.Println("Shell on Serial Terminal");
+    Display::Terminal terminal;
+    USBHost::Initialize();
+    USBHost::Keyboard keyboard;
+    ::i2c_init(i2c0, 400 * 1000);
+    GPIO4.set_function_I2C0_SDA().pull_up();
+    GPIO5.set_function_I2C0_SCL().pull_up();
+    SSD1306 display(i2c0, 0x3c);
+    terminal.Initialize().AttachDisplay(display.Initialize())
+        .AttachKeyboard(keyboard.SetCapsLockAsCtrl()).SetFont(Font::shinonome12);
+    Shell::AttachTerminal(terminal);
+    terminal.Println("Shell on SSD1306");
     //-------------------------------------------------------------------------
     for (;;) {
         // any jobs
