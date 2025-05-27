@@ -117,7 +117,7 @@ jxglib_configure_USBHost(usbhost-gamepad-monitor CFG_TUH_HID 3)
 #include "pico/stdlib.h"
 #include "jxglib/ILI9341.h"
 #include "jxglib/ST7789.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 #include "jxglib/Font/naga10.h"
 
 using namespace jxglib;

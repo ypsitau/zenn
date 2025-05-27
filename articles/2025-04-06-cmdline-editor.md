@@ -155,7 +155,7 @@ jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 ```cpp:cmdedit-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 #include "jxglib/ST7789.h"
 #include "jxglib/Font/shinonome16.h"
 
@@ -209,7 +209,7 @@ jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 ```cpp:cmdedit-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 #include "jxglib/SSD1306.h"
 #include "jxglib/Font/shinonome12.h"
 

@@ -113,7 +113,7 @@ jxglib_configure_USBHost(usbhosttest CFG_TUH_HID 3)
 
 ```cpp:usbhosttest.cpp
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 
 using namespace jxglib;
 
@@ -141,7 +141,7 @@ int main()
 
 ```cpp:usbhosttest.cpp
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 
 using namespace jxglib;
 
@@ -189,7 +189,7 @@ jxglib_configure_USBHost(usbhosttest CFG_TUH_HID 3)
 
 ```cpp:usbhosttest.cpp
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 
 using namespace jxglib;
 
@@ -238,7 +238,7 @@ jxglib_configure_LVGL(usbhosttest LV_FONT_MONTSERRAT_14)
 ```cpp:usbhosttest.cpp
 #include <lvgl/examples/lv_examples.h>
 #include "pico/stdlib.h"
-#include "jxglib/USBHost.h"
+#include "jxglib/USBHost/HID.h"
 #include "jxglib/ST7789.h"
 #include "jxglib/LVGL.h"
 
