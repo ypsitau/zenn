@@ -55,3 +55,8 @@ target_include_directories(fs-test PRIVATE
 
 pico_add_extra_outputs(fs-test)
 
+target_link_libraries(fs-test jxglib_Common)
+target_link_libraries(fs-test jxglib_FAT_Flash jxglib_FAT_USBMSC)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
+jxglib_configure_FAT(fs-test FF_VOLUMES 1)
+jxglib_configure_USBHost(fs-test CFG_TUH_MSC 1)

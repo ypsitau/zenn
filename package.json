@@ -19,6 +19,6 @@
   "description": "",
   "dependencies": {
     "zen-cli": "^0.0.2",
-    "zenn-cli": "^0.1.159"
+    "zenn-cli": "^0.1.161"
   }
 }
