@@ -55,7 +55,6 @@ target_include_directories(fs-media PRIVATE
 
 pico_add_extra_outputs(fs-media)
 
-target_link_libraries(fs-media jxglib_FAT_USBMSC)
+target_link_libraries(fs-media jxglib_FAT_SDCard)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_FAT(fs-media FF_VOLUMES 1)
-jxglib_configure_USBHost(fs-media CFG_TUH_MSC 1)
