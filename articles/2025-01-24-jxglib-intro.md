@@ -153,11 +153,11 @@ git submodule update --init
 - 以下のように `pico-jxglib` ディレクトリをプロジェクトディレクトリ配下に置いた場合は:
 
   ```text
-  +-[your-project]
-    +-[pico-jxglib]
-    +-CMakeLists.txt
-    +-your-project.cpp
-    +- ...
+  └── your-project/
+      ├── pico-jxglib/
+      ├── CMakeLists.txt
+      ├── your-project.cpp
+      └── ...
   ```
 
   `CMakeLists.txt` に以下のコマンドを追加します。
@@ -169,11 +169,11 @@ git submodule update --init
 - 以下のように `pico-jxglib` ディレクトリをプロジェクトの `CMakeLists.txt` よりも上のディレクトリに置いた場合は:
 
   ```text
-  +-[pico-jxglib]
-  +-[your-project]
-    +-CMakeLists.txt
-    +-your-project.cpp
-    +- ...
+  ├── pico-jxglib/
+  └── your-project/
+      ├── CMakeLists.txt
+      ├── your-project.cpp
+      └── ...
   ```
 
   `CMakeLists.txt` に以下のコマンドを追加します。
@@ -200,11 +200,11 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 このプロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
 ```text
-+-[pico-jxglib]
-+-[blink]
-  +-CMakeLists.txt
-  +-blink.cpp
-  +- ...
+├── pico-jxglib/
+└── blink/
+    ├── CMakeLists.txt
+    ├── blink.cpp
+    └── ...
 ```
 
 `CMakeLists.txt` の最後に以下の行を追加してください。

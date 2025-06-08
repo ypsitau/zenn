@@ -125,11 +125,11 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
 ```text
-+-[pico-jxglib]
-+-[cmdedit-display-test]
-  +-CMakeLists.txt
-  +-cmdedit-display-test.cpp
-  +- ...
+├── pico-jxglib/
+└── cmdedit-display-test/
+    ├── CMakeLists.txt
+    ├── cmdedit-display-test.cpp
+    └── ...
 ```
 
 以下、このプロジェクトをもとに `CMakeLists.txt` やソースファイルを編集してプログラムを作成していきます。
@@ -322,11 +322,11 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
 ```text
-+-[pico-jxglib]
-+-[cmdedit-serial-test]
-  +-CMakeLists.txt
-  +-cmdedit-serial-test.cpp
-  +- ...
+├── pico-jxglib/
+└── cmdedit-serial-test/
+    ├── CMakeLists.txt
+    ├── cmdedit-serial-test.cpp
+    └── ...
 ```
 
 #### Stdio 経由でホスト PC と接続

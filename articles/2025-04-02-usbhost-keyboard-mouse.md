@@ -68,11 +68,11 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
 ```text
-+-[pico-jxglib]
-+-[usbhosttest]
-  +-CMakeLists.txt
-  +-usbhosttest.cpp
-  +- ...
+├── pico-jxglib/
+└── usbhosttest/
+    ├── CMakeLists.txt
+    ├── usbhosttest.cpp
+    └── ...
 ```
 
 以下、このプロジェクトをもとに `CMakeLists.txt` やソースファイルを編集してプログラムを作成していきます。

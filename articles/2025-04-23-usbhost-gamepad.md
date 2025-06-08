@@ -95,11 +95,11 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 プロジェクトディレクトリと `pico-jxglib` のディレクトリ配置が以下のようになっていると想定します。
 
 ```text
-+-[pico-jxglib]
-+-[usbhost-gamepad-monitor]
-  +-CMakeLists.txt
-  +-usbhost-gamepad-monitor.cpp
-  +- ...
+├── pico-jxglib/
+└── usbhost-gamepad-monitor/
+    ├── CMakeLists.txt
+    ├── usbhost-gamepad-monitor.cpp
+    └── ...
 ```
 
 `CMakeLists.txt` の最後に以下の行を追加してください。
