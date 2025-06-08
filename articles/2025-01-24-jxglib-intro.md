@@ -18,6 +18,7 @@ published: true
 ▶️ [pico-jxglib で Pico ボードに USB ゲームパッドを接続してゲームを楽しむ話](https://zenn.dev/ypsitau/articles/2025-04-23-usbhost-gamepad)
 ▶️ [pico-jxglib で pico ボードにシェルを実装する話](https://zenn.dev/ypsitau/articles/2025-05-08-shell)
 ▶️ [pico-jxglib で Pico ボードにファイルシステムを実装してフラッシュメモリをフル活用する話](https://zenn.dev/ypsitau/articles/2025-05-31-fs-flash)
+▶️ [pico-jxglib で Pico ボードに SD カードや USB ストレージを接続する話](https://zenn.dev/ypsitau/articles/2025-06-06-fs-media)
 
 ## 作成のきっかけ
 
