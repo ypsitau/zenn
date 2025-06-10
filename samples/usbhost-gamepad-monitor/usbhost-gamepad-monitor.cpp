@@ -10,12 +10,16 @@ using namespace jxglib;
 int main()
 {
     ::stdio_init_all();
-    ::spi_init(spi0, 125 * 1000 * 1000);
-    GPIO18.set_function_SPI0_SCK();
-    GPIO19.set_function_SPI0_TX();
+    //::spi_init(spi0, 125 * 1000 * 1000);
+    //GPIO18.set_function_SPI0_SCK();
+    //GPIO19.set_function_SPI0_TX();
+    ::spi_init(spi1, 125 * 1000 * 1000);
+    GPIO14.set_function_SPI1_SCK();
+    GPIO15.set_function_SPI1_TX();
     Display::Terminal terminal;
-    ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+    //ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
     //ST7789 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate270);
     terminal.Initialize().AttachDisplay(display).SetFont(Font::naga10);
     USBHost::Initialize();
