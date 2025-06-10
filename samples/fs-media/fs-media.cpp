@@ -11,6 +11,7 @@ int main()
     GPIO4.set_function_SPI0_RX();
     FAT::SDCard drive("Drive:", spi0, 10'000'000, {CS: GPIO5});
     bool connectedFlag = false;
+    ::printf("SD Card Media Test\n");
     for (;;) {
         if (connectedFlag) {
             if (!drive.CheckMounted()) {
