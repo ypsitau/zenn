@@ -19,6 +19,8 @@ published: true
 ▶️ [pico-jxglib で pico ボードにシェルを実装する話](https://zenn.dev/ypsitau/articles/2025-05-08-shell)
 ▶️ [pico-jxglib で Pico ボードにファイルシステムを実装してフラッシュメモリをフル活用する話](https://zenn.dev/ypsitau/articles/2025-05-31-fs-flash)
 ▶️ [pico-jxglib で Pico ボードに SD カードや USB ストレージを接続する話](https://zenn.dev/ypsitau/articles/2025-06-06-fs-media)
+▶️ [pico-jxglib のシェルでファイルシステムを操作する話 (自動補完とヒストリ機能で入力楽々)](https://zenn.dev/ypsitau/articles/2025-06-09-fs-shell)
+▶️ [pico-jxglib で Pico ボードに RTC を接続してファイルシステムにタイムスタンプを記録する話](https://zenn.dev/ypsitau/articles/2025-06-22-rtc)
 
 ## 作成のきっかけ
 
