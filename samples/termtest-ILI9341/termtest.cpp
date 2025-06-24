@@ -64,6 +64,6 @@ void OnValueChanged_btnm(lv_event_t* e)
 	Id id = static_cast<Id>(::lv_buttonmatrix_get_selected_button(btnm));
 	if (id == Id::RollUp) terminal.RollUp();
 	if (id == Id::RollDown) terminal.RollDown();
-	if (id == Id::Dump) terminal.Dump.Cols(8).Ascii()(reinterpret_cast<const void*>(0x10000000), 64);
+	if (id == Id::Dump) terminal.Dump.BytesPerRow(8).Ascii()(reinterpret_cast<const void*>(0x10000000), 64);
 	if (id == Id::PrintBuffer) terminal.CreateReader().WriteTo(stdout);
 }
