@@ -279,3 +279,51 @@ enabled pio:2 12.5MHz (samplers:1) target:internal pins:2,3 events:1/88674 (heap
    ```text
    L:/>i2c1 -p 2,3 0x50 write:0x01,0x86 read:4
    ```
+
+### その他の機能
+
+pico-jxgLABO には、ロジックアナライザ以外にも多くの機能があります。以下にいくつかの例を示します。
+
+- **GPIO 制御**: `gpio` コマンドを使って、GPIO ピンの制御ができます。例えば、GPIO6 を出力モードに設定して HIGH にするには以下のようにします。
+
+  ```text
+  L:/>gpio6 func:sio dir:out put:1
+  ``` 
+
+- **PWM 制御**: `pwm` コマンドを使って、PWM 信号の出力ができます。例えば、GPIO6 で 1kHz の PWM 信号を 50% デューティサイクルで出力するには以下のようにします。
+
+  ```text
+  L:/>pwm6 func:pwm freq:1000 duty:.5 enable
+  ```
+
+- **ファイル操作**: `cp`, `mv`, `rm`, `mkdir` などのコマンドを使って、ファイルやディレクトリの操作ができます。例えば、`test.txt` ファイルを `backup.txt` にコピーするには以下のようにします。
+
+  ```text
+  L:/>cp test.txt backup.txt
+  ```
+
+- **シェルスクリプト実行**: シェルスクリプトファイルを作成して、複数のコマンドをまとめて実行できます。例えば、`pwm-2-3-4-5.sh` ファイルに以下の内容を書いておきます。
+
+  ```text:pwm-2-3-4-5.sh
+  pwm --quiet 2,3,4,5 func:pwm freq:1000 counter:0
+  pwm2 --quiet duty:.2
+  pwm3 --quiet duty:.4
+  pwm4 --quiet duty:.6
+  pwm5 --quiet duty:.8
+  pwm 2,3,4,5 enable
+  ```
+  
+  以下のように実行します。
+
+   ```text
+
+   L:/>. pwm-2-3-4-5.sh
+   ```
+
+## まとめ
+
+この記事では、pico-jxgLABOの 導入方法とロジックアナライザ機能を中心に紹介しました。800 円の Pico ボードで詳細な信号解析ができることを体験していただけたでしょうか。
+
+pico-jxgLABO は今回紹介したロジックアナライザ機能以外にも、GPIO 制御、PWM 出力、シリアル通信、ファイル操作など、組み込み開発に必要な機能を豊富に提供しています。また、わずか 4 行のコードで既存プロジェクトに組み込むことも可能です。
+
+今後の記事では、これらの機能を個別に詳しく解説していく予定です。pico-jxgLABO を使って、Raspberry Pi Pico の豊富な機能を存分に活用してください。
