@@ -3,7 +3,7 @@ title: "Pico ボードは実験室! pico-jxgLABO を導入してロジックア�
 emoji: "🐙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "ロジックアナライザ"]
-published: false
+published: true
 ---
 Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 円) なマイコンボードです。初代の Pico は 125MHz の 32bit ARM コア (しかもデュアル)、264KByte の SRAM, 2MByte のフラッシュメモリ。Pico 2 にいたっては CPU 150MHz (デュアル), 520KByte の SRAM, 4MByte のフラッシュメモリ、ハードウエア浮動小数点演算をサポートするなど、非常に高性能なマイコンボードです。
 
@@ -35,8 +35,8 @@ pico-jxgLABO を使うのに必要な機材は以下の通りです。
 ### Pico ボードへの書き込み
 
 1. 以下のいずれかの UF2 ファイルをダウンロードします。
-   Pico ボード: [pico-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/download/0.1.0/pico-jxgLABO.uf2)
-   Pico2 ボード: [pico2-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/download/0.1.0/pico2-jxgLABO.uf2)
+   Pico ボード: [pico-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico-jxgLABO.uf2)
+   Pico2 ボード: [pico2-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico2-jxgLABO.uf2)
 2. Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルを接続すると、Pico ボードが USB マスストレージとして認識されます。多くの場合 `D:` ドライブとして認識されます
 3. ダウンロードした UF2 ファイルを上記のドライブにコピーします。コピーが完了すると、Pico ボードは自動的に再起動され、pico-jxgLABO が利用できるようになります
 
