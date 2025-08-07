@@ -76,7 +76,7 @@ adc1            controls ADC (Analog-to-Digital Converter)
                         :
 ```
 
-オプション `--help` をつけると、各コマンドの詳細な使い方が表示されます。
+オプション `--help` (または `-h`) をつけてコマンドを実行すると、詳細な使い方が表示されます。
 
 ```text
 L:/>cp --help
