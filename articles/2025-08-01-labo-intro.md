@@ -22,7 +22,7 @@ Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 
 
 各機能の詳細は以下の記事を参照ください。
 
-▶️ [L チカだけじゃ物足りない! pico-jxgLABO で GPIO 制御の深淵にもぐる](https://zenn.dev/ypsit/articles/2025-08-03-labo-gpio)
+▶️ GPIO 制御 - [L チカだけじゃ物足りない! pico-jxgLABO で GPIO 制御の深淵にもぐる](https://zenn.dev/ypsit/articles/2025-08-03-labo-gpio)
 
 ## pico-jxgLABO の導入方法
 
