@@ -7,9 +7,11 @@ published: false
 ---
 RaspberryPi Pico の実験プラットフォーム [pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) が [PulseView](https://sigrok.org/wiki/PulseView) に対応しました!
 
-Pico ボードの内部信号を、配線なしでロジックアナライザで観測できるようになります。これにより、より簡単に信号の解析やデバッグが行えるようになります。
+pico-jxgLABO と PulseView を組み合わせることで、配線を一切することなく Pico ボードの内部信号をロジックアナライザで観測できるようになります。
 
-もちろん、通常のロジックアナライザのように外部信号の観測も可能です。この記事では、pico-jxgLABO と PulseView の連携方法について説明します。実行環境として、Windows を想定しています。
+もちろん、Pico ボードをロジックアナライザ専用にして外部信号の観測をすることもできますし、内部・外部信号の両方を同時に観測することも可能です。
+
+この記事では、pico-jxgLABO と PulseView のインストールと設定方法について説明し、実際に波形観測を行います。実行環境として、Windows を想定していますが、Linux などでも同様の手順で利用できると思います。
 
 ## pico-jxgLABO の導入方法
 
@@ -97,9 +99,9 @@ PulseView と pico-jxgLABO の接続手順は以下の通りです。
 
 それでは、実際に波形を観測してみましょう!
 
-## 各種信号の波形観測
+## Pico ボード内部信号の波形観測
 
-ここでは、pico-jxgLABO のコマンドを使用して I2C, SPI, UART の信号を生成し、その波形を観測します。
+ここでは、pico-jxgLABO のコマンドを使用して Pico ボード自体で I2C, SPI, UART の信号を生成し、その波形を観測します。
 
 ### I2C の波形観測
 
@@ -108,6 +110,8 @@ PulseView で `Run` ボタンをクリックしてキャプチャを開始した
 ```text
 L:>i2c1 -p 2,3 scan
 ```
+
+このコマンド操作で、GPIO2 と GPIO3 を I2C1 の SDA と SCL に割り当て、I2C アドレス 0x00 から 0x7f に Read リクエストを送ります。
 
 PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
 
@@ -122,17 +126,73 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 ![pulseview-main-i2c-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-zoom.png)
 
-右上の ![pulseview-decoder-button](/images/2025-09-01-labo-pulseview/pulseview-decoder-button.png) をクリックすると、`Decoder Selector` ペインが表示され、ここからプロトコルデコーダを選択できます。検索ボックスに `i2c` を入力し、リストに表示された `I2C` をダブルクリックすると、波形に I2C デコーダが追加されます。
+下図の矢印で示されるボタン:
+
+![pulseview-decoder-button](/images/2025-09-01-labo-pulseview/pulseview-decoder-button.png)
+
+をクリックすると、`Decoder Selector` ペインが表示され、ここからプロトコルデコーダを選択できます。検索ボックスに `i2c` を入力し、リストに表示された `I2C` をダブルクリックすると、波形に I2C デコーダが追加されます。
 
 ![pulseview-decoder-selector](/images/2025-09-01-labo-pulseview/pulseview-decoder-selector.png)
 
+下図の矢印で示されるボタン:
+
+![pulseview-decoder-button](/images/2025-09-01-labo-pulseview/pulseview-decoder-selector-close.png)
+
+をクリックすると、`Decoder Selector` ペインを非表示にします。
+
+信号名の中の `I2C` ラベルを左クリックすると、プロトコルデコーダのパラメータを設定するダイアログが表示されます。`SCL` と `SDA` にそれぞれ `D3` と `D2` を設定します。
+
 ![pulseview-main-i2c-prop](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-prop.png)
+
+ダイアログを閉じると、I2C をデコードした結果を確認できます。
 
 ![pulseview-main-i2c-dec](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-dec.png)
 
+I2C アドレス 0x00 から 0x7f に対して Read リクエストが送信されているのが分かります。
 
 ### SPI の波形観測
+
+PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
+
+```text
+L:>spi0 -p 2,3 write:0-255
+```
+
+このコマンド操作で、GPIO2 と GPIO3 を SPI0 の MOSI と SCK に割り当て、0 から 255 までのデータを送信します。
+
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+
+![pulseview-main-spi](/images/2025-09-01-labo-pulseview/pulseview-main-spi.png)
+
+信号波形の最初の部分を拡大したのが以下の画像です。
+
+![pulseview-main-spi-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-spi-zoom.png)
+
+`Decoder Selector` ペインを表示して検索ボックスに `spi` を入力し、リストに表示された `SPI` をダブルクリックすると、波形に SPI デコーダが追加されます。信号名の中の `SPI` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、`CLK` と `MOSI` にそれぞれ `D2` と `D3` を設定します。
+
+![pulseview-main-spi-prop](/images/2025-09-01-labo-pulseview/pulseview-main-spi-prop.png)
+
+ダイアログを閉じると、SPI をデコードした結果を確認できます。
+
+![pulseview-main-spi-dec](/images/2025-09-01-labo-pulseview/pulseview-main-spi-dec.png)
+
+SPI の MOSI に 0 から 255 までのデータが送信されているのが分かります。
 
 ### UART の波形観測
 
 
+
+
+## 外部信号の波形観測
+
+Pico ボードをロジックアナライザ専用にして、外部信号を観測することも可能です。例えば、以下のように `la` コマンドを実行すると、GPIO2 から GPIO22 および GPIO26 から GPIO28 の合計 24 本の GPIO ピンをロジックアナライザで観測できます。
+
+```text
+L:/>la -p 2-22,26-28 --target:external
+```
+
+以下の内容で `autoexec.sh` という名前のファイルを `L:` のルートディレクトリに作成しておくと、Pico ボードの電源を入れたときに自動的にロジックアナライザが起動するようになります。ターミナルソフトでコマンド操作をする必要がなくなるので便利です。
+
+```text:autoexec.sh
+la -p 2-22,26-28 --target:external
+```
