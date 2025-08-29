@@ -11,7 +11,7 @@ pico-jxgLABO と PulseView を組み合わせることで、配線を一切す�
 
 もちろん、Pico ボードをロジックアナライザ専用にして外部信号の観測をすることもできますし、内部・外部信号の両方を同時に観測することも可能です。
 
-この記事では、pico-jxgLABO と PulseView のインストールと設定方法について説明し、実際に波形観測を行います。実行環境として、Windows を想定していますが、Linux などでも同様の手順で利用できると思います。
+この記事では、pico-jxgLABO と PulseView のインストールと設定方法について説明し、実際に Pico ボードの波形観測を行います。実行環境として、Windows を想定していますが、Linux などでも同様の手順で利用できると思います。
 
 ## pico-jxgLABO の導入方法
 
@@ -101,7 +101,7 @@ PulseView と pico-jxgLABO の接続手順は以下の通りです。
 
 ## Pico ボード内部信号の波形観測
 
-ここでは、pico-jxgLABO のコマンドを使用して Pico ボード自体で I2C, SPI, UART の信号を生成し、その波形を観測します。
+ここでは、pico-jxgLABO のコマンドを使用して Pico ボード自体で I2C, SPI, UART, PWM の信号を生成し、その波形を観測します。また、それらの信号をプロトコルデコーダで解析する方法も説明します。
 
 ### I2C の波形観測
 
@@ -180,8 +180,31 @@ SPI の MOSI に 0 から 255 までのデータが送信されているのが�
 
 ### UART の波形観測
 
+PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
 
+```text
+L:>uart1 -p 4 write:0-255,0
+```
 
+このコマンド操作で、GPIO4 を UART1 の TX に割り当て、0 から 255 および最後に 0 のデータを送信します。最後に 0 を送信するのは、最終データが 255 だと PulseView の UART プロトコルデコーダがそのデータのストップビットを正しく認識できないためです。
+
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+
+![pulseview-main-uart](/images/2025-09-01-labo-pulseview/pulseview-main-uart.png)
+
+信号波形の最初の部分を拡大したのが以下の画像です。
+
+![pulseview-main-uart-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-uart-zoom.png)
+
+`Decoder Selector` ペインを表示して検索ボックスに `uart` を入力し、リストに表示された `UART` をダブルクリックすると、波形に UART デコーダが追加されます。信号名の中の `UART` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、`TX` に `D4` を設定します。
+
+![pulseview-main-uart-prop](/images/2025-09-01-labo-pulseview/pulseview-main-uart-prop.png)
+
+ダイアログを閉じると、UART をデコードした結果を確認できます。
+
+![pulseview-main-uart-dec](/images/2025-09-01-labo-pulseview/pulseview-main-uart-dec.png)
+
+UART の TX に 0 から 255 および 0 のデータが送信されているのが分かります。
 
 ## 外部信号の波形観測
 
