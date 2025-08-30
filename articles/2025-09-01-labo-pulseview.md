@@ -108,7 +108,7 @@ PulseView と pico-jxgLABO の接続手順は以下の通りです。
 PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
 
 ```text
-L:>i2c1 -p 2,3 scan
+L:/>i2c1 -p 2,3 scan
 ```
 
 このコマンド操作で、GPIO2 と GPIO3 を I2C1 の SDA と SCL に割り当て、I2C アドレス 0x00 から 0x7f に Read リクエストを送ります。
@@ -155,7 +155,7 @@ I2C アドレス 0x00 から 0x7f に対して Read リクエストが送信さ�
 PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
 
 ```text
-L:>spi0 -p 2,3 write:0-255
+L:/>spi0 -p 2,3 write:0-255
 ```
 
 このコマンド操作で、GPIO2 と GPIO3 を SPI0 の MOSI と SCK に割り当て、0 から 255 までのデータを送信します。
@@ -183,7 +183,7 @@ SPI の MOSI に 0 から 255 までのデータが送信されているのが�
 PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
 
 ```text
-L:>uart1 -p 4 write:0-255,0
+L:/>uart1 -p 4 write:0-255,0
 ```
 
 このコマンド操作で、GPIO4 を UART1 の TX に割り当て、0 から 255 および最後に 0 のデータを送信します。最後に 0 を送信するのは、最終データが 255 だと PulseView の UART プロトコルデコーダがそのデータのストップビットを正しく認識できないためです。
@@ -205,6 +205,34 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 ![pulseview-main-uart-dec](/images/2025-09-01-labo-pulseview/pulseview-main-uart-dec.png)
 
 UART の TX に 0 から 255 および 0 のデータが送信されているのが分かります。
+
+### PWM の波形観測
+
+PulseView で `Run` ボタンをクリックしてキャプチャを開始した後、ターミナルソフトで以下のようにコマンドを実行します。
+
+```text
+L:/>pwm 2,3,4 func:pwm freq:1000 counter:0
+L:/>pwm2 duty:.2; pwm3 duty:.5; pwm4 duty:.8
+L:/>pwm 2,3,4 enable
+```
+
+このコマンド操作で、GPIO2, GPIO3, GPIO4 のファクションを PWM にし、周波数を 1kHz に設定します。デューティ比はそれぞれ 20%, 50%, 80% に設定し、PWM を有効にします。
+
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+
+![pulseview-main-pwm](/images/2025-09-01-labo-pulseview/pulseview-main-pwm.png)
+
+信号波形の最初の部分を拡大したのが以下の画像です。
+
+![pulseview-main-pwm-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-zoom.png)
+
+`Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、それぞれの PWM デコーダの `TX` に `D2`, `D3`, `D4` を設定します。
+
+![pulseview-main-pwm-prop](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-prop.png)
+
+ダイアログを閉じると、PWM をデコードした結果を確認できます。
+
+![pulseview-main-pwm-dec](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-dec.png)
 
 ## 外部信号の波形観測
 
