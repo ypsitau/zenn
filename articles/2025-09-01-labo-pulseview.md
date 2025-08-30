@@ -226,13 +226,15 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 ![pulseview-main-pwm-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-zoom.png)
 
-`Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、それぞれの PWM デコーダの `TX` に `D2`, `D3`, `D4` を設定します。
+`Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、それぞれの PWM デコーダの `Data` に `D2`, `D3`, `D4` を設定します。
 
 ![pulseview-main-pwm-prop](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-prop.png)
 
 ダイアログを閉じると、PWM をデコードした結果を確認できます。
 
 ![pulseview-main-pwm-dec](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-dec.png)
+
+デューティ比がそれぞれ 20%, 50%, 80% で周波数 1.0kHzの PWM 信号が生成されているのが分かります。
 
 ## 外部信号の波形観測
 
