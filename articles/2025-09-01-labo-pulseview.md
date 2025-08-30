@@ -1,5 +1,5 @@
 ---
-title: "pico-jxgLABO × PulseView で快適な信号解析ライフ! "
+title: "pico-jxgLABO × PulseView で快適な信号解析ライフ! 軽やかに使えるロジックアナライザを手に入れよう"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["raspberrypi", "pico", "raspberrypipico", "ロジックアナライザ", "PulseView"]
@@ -40,13 +40,13 @@ PulseView は以下のサイトで入手できます。
 
 Nightly builds の「PulseView (32bit)」または「PulseView (64bit)」を選択してダウンロード・インストールしてください。
 
-### PulseView と pico-jxgLABO の接続
+### pico-jxgLABO と PulseView の接続
 
-PulseView と pico-jxgLABO の接続手順は以下の通りです。
+pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
 1. pico-jxgLABO を書き込んだ Pico ボードを USB ケーブルで PC に接続します
 
-2. ターミナルソフトで pico-jxgLABO のロジックアナライザコマンド `la` を実行して、測定対象にする GPIO ピン番号を指定します。以下の例では GPIO2, GPIO3, GPIO4 を測定対象にしています
+2. ターミナルソフトで pico-jxgLABO のロジックアナライザコマンド `la` を実行して、測定する GPIO ピン番号を指定します。以下の例では GPIO2, GPIO3, GPIO4 を測定対象にしています
 
    ```text
    L:/>la -p 2,3,4
@@ -87,7 +87,7 @@ PulseView と pico-jxgLABO の接続手順は以下の通りです。
      disabled ---- 12.5MHz (samplers:1) pins:2-4 events:0/0 (heap-ratio:0.7)
      ```
 
-     今回の例では `12.5MHz` であることが分かったので、これよりも少し大きい `15 MHz` に設定します。
+     今回の例では `12.5MHz` であることが分かったので、PulseView のサンプリングレートはこれよりも少し大きい `15 MHz` に設定します。
 
    ![pulseview-main-modified](/images/2025-09-01-labo-pulseview/pulseview-main-modified.png)
 
@@ -95,9 +95,9 @@ PulseView と pico-jxgLABO の接続手順は以下の通りです。
 
 ![pulseview-main-running](/images/2025-09-01-labo-pulseview/pulseview-main-running.png)
 
-`Stop` ボタンをクリックすると、キャプチャが停止して、観測した波形が表示されます。
+`Stop` ボタンをクリックすると、キャプチャが停止して、観測した波形が表示されます。この時点では信号が生成されていないので、波形は何も表示されません。
 
-それでは、実際に波形を観測してみましょう!
+それでは、実際にいろいろな信号を生成して波形を観測してみましょう!
 
 ## Pico ボード内部信号の波形観測
 
