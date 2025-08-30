@@ -77,6 +77,8 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
    ![pulseview-main-connected](/images/2025-09-01-labo-pulseview/pulseview-main-connected.png)
 
+   `la` コマンドの `-p` オプションで指定した順に、各 GPIO の信号が `D2`, `D3`, `D4` として表示されます。
+
    取得するサンプル数が `1k samples`、サンプリングレートが `5 kHz` になっていますが、これらを以下のように変更します。
 
    - 取得するサンプル数: 最大の `1 G samples` に変更します
@@ -113,7 +115,7 @@ L:/>i2c1 -p 2,3 scan
 
 このコマンド操作で、GPIO2 と GPIO3 を I2C1 の SDA と SCL に割り当て、I2C アドレス 0x00 から 0x7f に Read リクエストを送ります。
 
-PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D2` が GPIO2 (I2C1 SDA)、`D3` が GPIO3 (I2C1 SCL) の信号です。
 
 ![pulseview-main-i2c](/images/2025-09-01-labo-pulseview/pulseview-main-i2c.png)
 
@@ -160,7 +162,7 @@ L:/>spi0 -p 2,3 write:0-255
 
 このコマンド操作で、GPIO2 と GPIO3 を SPI0 の MOSI と SCK に割り当て、0 から 255 までのデータを送信します。
 
-PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D2` が GPIO2 (SPI0 SCK)、`D3` が GPIO3 (SPI0 MOSI) の信号です。
 
 ![pulseview-main-spi](/images/2025-09-01-labo-pulseview/pulseview-main-spi.png)
 
@@ -188,7 +190,7 @@ L:/>uart1 -p 4 write:0-255,0
 
 このコマンド操作で、GPIO4 を UART1 の TX に割り当て、0 から 255 および最後に 0 のデータを送信します。最後に 0 を送信するのは、最終データが 255 だと PulseView の UART プロトコルデコーダがそのデータのストップビットを正しく認識できないためです。
 
-PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
+PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D4` が GPIO4 (UART1 TX) の信号です。
 
 ![pulseview-main-uart](/images/2025-09-01-labo-pulseview/pulseview-main-uart.png)
 
