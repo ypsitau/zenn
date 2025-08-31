@@ -3,7 +3,7 @@ title: "pico-jxgLABO × PulseView: プローブ接続いらずで気軽に使え
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["raspberrypi", "pico", "raspberrypipico", "ロジックアナライザ", "PulseView"]
-published: false
+published: true
 ---
 RaspberryPi Pico の実験プラットフォーム [pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) が [PulseView](https://sigrok.org/wiki/PulseView) に対応しました!
 
