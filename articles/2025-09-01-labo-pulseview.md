@@ -13,9 +13,9 @@ pico-jxgLABO と PulseView を組み合わせることで、プローブ接続�
 
 この記事では、pico-jxgLABO と PulseView のインストールと設定方法について説明し、実際に Pico ボードの波形観測を行います。ホスト PC として Windows を想定していますが、Linux などでも同様の手順で利用できると思います。
 
-## pico-jxgLABO の導入方法
+## pico-jxgLABO の書き込み
 
-pico-jxgLABO の導入方法は[こちら](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro#pico-jxglabo-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)。特別なハードウェアは必要なく、Pico や Pico 2 ボードを USB ケーブルで PC に接続するだけで始められます。
+Pico ボードへの pico-jxgLABO の書き込みと基本的な使い方は[こちら](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro#pico-jxglabo-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)。特別なハードウェアは必要なく、Pico や Pico 2 ボードを USB ケーブルで PC に接続するだけで始められます。
 
 この記事で説明する実験を行うには、バージョン `0.2.0` 以降の pico-jxgLABO が Pico ボードに書き込まれている必要があります。ターミナルソフトで `about-me` コマンドを実行すると pico-jxgLABO のバージョンを確認できます。
 
