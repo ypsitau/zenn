@@ -3,7 +3,7 @@ title: "L チカだけじゃ物足りない! gpio コマンドで Pico の GPIO 
 emoji: "👏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "gpio"]
-published: true
+published: false
 ---
 [pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
 
