@@ -1,0 +1,413 @@
+---
+title: "L チカだけじゃ物足りない! gpio コマンドで Pico の GPIO 制御の深淵にもぐる"
+emoji: "👏"
+type: "tech" # tech: 技術記事 / idea: アイデア
+topics: ["組み込み", "raspberrypi", "pico", "raspberrypipico", "gpio"]
+published: true
+---
+[pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
+
+この記事では、pico-jxgLABO の `gpio` コマンドを使った GPIO の制御方法を紹介します。
+
+たかが On/Off の入出力機能と思って、設定もなんとなくうやむやにしてしまいがちですが、コマンド操作でいろいろ試すことで GPIO の制御をより深く理解することができます。最大電流値やヒステリシス特性の設定も変えてみて、Pico の可能性を探ってみましょう。
+
+## pico-jxgLABO の導入方法
+
+pico-jxgLABO の導入方法は[こちら](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro#pico-jxglabo-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)。特別なハードウェアは必要なく、Pico や Pico 2 ボードを USB ケーブルで PC に接続するだけで始められます。
+
+この記事で説明する実験を行うには、バージョン `0.2.0` 以降の pico-jxgLABO が Pico ボードに書き込まれている必要があります。ターミナルソフトで `about-me` コマンドを実行すると pico-jxgLABO のバージョンを確認できます。
+
+```text
+L:/>about-me
+Program Information
+ name:              pico-jxgLABO
+ version:           0.2.0
+     :
+     :
+```
+
+## `gpio` コマンドを使った GPIO の制御
+
+`gpio` コマンドを使って GPIO の実験をしてみましょう。ここでは Pico 2 を使いますが、Pico でも同様に実験できます。
+
+### 現在の GPIO 状態の表示
+
+引数なしで `gpio` を実行すると、現在の GPIO の状態が表示されます。
+
+```text
+L:/>gpio
+GPIO0  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO1  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO2  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO3  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO4  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO5  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO6  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO7  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO8  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO9  lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO10 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO11 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO12 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO13 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO14 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO15 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO16 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO17 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO18 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO19 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO20 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO21 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO22 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO23*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO24*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO25*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO26 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO27 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO28 lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO29*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+```
+
+Pico の GPIO は 0 から 29 までの 30 本があります。上の状態表示において、各フィールドの意味は以下の通りです。
+
+- 二番目のフィールドの `lo`, `hi` は各ピンのロジック値を示しています。`lo` は Low (0)、`hi` は High (1) を意味します
+- `func` は GPIO に割り当てられているファンクションをあらわします。`------` は何のファンクションも割り当てられていない (null function) ことを示します
+- `dir` はピンの方向を示し、`in` は入力、`out` は出力を意味します
+- `pull` はプルアップ/プルダウン抵抗の設定で、`down` はプルダウン、`up` はプルアップ、`none` は両方ともなし (ハイインピーダンス状態) 、`both` は両方が有効になっていることを示します
+- `drive` はドライブ強度で、通常は 4mA が設定されています
+- `slew` はスルーレート制御で、通常は `slow` が設定されています
+- `hyst` は入力ヒステリシスの設定で、`on` は有効、`off` は無効を示します
+
+上の状態表示で GPIO 名に `*` がついている GPIO23, GPIO24, GPIO25, GPIO29 は外部ピンに接続されておらず、以下のような特殊用途に割り当てられています。
+
+Pico および Pico 2:
+
+- GPIO23 - OP Controls the on-board SMPS Power Save pin
+- GPIO24 - IP VBUS sense - high if VBUS is present, else low
+- GPIO25 - OP Connected to user LED
+- GPIO29 - IP Used in ADC mode (ADC3) to measure VSYS/3
+
+Pico W および Pico 2 W:
+
+- GPIO23 - OP wireless power on signal
+- GPIO24 - OP/IP wireless SPI data/IRQ
+- GPIO25 - OP wireless SPI CS - when high also enables GPIO29 ADC pin to read VSYS
+- GPIO29 - OP/IP wireless SPI CLK/ADC mode (ADC3) to measure VSYS/3
+
+これらのピンは誤った操作をするとボードの動作に影響を与える可能性があるので、`gpio` コマンドでは操作ができません。ただし、Pico や Pico 2 の GPIO25 は内蔵 LED につながれており、手軽に使えて便利なので、オプション `-B` (または `--builtin-led`) をつけることで操作可能にしています。
+
+### GPIO ピン番号の指定方法
+
+`gpio` コマンドの最初の引数には、GPIO ピン番号を指定します。単一の GPIOピン番号を指定することもできますし、範囲を指定することもできます。例を以下に示します。
+
+|コマンド　      |説明                                 |
+|---------------|-------------------------------------|
+|`gpio 0`       |GPIO0 の状態を表示します               |
+|`gpio 2,3,8,9` |GPIO2,3,8,9 の状態を表示します         |
+|`gpio 2-15`    |GPIO2 から GPIO15 までの状態を表示します|
+|`gpio 8-`      |GPIO8 から GPIO29 までの状態を表示します|
+
+単一のピン操作のためのコマンド `gpio0` から `gpio29` も用意されています。例えば `gpio2` は `gpio 2` と同じ意味になります。
+
+### デジタル入出力について
+
+#### デジタル出力
+
+GPIO を出力モードに設定してデジタル信号を出力してみます。以下は内蔵 LED が接続された GPIO25 に High レベルのデジタル信号を出力して LED を点灯する例です。いわゆる L チカですね。オプション -B は、GPIO25 の操作を許可するためのものです。
+
+```text
+L:/>gpio 25 -B func:sio dir:out put:1
+```
+
+サブコマンド `func` で設定している `sio` はシングルサイクル IO (Single-cycle IO) の略です。SIO は CPU が 1 サイクルでアクセスできる特殊なブロックで、そのレジスタの一部が GPIO の入出力に割り当てられています。サブコマンド `dir` で出力モードに設定し、`put` で出力値を指定します。
+
+`gpio` コマンドにはリピート処理をするサブコマンド `repeat` や、ディレイを実行するサブコマンド `sleep` があります。これらを使って以下のように LED を点滅させることができます。
+
+```text
+L:/>gpio 25 -B func:sio dir:out repeat:20 {put:1 sleep:100 put:0 sleep:100}
+```
+
+出力値を反転させるサブコマンド `toggle` を使うと、さらに簡単に点滅させることができます。
+
+```text
+L:/>gpio 25 -B func:sio dir:out repeat:20 {toggle sleep:100}
+```
+
+ロジックアナライザを使って GPIO の信号を観測することもできます。
+
+```text
+L:/>la enable -p 25
+L:/>gpio 25 -B func:sio dir:out repeat:20 {toggle sleep:100}
+L:/>la print
+ Time [usec] P25 
+             │  
+             :  
+        0.00 └─┐
+               :
+    99208.00 ┌─┘
+             :  
+   199199.52 └─┐
+               :
+   299194.56 ┌─┘
+             :  
+```
+
+`la enable` で測定対象のピンを指定してキャプチャを開始してから GPIO の操作を行い、最後に `la print` でキャプチャしたデータを表示しています。
+
+ところで、ファンクションを SIO 以外に設定したとき、`put` で指定した出力値はどのように影響するのでしょうか? GPIO1 に UART RX 機能を割り当てて、以下のように出力値を High に指定してみます。
+
+```text
+L:/>gpio 1 func:uart dir:out put:1
+GPIO1  lo~ func:UART0 RX   dir:out pull:down drive:4mA slew:slow hyst:on
+```
+
+ピンの状態は `lo~` となっており、設定値は無視されていることがわかります。レベル値の後の `~` は、設定値と実際の信号レベルが異なることを示しています。
+
+ファンクションが SIO でも、信号方向が入力モードになっている場合はやはり設定値が無視されます。
+
+```text
+L:/>gpio 1 func:sio dir:in put:1
+GPIO1  hi  func:SIO        dir:in  pull:down drive:4mA slew:slow hyst:on
+```
+
+あれ、おかしい。設定値と信号レベルが一致しているように見えます。実は、これはピン状態がなんらかの理由 (今回の場合は後述する Pico 2 のハードウェアバグが影響) で High レベルになっているだけで、設定値を反映しているわけではないのです。以下のように設定値を `0` にしてみると無視されていることが分かります。
+
+```text
+L:/>gpio 1 func:sio dir:in put:0
+GPIO1  hi~ func:SIO        dir:in  pull:down drive:4mA slew:slow hyst:on
+```
+
+結論として、CPU からデジタル出力をする場合は、**ファンクションを SIO に設定して出力モードにする**必要があるということになります。それ以外のときはデジタル出力の設定値がピン状態に影響を与えることはないので、副作用を心配する必要がないともいえます。
+
+#### デジタル入力
+
+GPIO を入力モードに設定してデジタル信号を入力してみます。以下は GPIO1 を入力モードに設定し、信号レベルを読み取る例です。GPIO1 ピンにジャンパ線をつなぎ、GND に接続して信号を変化させてみてください。`Ctrl-C` で中断できます。
+
+```text
+L:/>gpio 1 func:sio dir:in pull:up repeat {get sleep:300}
+```
+
+サブコマンド `dir` で入力モードに設定します。サブコマンド `pull` でプルアップ抵抗を有効にしているのは、ピンがどこにも接続されていないときに信号を High に固定するためです。`get` は GPIO の信号レベルを読み取るサブコマンドです。
+
+Pico は GPIO のファンクションが SIO 以外に設定されていてもピンのデジタル信号レベルを CPU で読み取ることができます。これがデジタル出力のときとふるまいが異なる点です。以下のようにすると UART RX 機能が割り当てられた GPIO1 の信号レベルを読み取ることができます。プログラムが十分に速ければ、通信中の UART のデータをビット単位でモニターすることも可能です。
+
+```text
+L:/>gpio 1 func:uart dir:in repeat {get sleep:300}
+```
+
+### ファンクション設定について
+
+Pico の GPIO ファンクション設定というと、下のピンレイアウト図がおなじみです。
+
+![pico-pinout.png](/images/2025-08-03-labo-gpio/pico-pinout.png =300x)
+
+より詳細な情報はデータシートに記載されています。
+
+**Pico** - [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf) 2.19.2 Function select
+
+![pico-function.png](/images/2025-08-03-labo-gpio/pico-function.png)
+
+**Pico 2** - [RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) 9.4. Function select
+
+![pico2-function.png](/images/2025-08-03-labo-gpio/pico2-function.png)
+
+各ファンクションには F0 から F31 までの番号が割りふられ、F31 が null function (ファンクション割り当てなし) になります。
+
+pico-jxgLABO の `gpio` コマンドは、サブコマンド `func` を使ってファンクション設定を行います。指定できるファンクション名は以下のとおりです。
+
+**Pico** - `spi`, `uart`, `i2c`, `pwm`, `sio`, `pio0`, `pio1`, `clock`, `usb`, `xip`, `null`
+**Pico 2** - `spi`, `uart`, `uart-aux`, `i2c`, `pwm`, `sio`, `pio0`, `pio1`, `pio2`, `clock`, `usb`, `hstx`, `xip-cs1`, `coresight-trace`, `null`
+
+下の例では、利用可能なすべての GPIO を PWM ファンクションに設定しています。
+
+```text
+L:/>gpio 0- func:pwm
+GPIO0  lo  func:PWM0 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO1  lo  func:PWM0 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO2  lo  func:PWM1 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO3  lo  func:PWM1 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO4  lo  func:PWM2 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO5  lo  func:PWM2 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO6  lo  func:PWM3 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO7  lo  func:PWM3 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO8  lo  func:PWM4 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO9  lo  func:PWM4 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO10 lo  func:PWM5 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO11 lo  func:PWM5 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO12 lo  func:PWM6 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO13 lo  func:PWM6 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO14 lo  func:PWM7 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO15 lo  func:PWM7 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO16 lo  func:PWM0 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO17 lo  func:PWM0 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO18 lo  func:PWM1 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO19 lo  func:PWM1 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO20 lo  func:PWM2 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO21 lo  func:PWM2 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO22 lo  func:PWM3 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO23*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO24*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO25*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO26 lo  func:PWM5 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO27 lo  func:PWM5 B     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO28 lo  func:PWM6 A     dir:in  pull:down drive:4mA slew:slow hyst:on
+GPIO29*lo  func:------     dir:in  pull:down drive:4mA slew:slow hyst:on
+```
+
+GPIO のファンクション設定は、一度決めてしまったものにこだわりがちですが、時々こうやって利用可能な配置をすべてながめていると、より使い勝手の良い設定が見つかるかもしれません。
+
+### プルアップとプルダウンについて
+
+GPIO ピンの信号が不定な状態にならないようにプルアップ抵抗やプルダウン抵抗を設定することができます。これにより、ピンが接続されていないときの信号レベルを明確にすることができます。
+
+`gpio` コマンドでは、プルアップ抵抗を有効にするには `pull:up`、プルダウン抵抗を有効にするには `pull:down` を指定します。`pull:none` を指定するとプルアップ/プルダウン抵抗は無効になり、ハイインピーダンス状態になります。
+
+ところで、Pico のプルアップ、プルダウンの抵抗値は 25kΩ 程度だそうです。これは、例えば I2C 通信をしようとしてプルアップを設ける際、推奨されるプルアップ抵抗値は 1kΩ から 10kΩ なので、それに比べるとかなり高めです。I2C の場合、プルアップ抵抗が低い方がノイズの影響をうけづらいので、通信エラーなどのトラブルを避けるには外部にきちんと抵抗を設けるのが得策といえます (とは言いつつ、簡便的に利用してしまいそうですが...)。
+
+:::message
+Pico 2 の GPIO の設計にはバグがあって、プルダウン設定が正しく機能しないようです (詳細は[こちら](https://fabscene.com/new/news/raspberry-pi-rp2350-a4-rp2354-announcement/))。
+
+実際、以下のコマンドを Pico 2 で実行すると:
+
+```text
+L:/>gpio 1 func:sio dir:in pull:down repeat {get sleep:300}
+```
+
+ピンがどこにも接続されていないときは常に Low レベルになることが期待されるのに、実際は不安定な状態になります。Pico 2 のピンを確実にプルダウンさせるには、外部抵抗が必要です。
+
+この現象はチップの刻印が "P2350A0A2" である場合に発生します。2025年7月29日にアナウンスされた修正版のチップでは "P2350A0A4" となっており、この版ではプルダウン抵抗が正しく機能するそうです。
+:::
+
+### ドライブ強度について
+
+GPIO のドライブ強度は、出力信号の電流を制御するための設定です。通常は 4mA が設定されていますが、`gpio` コマンドでは `drive` サブコマンドを使ってドライブ強度を 2mA, 4mA, 8mA, 12mA に変更することができます。
+
+それでは、実際にどれだけの電流が流れるのか? GPIO ピンに電流計をつなげて (ちょっと危ない!)、以下のコマンドをそれぞれ実行しました。Pico 内部抵抗の影響をなくすため、プルアップとプルダウン抵抗は無効にしています。
+
+吐き出し電流測定用のコマンド:
+
+```text
+L:/>gpio 1 func:sio dir:out pull:none drive:2mA put:1
+L:/>gpio 1 func:sio dir:out pull:none drive:4mA put:1
+L:/>gpio 1 func:sio dir:out pull:none drive:8mA put:1
+L:/>gpio 1 func:sio dir:out pull:none drive:12mA put:1
+```
+
+吸い込み電流測定用のコマンド:
+
+```text
+L:/>gpio 1 func:sio dir:out pull:none drive:2mA put:0
+L:/>gpio 1 func:sio dir:out pull:none drive:4mA put:0
+L:/>gpio 1 func:sio dir:out pull:none drive:8mA put:0
+L:/>gpio 1 func:sio dir:out pull:none drive:12mA put:0
+```
+
+Pico と Pico 2 でそれぞれ計測した結果は以下の通りです。
+
+吐き出し電流:
+
+|`drive` 設定|Pico|Pico 2|
+|:--:|:--:|:--:|
+|2mA|20.2mA|20.3mA|
+|4mA|30.0mA|30.0mA|
+|8mA|48.0mA|48.7mA|
+|12mA|56.5mA|57.1mA|
+
+吸い込み電流:
+
+|`drive` 設定|Pico|Pico 2|
+|:--:|:--:|:--:|
+|2mA|25.6mA|27.6mA|
+|4mA|37.5mA|40.6mA|
+|8mA|61.2mA|67.1mA|
+|12mA|72.2mA|79.0mA|
+
+
+ドライブ強度の設定値は、実際の電流値とかなり乖離していることがわかります。これは、Pico の GPIO のドライブ強度は、あくまで目安であり、実際の電流値は負荷や回路の特性によって変化するためだと考えられます。
+
+Pico と Pico2 の比較では、吸い込み電流において Pico 2 の方が若干大きく、吐き出し電流ではほとんど違いが見られませんでした。
+
+示されている値が相対的な目安にすぎないとはいえ、設定値を上げたときに制御できる電流値が増えることは確かです。負荷の高いデバイスを接続するときに役立つかもしれません。
+
+### Slew レートについて
+
+GPIO のスルーレート制御は、信号の立ち上がりと立ち下がりの速度を制御するための設定です。通常は `slow` が設定されていますが、`gpio` コマンドでは `slew` サブコマンドを使って `slow` と `fast` の2つの設定を選択できます。
+
+ただ、手元の環境では、スルーレートを `fast` に設定しても、実際の信号の変化を観測することはできませんでした。
+
+### ヒステリシスについて
+
+GPIO のヒステリシス機能は、ゆっくりした変化の信号やノイズの影響を除くために設けられています。通常は `on` が設定されていますが、`gpio` コマンドでは `hyst` サブコマンドを使って `off` に設定することができます。
+
+ヒステリシスを `off` に設定すると、ゆっくりと変化する入力信号に対して不安定になり、High/Low がパタパタと切り替わるはずです。以下の回路を使って実験してみました。
+
+![circuit-cr.png](/images/2025-08-03-labo-gpio/circuit-cr.png)
+
+時定数は $CR=1000 \cdot 100 \cdot 10^{-6}$ = 100msec になります。GPIO0 で矩形波を生成し、GPIO2 と GPIO3 でそれを観測します。その際、GPIO2 はヒステリシスを有効にし、GPIO3 は無効にして、違いを比較します。
+
+
+
+
+1. ロジックアナライザで GPIO0, GPIO2, GPIO3 を測定対象に指定します。GPIO2 と GPIO3 は CR 回路を通して接続されているので、外部信号の測定をするオプション `--external` でこれらのピン番号を指定します
+
+   ```text
+   L:/>la -p 0,2,3 --external:2,3
+   ```
+2. PulseView を起動して Pico ボードと接続します。サンプリングレートは `10 kHz` に設定します
+
+3. GPIO00 を出力モードにし、low レベルに初期化します
+
+   ```text
+   L:/>gpio 0 func:sio dir:out put:0
+   ```
+
+4. GPIO2 と GPIO3 のプルアップ・プルダウン抵抗を無効にし、ヒステリシスをそれぞれ有効・無効に設定します
+
+   ```text
+   L:/>gpio 2 pull:none hyst:on
+   L:/>gpio 3 pull:none hyst:off
+   ```
+
+5. PulseView で `Run` をクリックしてキャプチャを開始します
+
+6. GPIO0 に 1000msec だけ high レベルになるような矩形波を出力します
+
+   ```text
+   L:/>gpio 0 put:1 sleep:1000 put:0
+   ```
+
+7. PulseView でキャプチャを停止し、結果を確認します
+
+
+## C/C++ API との関連
+
+`gpio` のサブコマンドに相当する Pico SDK の API は以下の通りです。
+
+| サブコマンド     | Pico SDK API |
+|-----------------|-------|
+| `func`          | `gpio_set_function(uint gpio, gpio_function_t fn)` |
+| `dir`           | `gpio_set_dir(uint gpio, bool out)` |
+| `put`           | `gpio_put(uint gpio, bool value)` |
+| `get`           | `bool gpio_get(uint gpio)` |
+| `pull`          | `gpio_set_pulls(uint gpio, bool up, bool down)` |
+| `drive`         | `gpio_set_drive_strength(uint gpio, enum gpio_drive_strength drive)` |
+| `slew`          | `gpio_set_slew_rate(uint gpio, enum gpio_slew_rate slew)` |
+| `hyst`          | `gpio_set_input_hysteresis_enabled(uint gpio, bool enabled)` |
+
+`gpio` のサブコマンドに相当する [pico-jxglib](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) の API は以下の通りです。
+
+| サブコマンド     | pico-jxglib API |
+|-----------------|-------|
+| `func`          | `GPIO::set_function(gpio_function_t fn)` |
+| `dir`           | `GPIO::set_dir(bool out)` |
+| `put`           | `GPIO::put(bool value)` |
+| `get`           | `bool GPIO::get()` |
+| `pull`          | `GPIO::set_pulls(bool up, bool down)` |
+| `drive`         | `GPIO::set_drive_strength(enum gpio_drive_strength drive)` |
+| `slew`          | `GPIO::set_slew_rate(enum gpio_slew_rate slew)` |
+| `hyst`          | `GPIO::set_input_hysteresis_enabled(bool enabled)` |
+
+## まとめ
+
+この記事では、pico-jxgLABO を使って GPIO の制御方法を紹介しました。GPIO の基本的な入出力操作から、ファンクション設定、プルアップ/プルダウン抵抗、ドライブ強度、スルーレート制御、ヒステリシス機能まで、さまざまな設定を試してみました。
+これらの設定を理解することで、GPIO の制御をより深く理解し、実際のプロジェクトでの活用に役立てることができるでしょう。
