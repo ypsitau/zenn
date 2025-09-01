@@ -93,7 +93,7 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
    ![pulseview-main-modified](/images/2025-09-01-labo-pulseview/pulseview-main-modified.png)
 
-これで PulseView から pico-jxgLABO を操作できるようになりました。左上の `Run` ボタンをクリックすると、ラベルが `Stop` に変わって信号のキャプチャが開始されます。
+これで PulseView から Pico ボード上の pico-jxgLABO を操作できるようになりました。左上の `Run` ボタンをクリックすると、ラベルが `Stop` に変わって信号のキャプチャが開始されます。
 
 ![pulseview-main-running](/images/2025-09-01-labo-pulseview/pulseview-main-running.png)
 
@@ -122,7 +122,7 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 基本的なマウス操作方法は以下の通りです。
 
 - ホイールで拡大・縮小ができます
-- 左クリックをしたままドラッグすると表示範囲を移動できます
+- 左クリックをしたまま波形表示エリア内でドラッグをすると表示範囲を上下左右に移動できます
 
 信号波形の最初の部分を拡大したのが以下の画像です。
 
@@ -150,7 +150,7 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 ![pulseview-main-i2c-dec](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-dec.png)
 
-I2C アドレス 0x00 から 0x7f に対して Read リクエストが送信されているのが分かります。
+I2C アドレス 0x00 から 0x7f に対して Read リクエストが送信されているのが分かります。I2C デバイスが接続されていないので、NACK 応答が返されています。
 
 ### SPI の波形観測
 
@@ -228,7 +228,7 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 ![pulseview-main-pwm-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-zoom.png)
 
-`Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、それぞれの PWM デコーダの `Data` に `D2`, `D3`, `D4` を設定します。
+`Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、各 PWM デコーダの `Data` にそれぞれ `D2`, `D3`, `D4` を設定します。
 
 ![pulseview-main-pwm-prop](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-prop.png)
 
@@ -238,13 +238,15 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 デューティ比がそれぞれ 20%, 50%, 80% で周波数 1.0kHzの PWM 信号が生成されているのが分かります。
 
-PWM の操作方法は以下の記事で詳しく説明しているので、参考にしてください。
+pico-jxgLABO における PWM の操作方法は以下の記事で詳しく説明しているので、参考にしてください。
 
 ▶️ [操作方法を知って使いこなす! pwm コマンドで Pico の PWM の限界を探る](https://zenn.dev/ypsitau/articles/2025-08-06-labo-pwm)
 
 ## `la` コマンドのオプション
 
 `la` は pico-jxgLABO のロジックアナライザコマンドです。`la` コマンドのオプションを変更することで、測定する GPIO ピン番号や測定対象 (内部信号/外部信号)、サンプリングレートなどを指定できます。
+
+ここでは、PulseView との連携に影響する主なオプションについて説明します。
 
 ### 測定する GPIO ピン番号の指定方法
 
