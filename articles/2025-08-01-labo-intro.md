@@ -102,7 +102,7 @@ pico-jxgLABO のロジックアナライザ機能を試してみましょう。�
 
 ```text
 L:/>la -p 2,3 enable
-enabled pio:2 12.5MHz (samplers:1) target:internal pins:2,3 events:1/88674 (heap-ratio:0.7)
+enabled pio:2 12.5MHz (samplers:1) pins:2,3 events:1/88674 (heap-ratio:0.7)
 ```
 
 これでロジックアナライザが有効になりました。バックグランドで信号のキャプチャが行われています。信号の変化があるときだけキャプチャ処理が行われるので、急いで操作をする必要はありません。
@@ -127,7 +127,7 @@ Bus Scan on I2C1
 
 ```text
 L:/>la
-enabled pio:2 12.5MHz (samplers:1) target:internal pins:2,3 events:3461/88674 (heap-ratio:0.7)
+enabled pio:2 12.5MHz (samplers:1) pins:2,3 events:3461/88674 (heap-ratio:0.7)
 ```
 
 イベントの数が増えて、信号のキャプチャがされていることがわかります。`la print` コマンドを使って、キャプチャした信号を表示します。
@@ -260,7 +260,7 @@ L:/>la print --part:all > i2c.log
 
 ```text
 L:/>la enable
-enabled pio:2 12.5MHz (samplers:1) target:internal pins:2,3 events:1/88674 (heap-ratio:0.7)
+enabled pio:2 12.5MHz (samplers:1) pins:2,3 events:1/88674 (heap-ratio:0.7)
 ```
 
 `la disable` コマンドを実行すると、ロジックアナライザが無効になります。
