@@ -16,7 +16,7 @@
     "url": "https://github.com/ypsitau/zenn/issues"
   },
   "homepage": "https://github.com/ypsitau/zenn#readme",
-  "description": "",
+  "description": "* [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)",
   "dependencies": {
     "zen-cli": "^0.0.2",
     "zenn-cli": "^0.2.3"
