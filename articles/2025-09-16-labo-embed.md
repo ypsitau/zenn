@@ -76,8 +76,8 @@ Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キー�
 
 `Sample1` ディレクトリの中には以下のようなファイルが作成されています。
 
-- `CMakeLists.txt`: プロジェクトのビルド設定ファイルです
-- `Sample1.cpp`: メインの C++ プログラムです
+- `CMakeLists.txt`: プロジェクトのビルド設定ファイル
+- `Sample1.cpp`: メインの C++ プログラム
 
 C++ プログラムの内容は以下のようになっていると思います。
 
@@ -103,9 +103,9 @@ int main()
 
 ビルドが成功すると、`C:\Users\YOUR-NAME\pico-project\Sample1\build` ディレクトリが作成され、`Sample1.uf2` というバイナリファイルが生成されます。
 
-Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルで PC と接続すると、Pico ボードが USB ドライブとして認識されます。Sample1.uf2 ファイルをこのドライブにコピーすると、Pico ボードが自動的に再起動してプログラムが実行されます。
+Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルで PC と接続すると、Pico ボードが USB ドライブとして認識されます。`Sample1.uf2` ファイルをこのドライブにコピーすると、Pico ボードが自動的に再起動してプログラムが実行されます。
 
-ところで、`printf()` の `Hello, world!` はいったいどこで行ってしまうのでしょうか? Pico SDK は `printf()` の出力先を UART や USB シリアルなど柔軟にカスタマイズできるようになっていて、今回は pico-jxgLABO が提供する USB シリアルポートに出力することにします。この記事の続き、pico-jxgLABO の組み込み方法に進んでください。
+ところで、`printf()` の `Hello, world!` はいったいどこに表示されるのでしょうか? Pico SDK は `printf()` の出力先を UART や USB シリアルなど柔軟にカスタマイズできるようになっていて、今回は pico-jxgLABO が提供する USB シリアルポートに出力することにします。この記事の続き、「pico-jxgLABO の組み込み方法」に進んでください。
 
 ### Pico SDK プロジェクトの開き方
 
@@ -235,7 +235,28 @@ int main()
 }
 ```
 
-このプラットフォームを組み込んだことで、多くの機能が使えるようになりました。
+遅延が必要なければ、`jxglib_sleep()` の代わりに `jxglib_tick()` をメインループの中で実行します。
+
+```cpp: Sample1.cpp
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "jxglib/LABOPlatform.h"
+
+int main()
+{
+    stdio_init_all();
+    jxglib_labo_init(false);
+
+    while (true) {
+        //
+        // any jobs
+        //
+        jxglib_tick();
+    }
+}
+```
+
+`jxglib_sleep()` か `jxglib_tick()` のどちらかを定期的に実行していれば、pico-jxgLABO の機能はすべて利用できます。
 
 ## まとめ
 
