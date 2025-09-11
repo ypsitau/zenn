@@ -57,7 +57,7 @@ Pico SDK (C/C++ のビルドに必要なツールやライブラリ群) は Visu
 
 ### Pico SDK プロジェクトの作成
 
-Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キーを押して表示されるコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行します。`New Pico Project` というダイアログボックスが出て使用言語を聞かれるので `C/C++` を選択すると以下の画面が表示されます。
+Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キーを押して表示されるコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行します。`New Pico Project` というドロップダウンリストが出て使用言語を聞かれるので `C/C++` を選択すると以下の画面が表示されます。
 
 ![new-project.png](/images/2025-01-17-picosdk/new-project.png)
 
@@ -65,7 +65,7 @@ Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キー�
 
 - **Basic Settings**
   - `Name`: プロジェクト名を入力します。ここでは `Sample1` とします
-  - `Board type`: 使用しているボードタイプ (`Pico`, `Pico 2`, `Pico W`, `Pico 2 W`, `Other`) を選択します
+  - `Board type`: 使用しているボードタイプ (`Pico`, `Pico 2`, `Pico W`, `Pico 2 W`, `Other` のいずれか) を選択します
   - `Location`: `[Change]` ボタンをクリックしてプロジェクトディレクトリを作成するひとつ上のディレクトリ名を選択します。ここでは `C:\Users\YOUR-NAME\labo-project` とします
 - **Code generation options**
   - `Generate C++ code`: チェックを入れます
@@ -120,7 +120,7 @@ code .
 
 ![open-workspace.png](/images/2025-01-17-picosdk/open-workspace.png)
 
-`Select a Kit for ...` のダイアログは無視して、右下の `Do you want to import this project as Raspberry Pi Pico project?` のダイアログで `[Yes]` ボタンをクリックしてください。以下のメイン画面が表示されます。
+`Select a Kit for ...` のドロップダウンリストは無視して、右下の `Do you want to import this project as Raspberry Pi Pico project?` のダイアログで `[Yes]` ボタンをクリックしてください。以下の画面が表示されます。
 
 ![import-project.png](/images/2025-01-17-picosdk/import-project.png)
 
@@ -161,7 +161,14 @@ cd pico-jxglib
 git submodule update --init --recursive
 ```
 
-プロジェクト `Sample1` のワークスペースを VSCode で開きます。`CMakeLists.txt` の最後に以下の行を追加してください。他のプロジェクトの場合、`Sample1` の部分を該当するプロジェクト名に置き換えます。
+プロジェクト `Sample1` のディレクトリに移り、VSCode を実行します。
+
+```text
+cd C:\Users\YOUR-NAME\labo-project\Sample1
+code .
+```
+
+`CMakeLists.txt` の最後に以下の行を追加してください。他のプロジェクトの場合、`Sample1` の部分を該当するプロジェクト名に置き換えます。
 
 ```cmake:CMakeLists.txt
 target_link_libraries(Sample1 jxglib_LABOPlatform_FullCmd)
@@ -267,10 +274,10 @@ int main()
 }
 ```
 
-上の例では VSCode がひな形として生成した Pico SDK プログラムに pico-jxgLABO を組み込む方法を紹介しましたが、既存のプログラムに組み込む場合も同様です。pico-jxgLABO を活動状態にするのに必要な手順は次の 2 つだけです。
+この記事では VSCode がひな形として生成した Pico SDK プログラムに pico-jxgLABO を組み込む方法を紹介しましたが、既存のプログラムに組み込む場合も同様です。pico-jxgLABO を活動状態にするのに必要な手順は次の 2 つだけです。
 
-1. `jxglib_labo_init()` を一度だけ呼び出す
-2. メインループの中で `jxglib_sleep()` か `jxglib_tick()` のどちらかを定期的に実行する
+- `jxglib_labo_init()` を一度だけ呼び出す
+- メインループの中で `jxglib_sleep()` か `jxglib_tick()` のどちらかを定期的に実行する
 
 ## プログラムに組み込んだ pico-jxgLABO の活用方法
 
