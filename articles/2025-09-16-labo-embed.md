@@ -64,7 +64,7 @@ Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キー�
 以下の項目を設定してください。ほかはデフォルトのままで結構です。
 
 - **Basic Settings**
-  - `Name`: プロジェクト名を入力します。ここでは `Sample1` とします
+  - `Name`: プロジェクト名を入力します。ここでは `P00_Simple` とします
   - `Board type`: 使用しているボードタイプ (`Pico`, `Pico 2`, `Pico W`, `Pico 2 W`, `Other` のいずれか) を選択します
   - `Location`: `[Change]` ボタンをクリックしてプロジェクトディレクトリを作成するひとつ上のディレクトリ名を選択します。ここでは `C:\Users\YOUR-NAME\labo-project` とします
 - **Code generation options**
@@ -72,16 +72,16 @@ Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キー�
 
 右下の `[Create]` ボタンをクリックするとプロジェクトを作成します。初めてプロジェクトを作成した場合は、Pico SDK のダウンロードとインストールを行うのでかなり時間がかかります (20 分ほど)。初めの一回だけなので、気長に待ちましょう。
 
-プロジェクトの作成が完了すると、プロジェクトディレクトリ `C:\Users\YOUR-NAME\labo-project\Sample1` が作成され、そのディレクトリをワークスペースにした VSCode が自動的に開きます。
+プロジェクトの作成が完了すると、プロジェクトディレクトリ `C:\Users\YOUR-NAME\labo-project\P00_Simple` が作成され、そのディレクトリをワークスペースにした VSCode が自動的に開きます。
 
-`Sample1` ディレクトリの中には以下のようなファイルが作成されています。
+`P00_Simple` ディレクトリの中には以下のようなファイルが作成されています。
 
 - `CMakeLists.txt`: プロジェクトのビルド設定ファイル
-- `Sample1.cpp`: メインの C++ プログラム
+- `P00_Simple.cpp`: メインの C++ プログラム
 
 C++ プログラムの内容は以下のようになっていると思います。
 
-```cpp: Sample1.cpp
+```cpp: P00_Simple.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 
@@ -101,18 +101,18 @@ int main()
 
 ![vscode-select-kit.png](/images/2025-01-17-picosdk/vscode-select-kit.png)
 
-ビルドが成功すると、`C:\Users\YOUR-NAME\labo-project\Sample1\build` ディレクトリが作成され、`Sample1.uf2` というバイナリファイルが生成されます。
+ビルドが成功すると、`C:\Users\YOUR-NAME\labo-project\P00_Simple\build` ディレクトリが作成され、`P00_Simple.uf2` というバイナリファイルが生成されます。
 
-Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルで PC と接続すると、Pico ボードが USB ドライブとして認識されます。`Sample1.uf2` ファイルをこのドライブにコピーすると、Pico ボードが自動的に再起動してプログラムが実行されます。
+Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルで PC と接続すると、Pico ボードが USB ドライブとして認識されます。`P00_Simple.uf2` ファイルをこのドライブにコピーすると、Pico ボードが自動的に再起動してプログラムが実行されます。
 
 ところで、`printf()` の `Hello, world!` はいったいどこに出力されるのでしょうか? Pico SDK は `printf()` の出力先を UART や USB シリアルなど柔軟にカスタマイズできるようになっているのですが、この時点ではそれが設定されていないのでまだどこにも出力されないのです。pico-jxgLABO が提供する USB シリアルポートに出力することになっているので、この先は記事の続き「pico-jxgLABO の組み込み方法」に進んでください。
 
 ### Pico SDK プロジェクトの開き方
 
-すでに存在する Pico SDK プロジェクトを開くには、コマンドプロンプトでプロジェクトディレクトリに移動して `code .` コマンドを実行します。例えば `C:\Users\YOUR-NAME\labo-project\Sample1` ディレクトリを開くには、以下のようにします。
+すでに存在する Pico SDK プロジェクトを開くには、コマンドプロンプトでプロジェクトディレクトリに移動して `code .` コマンドを実行します。例えば `C:\Users\YOUR-NAME\labo-project\P00_Simple` ディレクトリを開くには、以下のようにします。
 
 ```text
-cd C:\Users\YOUR-NAME\labo-project\Sample1
+cd C:\Users\YOUR-NAME\labo-project\P00_Simple
 code .
 ```
 
@@ -128,7 +128,7 @@ code .
 
 ## pico-jxgLABO の組み込み方法
 
-pico-jxgLABO を自作プログラムに組み込んでみましょう。この記事では、上の「Pico SDK 開発環境チュートリアル」で作成した `Sample1` プロジェクトを例にして組込み方法を紹介します。`Sample1` は C++ のプロジェクトですが、C 言語のプロジェクトでも同様の手順で組込みができます。
+pico-jxgLABO を自作プログラムに組み込んでみましょう。この記事では、上の「Pico SDK 開発環境チュートリアル」で作成した `P00_Simple` プロジェクトを例にして組込み方法を紹介します。`P00_Simple` は C++ のプロジェクトですが、C 言語のプロジェクトでも同様の手順で組込みができます。
 
 :::message
 既存のプロジェクトに組み込む場合、Stdio で `Console over USB` を有効にしていると、pico-jxgLABO の USB 機能と競合してしまいます。`CMakeLists.txt` の中の `pico_enable_stdio_usb()` 関数呼び出しで引数を `0` にして無効にしてください。
@@ -146,9 +146,9 @@ pico-jxgLABO は pico-jxglib というライブラリ群の上に構築されて
 ```text
 C:\Users\YOUR-NAME\labo-project
   ├── pico-jxglib/
-  └── Sample1/
+  └── P00_Simple/
       ├── CMakeLists.txt
-      ├── Sample1.cpp
+      ├── P00_Simple.cpp
       └── ...
 ```
 
@@ -161,24 +161,30 @@ cd pico-jxglib
 git submodule update --init --recursive
 ```
 
-プロジェクト `Sample1` のディレクトリに移り、VSCode を実行します。
+プロジェクト `P00_Simple` のディレクトリに移り、VSCode を実行します。
 
 ```text
-cd C:\Users\YOUR-NAME\labo-project\Sample1
+cd C:\Users\YOUR-NAME\labo-project\P00_Simple
 code .
 ```
 
-`CMakeLists.txt` の最後に以下の行を追加してください。他のプロジェクトの場合、`Sample1` の部分を該当するプロジェクト名に置き換えます。
+`CMakeLists.txt` の最後に以下の行を追加してください。他のプロジェクトの場合、`P00_Simple` の部分を該当するプロジェクト名に置き換えます。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(Sample1 jxglib_LABOPlatform_FullCmd)
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
-jxglib_configure_LABOPlatform(Sample1)
+target_link_libraries(P00_Simple jxglib_LABOPlatform_FullCmd)          # 1
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib) # 2
+jxglib_configure_LABOPlatform(P00_Simple)                              # 3
 ```
 
-ソースファイル `Sample1.cpp` の内容を以下のように変更します。
+処理内容は以下の通りです。
 
-```cpp: Sample1.cpp
+1. `P00_Simple` ターゲットに pico-jxgLABO のライブラリ `jxglib_LABOPlatform_FullCmd` をリンクします。このライブラリは、pico-jxgLABO のコアになる機能と、現在提供しているすべてのシェルコマンドを含んでいます。`target_link_libraries()` はすでに `CmakeLists.txt` に記述されているものがあるので、このライブラリをそこに追加しても構いません
+2. pico-jxgLABO のプロジェクトディレクトリを指定します。`${CMAKE_CURRENT_LIST_DIR}` はこの `CMakeLists.txt` ファイルがあるディレクトリを指します。2 番目の引数 `pico-jxglib` はビルド時に生成される中間ファイルを置くディレクトリ名です
+3. pico-jxgLABO で使用している tinyusb や FatFS のコンフィグレーションファイルを生成します
+
+ソースファイル `P00_Simple.cpp` の内容を以下のように変更します。
+
+```cpp: P00_Simple.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/LABOPlatform.h"        // 1
@@ -201,7 +207,7 @@ int main()
 2. `jxglib_labo_init()` を呼び出して pico-jxgLABO の初期化を行います
 3. `sleep_ms()` の代わりに `jxglib_sleep()` を使います。この関数内で pico-jxgLABO のタスクが実行されます
 
-これで組み込みは完了です。`[F7]` キーを押してビルドしてください。ビルドが成功するとプロジェクトディレクトリ下の `build` ディレクトリに `Sample1.uf2` ファイルが生成されるので、BOOTSEL ボタンを押しながら USB ケーブルを接続して認識されるドライブにコピーしてください。コピーが完了すると Pico ボードが自動的に再起動してプログラムが実行されます。
+これで組み込みは完了です。`[F7]` キーを押してビルドしてください。ビルドが成功するとプロジェクトディレクトリ下の `build` ディレクトリに `P00_Simple.uf2` ファイルが生成されるので、BOOTSEL ボタンを押しながら USB ケーブルを接続して認識されるドライブにコピーしてください。コピーが完了すると Pico ボードが自動的に再起動してプログラムが実行されます。
 
 シリアル通信をするため Tera Term を起動します。メニューバーから `[設定 (S)]`-`[シリアルポート (E)...]` を選択し、接続する Pico ボードのシリアルポートを選択します。
 
@@ -226,18 +232,18 @@ L:/>dir
 -a--- 2000-01-01 00:00:00     77 README.txt
 ```
 
-pico-jxgLABO は USB ドライブの機能も提供していて、ホスト PC から内蔵フラッシュメモリにアクセスできます。多くの場合 `D:` ドライブとして認識されると思いますが、適当なファイルを PC からこのドライブにコピーした後で Tera Term で `dir` コマンドを実行してみてください (ここでは `Sample1.cpp` をコピー)。
+pico-jxgLABO は USB ドライブの機能も提供していて、ホスト PC から内蔵フラッシュメモリにアクセスできます。多くの場合 `D:` ドライブとして認識されると思いますが、適当なファイルを PC からこのドライブにコピーした後で Tera Term で `dir` コマンドを実行してみてください (ここでは `P00_Simple.cpp` をコピー)。
 
 ```text
 L:/>dir
 -a--- 2000-01-01 00:00:00     77 README.txt
--a--- 2025-09-10 15:09:54    245 Sample1.cpp
+-a--- 2025-09-10 15:09:54    245 P00_Simple.cpp
 ```
 
 `cat` コマンドを使って Pico ボード上でファイルの中身を確認することもできます。
 
 ```text
-L:/>cat Sample1.cpp
+L:/>cat P00_Simple.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/LABOPlatform.h"
@@ -255,7 +261,7 @@ int main()
 
 遅延が必要なければ、`jxglib_sleep()` の代わりに `jxglib_tick()` をメインループの中で実行します。
 
-```cpp: Sample1.cpp
+```cpp: P00_Simple.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/LABOPlatform.h"
