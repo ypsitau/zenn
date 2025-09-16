@@ -105,7 +105,7 @@ int main()
 
 Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルで PC と接続すると、Pico ボードが USB ドライブとして認識されます。`P00_Simple.uf2` ファイルをこのドライブにコピーすると、Pico ボードが自動的に再起動してプログラムが実行されます。
 
-ところで、`printf()` の `Hello, world!` はいったいどこに出力されるのでしょうか? Pico SDK は `printf()` の出力先を UART や USB シリアルなど柔軟にカスタマイズできるようになっているのですが、この時点ではそれが設定されていないのでまだどこにも出力されないのです。pico-jxgLABO が提供する USB シリアルポートに出力することになっているので、この先は記事の続き「pico-jxgLABO の組み込み方法」に進んでください。
+ところで、`printf()` の `Hello, world!` はいったいどこに出力されるのでしょうか? Pico SDK は `printf()` の出力先を UART や USB シリアルなど柔軟にカスタマイズできるようになっているのですが、この時点ではそれが設定されていないのでまだどこにも出力されないのです。pico-jxgLABO が提供する USB シリアルポートに出力することになっているので、この先は記事の続き[「pico-jxgLABO の組み込み方法」](#pico-jxglabo-%E3%81%AE%E7%B5%84%E3%81%BF%E8%BE%BC%E3%81%BF%E6%96%B9%E6%B3%95)に進んでください。
 
 ### Pico SDK プロジェクトの開き方
 
@@ -128,7 +128,7 @@ code .
 
 ## pico-jxgLABO の組み込み方法
 
-pico-jxgLABO を自作プログラムに組み込んでみましょう。この記事では、上の「Pico SDK 開発環境チュートリアル」で作成した `P00_Simple` プロジェクトを例にして組込み方法を紹介します。`P00_Simple` は C++ のプロジェクトですが、C 言語のプロジェクトでも同様の手順で組込みができます。
+pico-jxgLABO を自作プログラムに組み込んでみましょう。この記事では、上の[「Pico SDK 開発環境チュートリアル」](#pico-sdk-%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB)で作成した `P00_Simple` プロジェクトを例にして組込み方法を紹介します。`P00_Simple` は C++ のプロジェクトですが、C 言語のプロジェクトでも同様の手順で組込みができます。
 
 :::message
 既存のプロジェクトに組み込む場合、Stdio で `Console over USB` を有効にしていると、pico-jxgLABO の USB 機能と競合してしまいます。`CMakeLists.txt` の中の `pico_enable_stdio_usb()` 関数呼び出しで引数を `0` にして無効にしてください。
@@ -178,9 +178,9 @@ jxglib_configure_LABOPlatform(P00_Simple)                              # 3
 
 処理内容は以下の通りです。
 
-1. `P00_Simple` ターゲットに pico-jxgLABO のライブラリ `jxglib_LABOPlatform_FullCmd` をリンクします。このライブラリは、pico-jxgLABO のコアになる機能と、現在提供しているすべてのシェルコマンドを含んでいます。`target_link_libraries()` はすでに `CmakeLists.txt` に記述されているものがあるので、このライブラリをそこに追加しても構いません
+1. `P00_Simple` ターゲットに pico-jxgLABO のライブラリ `jxglib_LABOPlatform_FullCmd` をリンクします。このライブラリは、pico-jxgLABO のコアになる機能と、現在提供しているすべてのシェルコマンドを含んでいます。`target_link_libraries()` はすでに `CMakeLists.txt` に記述されているものがあるので、このライブラリをそこに追加しても構いません
 2. pico-jxgLABO のプロジェクトディレクトリを指定します。`${CMAKE_CURRENT_LIST_DIR}` はこの `CMakeLists.txt` ファイルがあるディレクトリを指します。2 番目の引数 `pico-jxglib` はビルド時に生成される中間ファイルを置くディレクトリ名です
-3. pico-jxgLABO で使用している tinyusb や FatFS のコンフィグレーションファイルを生成します
+3. pico-jxgLABO で使用している tinyusb や FatFs のコンフィグレーションファイルを生成します
 
 ソースファイル `P00_Simple.cpp` の内容を以下のように変更します。
 
