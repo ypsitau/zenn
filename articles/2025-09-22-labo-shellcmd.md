@@ -1,5 +1,5 @@
 ---
-title: "Pico ボードとシェルコマンドで対話する"
+title: "組み込みだって対話がしたい! Pico ボードにシェルコマンド"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["zennfes2025free", "raspberrypi", "pico", "raspberrypipico", "shell"]
