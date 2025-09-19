@@ -1,5 +1,5 @@
 ---
-title: "その持てる力をすべて解き放て! Pico ボードプログラムに pico-jxgLABO を組み込む方法"
+title: "Pico ボードプログラムにロジアナを埋め込んでしまえ! pico-jxgLABO はこうやって組み込むのだ"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["zennfes2025free", "raspberrypi", "pico", "raspberrypipico", "library"]
