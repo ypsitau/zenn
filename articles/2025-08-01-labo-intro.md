@@ -8,6 +8,7 @@ published: true
 Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 円) なマイコンボードです。初代の Pico は 125MHz の 32bit ARM コア (しかもデュアル)、264KByte の SRAM, 2MByte のフラッシュメモリ。Pico 2 にいたっては CPU 150MHz (デュアル), 520KByte の SRAM, 4MByte のフラッシュメモリ、ハードウエア浮動小数点演算をサポートするなど、非常に高性能なマイコンボードです。
 
 ![pico-and-pico2.jpg](/images/2025-08-01-labo-intro/pico-and-pico2.jpg)
+*初代 Pico と Pico2*
 
 でもそんな豊富な機能も、使い方を知らなければ宝の持ち腐れ。そこで、Pico ボードで実際に様々な機能を試すことができる実験プラットフォーム **pico-jxgLABO** を開発しました。主な特徴は以下の通りです。
 
