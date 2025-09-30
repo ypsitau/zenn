@@ -1,5 +1,5 @@
 ---
-title: "組み込みだって対話がしたい! Pico ボードにシェルコマンド"
+title: "pivo-jxgLABO ならシェルコマンドの自作も簡単! カスタムシェルコマンドを組み込んでみよう"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["zennfes2025free", "raspberrypi", "pico", "raspberrypipico", "shell"]
