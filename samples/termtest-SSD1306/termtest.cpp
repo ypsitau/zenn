@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/SSD1306.h"
+#include "jxglib/Display/SSD1306.h"
 #include "jxglib/Font/naga10-japanese-level2.h"
 #include "jxglib/sample/Text_Botchan.h"
 

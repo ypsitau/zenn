@@ -52,6 +52,6 @@ target_include_directories(termtest PRIVATE
 
 pico_add_extra_outputs(termtest)
 
-target_link_libraries(termtest jxglib_ILI9341 jxglib_LVGL)
+target_link_libraries(termtest jxglib_Display_ILI9341 jxglib_LVGL)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_LVGL(termtest LV_FONT_MONTSERRAT_14)

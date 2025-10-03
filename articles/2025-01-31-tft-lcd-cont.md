@@ -18,7 +18,7 @@ https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro
 ```cpp:lcdtest.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/sample/cat-240x320.h"
 #include "jxglib/Font/shinonome16-japanese-level1.h"
 
@@ -142,7 +142,7 @@ LCD デバイスに CS (Chip Select) 端子がついていれば、同じ SPI �
 ```cpp:lcdtest.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/Font/shinonome16-japanese-level1.h"
 #include "jxglib/sample/cat-240x320.h"
 #include "jxglib/sample/Text_Botchan.h"

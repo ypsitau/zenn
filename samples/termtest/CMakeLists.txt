@@ -50,6 +50,6 @@ target_include_directories(termtest PRIVATE
 
 pico_add_extra_outputs(termtest)
 
-target_link_libraries(termtest jxglib_ST7789)
+target_link_libraries(termtest jxglib_Display_ST7789)
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)

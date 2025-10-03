@@ -145,7 +145,7 @@ USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_ST7789)
+target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_Display_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 ```
@@ -156,7 +156,7 @@ jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/USBHost/HID.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/Font/shinonome16.h"
 
 using namespace jxglib;
@@ -199,7 +199,7 @@ USB キーボードは USB 端子に microB-TypeA 変換アダプタを使って
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_SSD1306)
+target_link_libraries(cmdedit-display-test jxglib_USBHost jxglib_Display_SSD1306)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 ```
@@ -210,7 +210,7 @@ jxglib_configure_USBHost(cmdedit-display-test CFG_TUH_HID 3)
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "jxglib/USBHost/HID.h"
-#include "jxglib/SSD1306.h"
+#include "jxglib/Display/SSD1306.h"
 #include "jxglib/Font/shinonome12.h"
 
 using namespace jxglib;
@@ -250,7 +250,7 @@ GPIO に接続したキーボードマトリクス接続します。ここでは
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(cmdedit-display-test jxglib_ST7789)
+target_link_libraries(cmdedit-display-test jxglib_Display_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```
 
@@ -259,7 +259,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 ```cpp:cmdedit-display-test.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/Font/shinonome16.h"
 
 using namespace jxglib;

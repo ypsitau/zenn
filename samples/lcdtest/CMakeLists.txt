@@ -69,6 +69,6 @@ target_include_directories(lcdtest PRIVATE
 
 pico_add_extra_outputs(lcdtest)
 
-target_link_libraries(lcdtest jxglib_ST7789 jxglib_DrawableTest)
+target_link_libraries(lcdtest jxglib_Display_ST7789 jxglib_DrawableTest)
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)

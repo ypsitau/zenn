@@ -55,6 +55,6 @@ target_include_directories(usbhost-gamepad-monitor PRIVATE
 
 pico_add_extra_outputs(usbhost-gamepad-monitor)
 
-target_link_libraries(usbhost-gamepad-monitor jxglib_USBHost jxglib_ILI9341 jxglib_ST7789)
+target_link_libraries(usbhost-gamepad-monitor jxglib_USBHost jxglib_Display_ILI9341 jxglib_Display_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(usbhost-gamepad-monitor CFG_TUH_HID 3)

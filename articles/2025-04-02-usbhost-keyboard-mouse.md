@@ -227,7 +227,7 @@ LVGL のユーザインターフェースにはタッチスクリーンを使う
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(usbhosttest jxglib_USBHost jxglib_ST7789 jxglib_LVGL lvgl_examples)
+target_link_libraries(usbhosttest jxglib_USBHost jxglib_Display_ST7789 jxglib_LVGL lvgl_examples)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(usbhosttest CFG_TUH_HID 3)
 jxglib_configure_LVGL(usbhosttest LV_FONT_MONTSERRAT_14)
@@ -239,7 +239,7 @@ jxglib_configure_LVGL(usbhosttest LV_FONT_MONTSERRAT_14)
 #include <lvgl/examples/lv_examples.h>
 #include "pico/stdlib.h"
 #include "jxglib/USBHost/HID.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/LVGL.h"
 
 using namespace jxglib;

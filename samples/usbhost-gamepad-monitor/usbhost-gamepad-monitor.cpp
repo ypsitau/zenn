@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ILI9341.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ILI9341.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/USBHost/HID.h"
 #include "jxglib/Font/naga10.h"
 

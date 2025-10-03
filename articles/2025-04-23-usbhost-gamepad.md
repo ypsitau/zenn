@@ -105,7 +105,7 @@ VSCode のコマンドパレットから `>Raspberry Pi Pico: New Pico Project` 
 `CMakeLists.txt` の最後に以下の行を追加してください。
 
 ```cmake:CMakeLists.txt
-target_link_libraries(usbhost-gamepad-monitor jxglib_USBHost jxglib_ILI9341 jxglib_ST7789)
+target_link_libraries(usbhost-gamepad-monitor jxglib_USBHost jxglib_Display_ILI9341 jxglib_Display_ST7789)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_USBHost(usbhost-gamepad-monitor CFG_TUH_HID 3)
 ```
@@ -115,8 +115,8 @@ jxglib_configure_USBHost(usbhost-gamepad-monitor CFG_TUH_HID 3)
 ```cpp:usbhost-gamepad-monitor.cpp
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ILI9341.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ILI9341.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/USBHost/HID.h"
 #include "jxglib/Font/naga10.h"
 

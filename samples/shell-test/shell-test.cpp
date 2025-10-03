@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/USBHost/HID.h"
 #include "jxglib/Serial.h"
 #include "jxglib/Shell.h"

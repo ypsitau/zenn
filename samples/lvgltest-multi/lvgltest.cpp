@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <examples/lv_examples.h>
 #include "pico/stdlib.h"
-#include "jxglib/ILI9341.h"
-#include "jxglib/ILI9488.h"
+#include "jxglib/Display/ILI9341.h"
+#include "jxglib/Display/ILI9488.h"
 #include "jxglib/LVGL.h"
 
 using namespace jxglib;

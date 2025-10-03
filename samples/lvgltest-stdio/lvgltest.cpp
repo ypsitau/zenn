@@ -2,7 +2,7 @@
 #include <examples/lv_examples.h>
 #include "pico/stdlib.h"
 #include "jxglib/Stdio.h"
-#include "jxglib/ST7789.h"
+#include "jxglib/Display/ST7789.h"
 #include "jxglib/LVGL.h"
 
 using namespace jxglib;
