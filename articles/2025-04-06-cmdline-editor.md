@@ -171,7 +171,7 @@ int main()
     ::spi_init(spi1, 125 * 1000 * 1000);
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
-    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+    Display::ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
     terminal.SetFont(Font::shinonome16).AttachDisplay(display).AttachKeyboard(keyboard);
     terminal.Println("ReadLine Test Program");
@@ -225,7 +225,7 @@ int main()
     ::i2c_init(i2c0, 400 * 1000);
     GPIO4.set_function_I2C0_SDA().pull_up();
     GPIO5.set_function_I2C0_SCL().pull_up();
-    SSD1306 display(i2c0, 0x3c);
+    Display::SSD1306 display(i2c0, 0x3c);
     display.Initialize();
     terminal.SetFont(Font::shinonome12)
         .AttachDisplay(display).AttachKeyboard(keyboard);
@@ -286,7 +286,7 @@ int main()
     ::spi_init(spi1, 125 * 1000 * 1000);
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
-    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+    Display::ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate0);
     terminal.SetFont(Font::shinonome16)
         .AttachDisplay(display).AttachKeyboard(keyboard);
