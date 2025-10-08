@@ -18,7 +18,7 @@ int main()
 	GPIO19.init().pull_up();
 	GPIO20.init().pull_up();
 	GPIO21.init().pull_up();
-	ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+	Display::ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
 	display.Initialize(Display::Dir::Rotate90);
 	terminal.AttachDisplay(display);
     terminal.SetFont(Font::shinonome16).SetSpacingRatio(1., 1.2).ClearScreen();

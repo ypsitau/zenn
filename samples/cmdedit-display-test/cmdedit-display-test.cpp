@@ -26,8 +26,8 @@ int main()
 	::spi_init(spi0, 125 * 1000 * 1000);	// for displays
 	GPIO18.set_function_SPI0_SCK();
 	GPIO19.set_function_SPI0_TX();
-	//ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
-	ST7789 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+	//Display::ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+	Display::ST7789 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
 #endif
     display.Initialize();
     terminal.SetFont(Font::shinonome16)

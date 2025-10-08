@@ -17,9 +17,9 @@ int main()
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
     Display::Terminal terminal;
-    //ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
-    //ST7789 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
-    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+    //Display::ILI9341 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+    //Display::ST7789 display(spi0, 240, 320, {RST: GPIO13, DC: GPIO12, CS: GPIO11, BL: GPIO::None});
+    Display::ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     display.Initialize(Display::Dir::Rotate270);
     terminal.Initialize().AttachDisplay(display).SetFont(Font::naga10);
     USBHost::Initialize();

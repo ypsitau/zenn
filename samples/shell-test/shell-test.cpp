@@ -18,7 +18,7 @@ int main()
     ::spi_init(spi1, 125 * 1000 * 1000);
     GPIO14.set_function_SPI1_SCK();
     GPIO15.set_function_SPI1_TX();
-    ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
+    Display::ST7789 display(spi1, 240, 320, {RST: GPIO10, DC: GPIO11, CS: GPIO12, BL: GPIO13});
     terminal.Initialize().AttachDisplay(display.Initialize(Display::Dir::Rotate90))
         .AttachKeyboard(keyboard.SetCapsLockAsCtrl()).SetFont(Font::shinonome16);
     //    .AttachKeyboard(Stdio::GetKeyboard()).SetFont(Font::shinonome16);
