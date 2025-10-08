@@ -27,7 +27,8 @@ Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 
 ▶️ **PWM 制御** - [操作方法を知って使いこなす! pwm コマンドで Pico の PWM の限界を探る](https://zenn.dev/ypsit/articles/2025-08-06-labo-pwm)
 ▶️ **ロジックアナライザ (PulseView 連携)** - [pico-jxgLABO × PulseView: プローブ接続いらずで気軽に使えるロジックアナライザを体験しよう!](https://zenn.dev/ypsit/articles/2025-09-01-labo-pulseview)
 ▶️ **ロジックアナライザ (la コマンド)** - [Pico ボード単体で通信プロトコル解析もできる! 本当はスゴい la コマンドの話](https://zenn.dev/ypsit/articles/2025-09-08-labo-la)
-▶️ **任意のプログラムへの組み込み** - [Pico ボードプログラムにロジアナを埋め込んでしまえ! pico-jxgLABO はこうやって組み込むのだ](https://zenn.dev/ypsit/articles/2025-09-16-labo-embed)
+▶️ **ネットワーク機能** - [Pico ボードを WiFi ネットワークに接続! Telnet サーバを動かして遠隔コマンド操作もしてみよう](https://zenn.dev/ypsit/articles/2025-10-06-labo-wifi)
+▶️ **任意のプログラムへの組み込み** - [Pico ボードプログラムにロジアナやネットワークの能力を授けよう! pico-jxgLABO はこうやって組み込むのだ](https://zenn.dev/ypsit/articles/2025-09-16-labo-embed)
 
 ## pico-jxgLABO の導入方法
 
