@@ -71,3 +71,6 @@ Program Information
      :
 ```
 
+![circuit-sdcard](/images/2025-10-22-labo-sdcard-rtc/circuit-sdcard.png)
+
+![circuit-rtc](/images/2025-10-22-labo-sdcard-rtc/circuit-rtc.png)
