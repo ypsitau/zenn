@@ -100,10 +100,10 @@ SD Card カードリーダモジュールの VCC の接続先は供給電圧に�
 
 ![circuit-sdcard](/images/2025-10-22-labo-sdcard-rtc/circuit-sdcard.png)
 
-以下のコマンドを実行して、SPI0 の GPIO 割り当てを GPIO2 (SPI0 SCK), GPIO3 (SPI0 TX), GPIO4 (SPI0 RX) に設定します。適切なファンクション割り当てが自動的に行われるので、記述の順序は気にしなくて大丈夫です。SPI 信号の周波数は 10 MHz に設定します。
+以下のコマンドを実行して、SPI0 の GPIO 割り当てを GPIO2 (SPI0 SCK), GPIO3 (SPI0 TX), GPIO4 (SPI0 RX) に設定します。適切なファンクション割り当てが自動的に行われるので、記述の順序は気にしなくて大丈夫です。
 
 ```text
-L:/>spi0 -p 2,3,4 --freq:10000000
+L:/>spi0 -p 2,3,4
 ```
 
 以下のコマンドを実行して、SD カードを接続する SPI インターフェースを SPI0、CS ピンを GPIO5 に設定します。またドライブ名として `M` を指定します。
