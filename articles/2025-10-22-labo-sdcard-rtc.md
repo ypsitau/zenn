@@ -112,13 +112,30 @@ L:/>spi0 -p 2,3,4 --freq:10000000
 L:/>sdcard setup {spi:0 cs:5 drive:'M'}
 ```
 
+これで SD カードのセットアップは完了です。`ls-drive` コマンドで利用可能なドライブの一覧を表示してみましょう。
+
 ```text
 L:/>ls-drive
+ Drive  Format           Total
+*L:     FAT12          2621440
+ M:     unmounted            0
 ```
+
+まだスロットに SD カードが挿入されていませんでした。SD カードを入れてから、再度 `ls-drive` コマンドを実行してみましょう。ここでは FAT でフォーマットされた 32 GByte の SD カードを挿入しました。
+
+```text
+L:/>ls-drive
+ Drive  Format        Total
+*L:     FAT12       2621440
+ M:     FAT32   30945574912
+```
+
+いろいろなファイル操作を試してみてください。
 
 ```text
 L:/>M:
 M:/>dir
+...
 ```
 
 ### RTC モジュール DS3231
@@ -179,6 +196,14 @@ L:/>ntp -r
 RTC updated
 L:/>rtc
 2025-10-18 16:27:33.000
+```
+
+ファイルを作成して、タイムスタンプが正しく記録されることを確認してみましょう。
+
+```text
+L:/>touch testfile.txt
+L:/>dir
+-a--- 2025-10-18 16:28:02      0 testfile.txt
 ```
 
 ## まとめ
