@@ -96,7 +96,7 @@ SD Card カードリーダモジュールの VCC の接続先は供給電圧に�
 - 供給電圧 3.3V の場合は Pico ボードの 3V3 (ピン番号 36) に接続します。VSYS に接続すると**SD カードが壊れる可能性があります**
 :::
 
-配線図を以下に示します。GND は 8 箇所あるので、どこに接続しても構いません。
+配線図を以下に示します。GND は Pico ボード上で 8 ピン出ているので、どこに接続しても構いません。
 
 ![circuit-sdcard](/images/2025-10-22-labo-sdcard-rtc/circuit-sdcard.png)
 
@@ -149,7 +149,7 @@ RTC モジュール DS3231 は I2C インターフェースに接続します。
 |SDA          |11           |GPIO8 |I2C0 SDA    |
 |SCL          |12           |GPIO9 |I2C0 SCL    |
 
-配線図を以下に示します。GND は 8 箇所あるので、どこに接続しても構いません。
+配線図を以下に示します。GND は Pico ボード上で 8 ピン出ているので、どこに接続しても構いません。
 
 ![circuit-rtc](/images/2025-10-22-labo-sdcard-rtc/circuit-rtc.png)
 
