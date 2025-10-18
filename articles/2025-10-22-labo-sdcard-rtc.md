@@ -121,7 +121,7 @@ L:/>ls-drive
  M:     unmounted            0
 ```
 
-まだスロットに SD カードが挿入されていないので unmounted になっています。SD カードを入れてから、再度 `ls-drive` コマンドを実行してみましょう。ここでは FAT でフォーマットされた 32 GByte の SD カードを挿入しました。
+まだスロットに SD カードが挿入されていないので unmounted になっています。SD カードを入れてから、再度 `ls-drive` コマンドを実行してみましょう。ここでは FAT フォーマットされた 32 GByte の SD カードを挿入しました。
 
 ```text
 L:/>ls-drive
