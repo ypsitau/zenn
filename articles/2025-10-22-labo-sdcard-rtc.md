@@ -132,7 +132,9 @@ L:/>ls-drive
  M:     FAT32   30945574912
 ```
 
-いろいろなファイル操作を試してみてください。[こちら](https://zenn.dev/ypsitau/articles/2025-06-09-fs-shell#%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%AB%E3%82%88%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C) に pico-jxgLABO が提供するファイル操作コマンドの使い方をまとめてあります。
+いろいろなファイル操作を試してみてください。[こちら](https://zenn.dev/ypsitau/articles/2025-06-09-fs-shell#%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%AB%E3%82%88%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C) に pico-jxgLABO[^pico-jxglib] が提供するファイル操作コマンドの使い方をまとめてあります。
+
+[^pico-jxglib]: pico-jxgLABO の機能は、ライブラリ [pico-jxglib](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) に基づいています。
 
 ```text
 L:/>M:
