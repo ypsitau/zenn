@@ -4,7 +4,7 @@ emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["zennfes2025free", "raspberrypi", "pico", "sdcard", "rtc"]
 published: true
-published_at: 2025-10-22 09:00
+published_at: 2025-10-20 09:00
 ---
 [pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
 
