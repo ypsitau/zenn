@@ -1,5 +1,5 @@
 ---
-title: "プログラム不要! コマンド操作だけで Pico ボードに SD カード・RTC モジュールを接続しよう"
+title: "プログラム不要! コマンド操作で Pico ボードに SD カード・RTC モジュールを接続しよう"
 emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["zennfes2025free", "raspberrypi", "pico", "sdcard", "rtc"]
