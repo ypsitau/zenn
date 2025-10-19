@@ -55,6 +55,6 @@ target_include_directories(fs-shell PRIVATE
 
 pico_add_extra_outputs(fs-shell)
 
-target_link_libraries(fs-shell jxglib_LFS_Flash jxglib_FAT_Flash jxglib_Serial jxglib_RTC_DS323x jxglib_ShellCmd_FS)
+target_link_libraries(fs-shell jxglib_LFS_Flash jxglib_FAT_Flash jxglib_Serial jxglib_RTC_DS3231 jxglib_ShellCmd_FS)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../pico-jxglib pico-jxglib)
 jxglib_configure_FAT(fs-shell FF_VOLUMES 1)
