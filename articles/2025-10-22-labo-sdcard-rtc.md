@@ -62,7 +62,7 @@ RTC を使う実用的な方法は、Pico ボードにバックアップ電池�
 
 ## pico-jxgLABO の書き込み
 
-Pico ボードへの pico-jxgLABO の書き込みと基本的な使い方は[こちら](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro#pico-jxglabo-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)。特別なハードウェアは必要なく、Pico W や Pico 2 W ボードを USB ケーブルで PC に接続するだけで始められます。
+Pico ボードへの pico-jxgLABO の書き込みと基本的な使い方は[こちら](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro#pico-jxglabo-%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95)。特別なハードウェアは必要なく、Pico W や Pico 2 W ボードを USB ケーブルで PC に接続するだけで始められます。ターミナルソフトを使ってコマンドを入力し、Pico ボードを操作します。
 
 この記事で説明する実験を行うには、バージョン **0.4.0** 以降の pico-jxgLABO が Pico ボードに書き込まれている必要があります。ターミナルソフトで `about-me` コマンドを実行すると pico-jxgLABO のバージョンを確認できます。
 
