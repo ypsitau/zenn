@@ -28,14 +28,14 @@ SD カードリーダモジュールは、基本的に SD カードスロット�
 
 |外観|注釈|
 |----|----|
-|![sdcard-adapter](/images/2025-06-06-fs-media/sdcard-adapter.jpg)|標準 SD カードのモジュールです。供給電圧は **5V** と **3.3V** の両方の端子が用意されていて、5V の場合は電圧レギュレータで 3.3V に降圧して SD カードに供給されます。すべての信号線に 10kΩ のプルアップ抵抗がついているので、外部のプルアップ抵抗は**必要ありません**。信号レベルは **3.3V** です。|
-|![ILI9341-back](/images/2025-06-06-fs-media/ILI9341-back.jpg)|TFT LCD ILI9341 についている標準 SD カードのスロットです。電源は TFT LCD 用のコネクタから **3.3V** を供給します。外部のプルアップ抵抗が**必要です**[^pullup]。信号レベルは **3.3V** です。|
-|![u-sdcard-adapter-1](/images/2025-06-06-fs-media/u-sdcard-adapter-1.jpg)|microSD カードのモジュールです。供給電圧は **5V** で、電圧レギュレータで 3.3V に降圧して SD カードに供給されます。外部のプルアップ抵抗は**必要ありません**。信号線にはバッファ (74HC125) が入っており、**3.3V**、**5V** の両方の信号レベルに接続できます。|
-|![u-sdcard-adapter-2](/images/2025-06-06-fs-media/u-sdcard-adapter-2.jpg)|microSD カードのモジュールです。供給電圧は **3.3V** です。すべての信号線に 10kΩ のプルアップ抵抗がついているので、外部のプルアップ抵抗は**必要ありません**。信号レベルは **3.3V** です。|
+|![sdcard-adapter](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-06-06-fs-media/sdcard-adapter.jpg)|標準 SD カードのモジュールです。供給電圧は **5V** と **3.3V** の両方の端子が用意されていて、5V の場合は電圧レギュレータで 3.3V に降圧して SD カードに供給されます。すべての信号線に 10kΩ のプルアップ抵抗がついているので、外部のプルアップ抵抗は**必要ありません**。信号レベルは **3.3V** です。|
+|![ILI9341-back](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-06-06-fs-media/ILI9341-back.jpg)|TFT LCD ILI9341 についている標準 SD カードのスロットです。電源は TFT LCD 用のコネクタから **3.3V** を供給します。外部のプルアップ抵抗が**必要です**[^pullup]。信号レベルは **3.3V** です。|
+|![u-sdcard-adapter-1](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-06-06-fs-media/u-sdcard-adapter-1.jpg)|microSD カードのモジュールです。供給電圧は **5V** で、電圧レギュレータで 3.3V に降圧して SD カードに供給されます。外部のプルアップ抵抗は**必要ありません**。信号線にはバッファ (74HC125) が入っており、**3.3V**、**5V** の両方の信号レベルに接続できます。|
+|![u-sdcard-adapter-2](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-06-06-fs-media/u-sdcard-adapter-2.jpg)|microSD カードのモジュールです。供給電圧は **3.3V** です。すべての信号線に 10kΩ のプルアップ抵抗がついているので、外部のプルアップ抵抗は**必要ありません**。信号レベルは **3.3V** です。|
 
 供給電圧の見分け方ですが、SD カードリーダモジュールの基板上に以下に示すような電圧レギュレータが載っている場合は 5V 供給、載っていない場合は 3.3V 供給と考えてよいでしょう。
 
-![sdcard-adapter-voltage](/images/2025-10-22-labo-sdcard-rtc/sdcard-adapter-voltage.jpg)
+![sdcard-adapter-voltage](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-10-22-labo-sdcard-rtc/sdcard-adapter-voltage.jpg)
 
 [^pullup]: 手元の SD カードで試したところ、プルアップ抵抗がなくても動作しましたが、SD カードの種類によってはプルアップ抵抗が必要な場合があります。動作しない場合は、プルアップ抵抗の有無を確認してください。
 
@@ -49,7 +49,7 @@ RTC を使う実用的な方法は、Pico ボードにバックアップ電池�
 
 僕が Amazon で購入した DS3231 モジュールは、以下のようなものです。
 
-![rtc-ds3231](/images/2025-06-22-rtc/rtc-ds3231.jpg)
+![rtc-ds3231](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-06-22-rtc/rtc-ds3231.jpg)
 
 バックアップ電池が初めから装備されていますし、コンパクトな形状をしているのが良い感じです。基板に印刷されている信号名が分かりづらいのですが、以下のように対応しています。
 
@@ -98,7 +98,7 @@ SD Card カードリーダモジュールの VCC の接続先は供給電圧に�
 
 配線図を以下に示します。GND は Pico ボード上で複数出ているので、どこに接続しても構いません。
 
-![circuit-sdcard](/images/2025-10-22-labo-sdcard-rtc/circuit-sdcard.png)
+![circuit-sdcard](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-10-22-labo-sdcard-rtc/circuit-sdcard.png)
 
 以下のコマンドを実行して、SPI0 の GPIO 割り当てを GPIO2 (SPI0 SCK), GPIO3 (SPI0 TX), GPIO4 (SPI0 RX) に設定します。適切なファンクション割り当てが自動的に行われるので、記述の順序は気にしなくて大丈夫です。
 
@@ -155,7 +155,7 @@ RTC モジュール DS3231 は I2C インターフェースに接続します。
 
 配線図を以下に示します。GND は Pico ボード上で複数出ているので、どこに接続しても構いません。
 
-![circuit-rtc](/images/2025-10-22-labo-sdcard-rtc/circuit-rtc.png)
+![circuit-rtc](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-10-22-labo-sdcard-rtc/circuit-rtc.png)
 
 以下のコマンドを実行して、I2C0 の GPIO 割り当てを GPIO8 (I2C0 SDA), GPIO9 (I2C0 SCL) に設定します。適切なファンクション割り当てが自動的に行われるので、記述の順序は気にしなくて大丈夫です。
 
@@ -222,3 +222,7 @@ L:/>dir
 ## まとめ
 
 今回は、pico-jxgLABO を使って Pico ボードに SD カードリーダモジュールと RTC モジュールを接続しました。これで大容量ストレージと正確な日時情報が利用できるようになり、Pico ボードの活用範囲が大きく広がります。 pico-jxgLABO を使うと、プログラムを書くことなく、コマンド操作だけでこれらのデバイスを接続できるので、ぜひ試してみてください。
+
+## 追記
+
+この記事は Qiita にもクロスポストしています
