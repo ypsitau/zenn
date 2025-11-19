@@ -55,27 +55,27 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
 3. PulseView を起動すると以下のいずれかのメイン画面が表示されます。
 
-   ![pulseview-main](/images/2025-09-01-labo-pulseview/pulseview-main.png)
+   ![pulseview-main](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main.png)
 
-   ![pulseview-main-demo](/images/2025-09-01-labo-pulseview/pulseview-main-demo.png)
+   ![pulseview-main-demo](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-demo.png)
 
    `<No Device>` または `Demo device` と表示されている部分をクリックして「Connect to Device」ダイアログを表示します
 
 4. `Step 1: Choose the driver` のドロップダウンリストから `RaspberryPI PICO (raspberrypi-pico)` を選択します
 
-   ![pulseview-connect-1](/images/2025-09-01-labo-pulseview/pulseview-connect-1.png)
+   ![pulseview-connect-1](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-1.png)
 
 5. `Step 2: Choose the interface` で `Serial Port` を選択します。pico-jxgLABO は二つのシリアルポートを提供しますが、二つ目のポート (以下の例では `COM25`) がロジックアナライザ用になるので、これを選択します。ボーレートは空白のままで大丈夫です
 
-   ![pulseview-connect-2](/images/2025-09-01-labo-pulseview/pulseview-connect-2.png)
+   ![pulseview-connect-2](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-2.png)
 
 6. `Step 3: Scan for devices` の `Scan for devices using driver above` ボタンをクリックします。`Step 4: Select the device` のリスト中に `RaspberryPi PICO with 3 channels` というアイテムが表示されているのを確認して `OK` ボタンをクリックします
 
-   ![pulseview-connect-3](/images/2025-09-01-labo-pulseview/pulseview-connect-3.png)
+   ![pulseview-connect-3](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-3.png)
 
 7. メイン画面が以下のようになります。
 
-   ![pulseview-main-connected](/images/2025-09-01-labo-pulseview/pulseview-main-connected.png)
+   ![pulseview-main-connected](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-connected.png)
 
    `la` コマンドの `-p` オプションで指定した順に、各 GPIO の信号が `D2`, `D3`, `D4` として表示されます。
 
@@ -91,11 +91,11 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
      今回の例では `12.5MHz` であることが分かったので、PulseView のサンプリングレートはこれよりも少し大きい `15 MHz` に設定します。
 
-   ![pulseview-main-modified](/images/2025-09-01-labo-pulseview/pulseview-main-modified.png)
+   ![pulseview-main-modified](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-modified.png)
 
 これで PulseView から Pico ボード上の pico-jxgLABO を操作できるようになりました。左上の `Run` ボタンをクリックすると、ラベルが `Stop` に変わって信号のキャプチャが開始されます。
 
-![pulseview-main-running](/images/2025-09-01-labo-pulseview/pulseview-main-running.png)
+![pulseview-main-running](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-running.png)
 
 `Stop` ボタンをクリックすると、キャプチャが停止して、観測した波形が表示されます。今はまだ信号が生成されていないので、波形は何も表示されません。
 
@@ -117,7 +117,7 @@ L:/>i2c1 -p 2,3 scan
 
 PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D2` が GPIO2 (I2C1 SDA)、`D3` が GPIO3 (I2C1 SCL) の信号です。
 
-![pulseview-main-i2c](/images/2025-09-01-labo-pulseview/pulseview-main-i2c.png)
+![pulseview-main-i2c](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-i2c.png)
 
 基本的なマウス操作方法は以下の通りです。
 
@@ -126,29 +126,29 @@ PulseView で `Stop` ボタンをクリックしてキャプチャを停止す�
 
 信号波形の最初の部分を拡大したのが以下の画像です。
 
-![pulseview-main-i2c-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-zoom.png)
+![pulseview-main-i2c-zoom](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-i2c-zoom.png)
 
 下図の矢印で示されるボタン:
 
-![pulseview-decoder-button](/images/2025-09-01-labo-pulseview/pulseview-decoder-button.png)
+![pulseview-decoder-button](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-decoder-button.png)
 
 をクリックすると、`Decoder Selector` ペインが表示され、ここからプロトコルデコーダを選択できます。検索ボックスに `i2c` を入力し、リストに表示された `I2C` をダブルクリックすると、波形に I2C デコーダが追加されます。
 
-![pulseview-decoder-selector](/images/2025-09-01-labo-pulseview/pulseview-decoder-selector.png)
+![pulseview-decoder-selector](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-decoder-selector.png)
 
 下図の矢印で示されるボタン:
 
-![pulseview-decoder-button](/images/2025-09-01-labo-pulseview/pulseview-decoder-selector-close.png)
+![pulseview-decoder-button](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-decoder-selector-close.png)
 
 をクリックすると、`Decoder Selector` ペインを非表示にします。
 
 信号名の中の `I2C` ラベルを左クリックすると、プロトコルデコーダのパラメータを設定するダイアログが表示されます。`SCL` と `SDA` にそれぞれ `D3` と `D2` を設定します。
 
-![pulseview-main-i2c-prop](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-prop.png)
+![pulseview-main-i2c-prop](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-i2c-prop.png)
 
 ダイアログを閉じると、I2C をデコードした結果を確認できます。
 
-![pulseview-main-i2c-dec](/images/2025-09-01-labo-pulseview/pulseview-main-i2c-dec.png)
+![pulseview-main-i2c-dec](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-i2c-dec.png)
 
 I2C アドレス 0x00 から 0x7f に対して Read リクエストが送信されているのが分かります。I2C デバイスが接続されていないので、NACK 応答が返されています。
 
@@ -164,19 +164,19 @@ L:/>spi0 -p 2,3 write:0-255
 
 PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D2` が GPIO2 (SPI0 SCK)、`D3` が GPIO3 (SPI0 MOSI) の信号です。
 
-![pulseview-main-spi](/images/2025-09-01-labo-pulseview/pulseview-main-spi.png)
+![pulseview-main-spi](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-spi.png)
 
 信号波形の最初の部分を拡大したのが以下の画像です。
 
-![pulseview-main-spi-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-spi-zoom.png)
+![pulseview-main-spi-zoom](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-spi-zoom.png)
 
 `Decoder Selector` ペインを表示して検索ボックスに `spi` を入力し、リストに表示された `SPI` をダブルクリックすると、波形に SPI デコーダが追加されます。信号名の中の `SPI` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、`CLK` と `MOSI` にそれぞれ `D2` と `D3` を設定します。
 
-![pulseview-main-spi-prop](/images/2025-09-01-labo-pulseview/pulseview-main-spi-prop.png)
+![pulseview-main-spi-prop](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-spi-prop.png)
 
 ダイアログを閉じると、SPI をデコードした結果を確認できます。
 
-![pulseview-main-spi-dec](/images/2025-09-01-labo-pulseview/pulseview-main-spi-dec.png)
+![pulseview-main-spi-dec](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-spi-dec.png)
 
 SPI の MOSI に 0 から 255 までのデータが送信されているのが分かります。
 
@@ -192,19 +192,19 @@ L:/>uart1 -p 4 write:0-255,0
 
 PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。`D4` が GPIO4 (UART1 TX) の信号です。
 
-![pulseview-main-uart](/images/2025-09-01-labo-pulseview/pulseview-main-uart.png)
+![pulseview-main-uart](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-uart.png)
 
 信号波形の最初の部分を拡大したのが以下の画像です。
 
-![pulseview-main-uart-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-uart-zoom.png)
+![pulseview-main-uart-zoom](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-uart-zoom.png)
 
 `Decoder Selector` ペインを表示して検索ボックスに `uart` を入力し、リストに表示された `UART` をダブルクリックすると、波形に UART デコーダが追加されます。信号名の中の `UART` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、`TX` に `D4` を設定します。
 
-![pulseview-main-uart-prop](/images/2025-09-01-labo-pulseview/pulseview-main-uart-prop.png)
+![pulseview-main-uart-prop](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-uart-prop.png)
 
 ダイアログを閉じると、UART をデコードした結果を確認できます。
 
-![pulseview-main-uart-dec](/images/2025-09-01-labo-pulseview/pulseview-main-uart-dec.png)
+![pulseview-main-uart-dec](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-uart-dec.png)
 
 UART の TX に 0 から 255 および 0 のデータが送信されているのが分かります。
 
@@ -222,19 +222,19 @@ L:/>pwm 2,3,4 enable
 
 PulseView で `Stop` ボタンをクリックしてキャプチャを停止すると、以下のようにキャプチャした波形が表示されます。
 
-![pulseview-main-pwm](/images/2025-09-01-labo-pulseview/pulseview-main-pwm.png)
+![pulseview-main-pwm](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-pwm.png)
 
 信号波形の最初の部分を拡大したのが以下の画像です。
 
-![pulseview-main-pwm-zoom](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-zoom.png)
+![pulseview-main-pwm-zoom](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-pwm-zoom.png)
 
 `Decoder Selector` ペインを表示して検索ボックスに `pwm` を入力し、リストに表示された `PWM` をダブルクリックすると、波形に PWM デコーダが追加されます。PWM デコーダを全部で 3 つ追加します。信号名の中の `PWM` ラベルを左クリックするとプロトコルデコーダのパラメータを設定するダイアログが表示されるので、各 PWM デコーダの `Data` にそれぞれ `D2`, `D3`, `D4` を設定します。
 
-![pulseview-main-pwm-prop](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-prop.png)
+![pulseview-main-pwm-prop](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-pwm-prop.png)
 
 ダイアログを閉じると、PWM をデコードした結果を確認できます。
 
-![pulseview-main-pwm-dec](/images/2025-09-01-labo-pulseview/pulseview-main-pwm-dec.png)
+![pulseview-main-pwm-dec](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-pwm-dec.png)
 
 デューティ比がそれぞれ 20%, 50%, 80% で周波数 1.0kHzの PWM 信号が生成されているのが分かります。
 

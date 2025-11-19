@@ -47,11 +47,11 @@ pico-jxgLABO のバイナリ (UF2 ファイル) を Pico ボードに書き込�
 
 Pico SDK (C/C++ のビルドに必要なツールやライブラリ群) は Visual Studio Code (以下 VSCode) の拡張機能でインストールします。VSCode を起動したら `[F1]` キーを押して以下のコマンドパレット (VSCode の機能をコマンドで実行できるテキストボックス) を開いてください。
 
-![vscode-palette.png](/images/2025-01-17-picosdk/vscode-palette.png)
+![vscode-palette.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/vscode-palette.png)
 
 ここで　`>Extensions: Install Extensions` (最初の `>` は初めからコマンドパレットに入力されているもの) を入力して、拡張機能のインストール画面を開きます。検索ボックスに `pico` などと入力すると、一覧の中に以下のような `Raspberry Pi Pico` という拡張機能が見つかるので、`[Install]` ボタンをクリックしてインストールしてください。
 
-![pico-extension.png](/images/2025-01-17-picosdk/pico-extension.png)
+![pico-extension.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/pico-extension.png)
 
 これで Pico SDK 開発に必要な設定はすべて完了です。
 
@@ -59,7 +59,7 @@ Pico SDK (C/C++ のビルドに必要なツールやライブラリ群) は Visu
 
 Pico SDK のプロジェクトを作成するには、VSCode で `[F1]` キーを押して表示されるコマンドパレットから `>Raspberry Pi Pico: New Pico Project` を実行します。`New Pico Project` というドロップダウンリストが出て使用言語を聞かれるので `C/C++` を選択すると以下の画面が表示されます。
 
-![new-project.png](/images/2025-01-17-picosdk/new-project.png)
+![new-project.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/new-project.png)
 
 以下の項目を設定してください。ほかはデフォルトのままで結構です。
 
@@ -99,7 +99,7 @@ int main()
 
 ビルドをするには `[F7]` キーを押します。プロジェクトを作成して初めてのビルドですと以下のようなドロップダウンリストが表示されるので、`Pico Using compilers: ...` を選択します。
 
-![vscode-select-kit.png](/images/2025-01-17-picosdk/vscode-select-kit.png)
+![vscode-select-kit.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/vscode-select-kit.png)
 
 ビルドが成功すると、`C:\Users\YOUR-NAME\labo-project\P00_Simple\build` ディレクトリが作成され、`P00_Simple.uf2` というバイナリファイルが生成されます。
 
@@ -118,11 +118,11 @@ code .
 
 このとき、Pico SDK の設定情報などを記録した `.vscode` ディレクトリがないと、以下のようなダイアログが表示されます。
 
-![open-workspace.png](/images/2025-01-17-picosdk/open-workspace.png)
+![open-workspace.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/open-workspace.png)
 
 `Select a Kit for ...` のドロップダウンリストは無視して、右下の `Do you want to import this project as Raspberry Pi Pico project?` のダイアログで `[Yes]` ボタンをクリックしてください。以下の画面が表示されます。
 
-![import-project.png](/images/2025-01-17-picosdk/import-project.png)
+![import-project.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-17-picosdk/import-project.png)
 
 `[Import]` ボタンをクリックすると、`.vscode` ディレクトリが作成され、Pico SDK プロジェクトとして開けるようになります。
 
@@ -211,7 +211,7 @@ int main()
 
 シリアル通信をするため Tera Term を起動します。メニューバーから `[設定 (S)]`-`[シリアルポート (E)...]` を選択し、接続する Pico ボードのシリアルポートを選択します。
 
-![teraterm-setting.png](/images/2025-08-01-labo-intro/teraterm-setting.png)
+![teraterm-setting.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/teraterm-setting.png)
 
 pico-jxgLABO は 2 つのシリアルポートを提供します。一つはターミナル用、もう一つはロジックアナライザやプロッタなどのアプリケーション用です。提供する最初のシリアルポート (上の例だと `COM21`) がターミナル用になります。これを選択して `[新規オープン (N)]` または `[現在の接続を再設定 (N)]` をクリックします。
 
