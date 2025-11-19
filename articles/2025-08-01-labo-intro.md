@@ -7,7 +7,7 @@ published: true
 ---
 Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 円) なマイコンボードです。初代の Pico は 125MHz の 32bit ARM コア (しかもデュアル)、264KByte の SRAM, 2MByte のフラッシュメモリ。Pico 2 にいたっては CPU 150MHz (デュアル), 520KByte の SRAM, 4MByte のフラッシュメモリ、ハードウエア浮動小数点演算をサポートするなど、非常に高性能なマイコンボードです。
 
-![pico-and-pico2.jpg](/images/2025-08-01-labo-intro/pico-and-pico2.jpg)
+![pico-and-pico2.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/pico-and-pico2.jpg)
 *初代 Pico と Pico2*
 
 でもそんな豊富な機能も、使い方を知らなければ宝の持ち腐れ。そこで、Pico ボードで実際に様々な機能を試すことができる実験プラットフォーム **pico-jxgLABO** を開発しました。主な特徴は以下の通りです。
@@ -63,7 +63,7 @@ pico-jxgLABO を使うのに必要な機材は以下の通りです。
 
 シリアル通信をするため Tera Term を起動します。メニューバーから `[設定 (S)]`-`[シリアルポート (E)...]` を選択し、接続する Pico ボードのシリアルポートを選択します。
 
-![teraterm-setting.png](/images/2025-08-01-labo-intro/teraterm-setting.png)
+![teraterm-setting.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/teraterm-setting.png)
 
 pico-jxgLABO は 2 つのシリアルポートを提供します。一つはターミナル用、もう一つはロジックアナライザやプロッタなどのアプリケーション用です。提供する最初のシリアルポート (上の例だと `COM21`) がターミナル用になります。これを選択して `[新規オープン (N)]` または `[現在の接続を再設定 (N)]` をクリックします。
 
@@ -240,7 +240,7 @@ L:/>la print --reso:4
 
 画面キャプチャをして、横向きに回転させたイメージを以下に示します。
 
-![la-i2c.png](/images/2025-08-01-labo-intro/la-i2c.png)
+![la-i2c.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/la-i2c.png)
 
 `la` コマンドにはプロトコルデコーダの機能があり(詳細は[こちら](https://zenn.dev/ypsit/articles/2025-09-08-labo-la))、ビットパターンを自動的に解析して表示することもできます。でも、あえて I2C の解説記事などを片手に信号を眺めてみれば ... スタートコンディション・アドレス・Read/Write・ACK・ストップコンディションのビットパターンが見えてきませんか? ブラックボックスだった信号プロトコルが、波形を観測することですべてが明白になって、なんだか嬉しくなります。
 
