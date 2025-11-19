@@ -46,10 +46,14 @@ pico-jxgLABO を使うのに必要な機材は以下の通りです。
 ### Pico ボードへの書き込み
 
 1. 以下のいずれかの UF2 ファイルをダウンロードします
-   - Pico - [pico-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico-jxgLABO.uf2)
-   - pico W - [pico-w-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico-w-jxgLABO.uf2)
-   - Pico 2 - [pico2-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico2-jxgLABO.uf2)
-   - Pico 2 W - [pico2-w-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico2-w-jxgLABO.uf2)
+
+   |Pico ボード|UF2 ファイル|
+   |-----------|------------|
+   |Pico |[pico-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico-jxgLABO.uf2)            |
+   |pico W |[pico-w-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico-w-jxgLABO.uf2) |
+   |Pico 2 |[pico2-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico2-jxgLABO.uf2)  |
+   |Pico 2 W |[pico2-w-jxgLABO.uf2](https://github.com/ypsitau/pico-jxgLABO/releases/latest/download/pico2-w-jxgLABO.uf2)|
+
 2. Pico ボードの BOOTSEL ボタンを押しながら USB ケーブルを接続すると、Pico ボードが USB マスストレージとして認識されます。多くの場合 `D:` ドライブとして認識されます
 3. ダウンロードした UF2 ファイルを上記のドライブにコピーします。コピーが完了すると、Pico ボードは自動的に再起動され、pico-jxgLABO が利用できるようになります
 
