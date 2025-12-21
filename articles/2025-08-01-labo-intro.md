@@ -66,7 +66,12 @@ pico-jxgLABO を使うのに必要な機材は以下の通りです。
 
 ![teraterm-setting.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/teraterm-setting.png)
 
-pico-jxgLABO は 2 つのシリアルポートを提供します。一つはターミナル用、もう一つはロジックアナライザやプロッタなどのアプリケーション用です。提供する最初のシリアルポート (上の例だと `COM21`) がターミナル用になります。これを選択して `[新規オープン (N)]` または `[現在の接続を再設定 (N)]` をクリックします。
+pico-jxgLABO は 2 つのシリアルポートを提供します。Windows の場合、それぞれ Device Instance ID が以下のように表示されます。
+
+- `USB\VID_CAFE&PID_1AB0&MI01` ... ターミナル用
+- `USB\VID_CAFE&PID_1AB0&MI03` ... ロジックアナライザ・プロッタなどのアプリケーション用
+
+ターミナル用のシリアルポートを選択して `[新規オープン (N)]` または `[現在の接続を再設定 (N)]` をクリックします。
 
 ターミナル上で `[Enter]` キーを押すと、以下のようなプロンプトが表示されます。
 
