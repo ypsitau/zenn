@@ -93,14 +93,7 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
    取得するサンプル数が `1k samples`、サンプリングレートが `5 kHz` になっていますが、これらを以下のように変更します。
 
    - 取得するサンプル数: 最大の `1 G samples` に変更します
-   - サンプリングレート: ターミナルソフト Tera Term で `la` コマンドを実行すると、pico-jxgLABO のサンプリングレートを確認できます
-
-     ```text
-     L:/>la
-     disabled ---- 12.5MHz (samplers:1) pins:2-4 events:0/0 (heap-ratio:0.7)
-     ```
-
-     今回の例では `12.5MHz` であることが分かったので、PulseView のサンプリングレートはこれよりも少し大きい `15 MHz` に設定します。
+   - サンプリングレート: 観測対象の信号の周波数に応じて適切な値に変更します。ここでは `15 MHz` に設定します
 
    ![pulseview-main-modified](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-modified.png)
 
