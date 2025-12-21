@@ -66,7 +66,7 @@ pico-jxgLABO を使うのに必要な機材は以下の通りです。
 
 ![teraterm-setting.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/teraterm-setting.png)
 
-pico-jxgLABO は 2 つのシリアルポートを提供します。Windows の場合、それぞれ Device Instance ID が以下のように表示されます。
+pico-jxgLABO は 2 つの USB シリアルポートを提供します。Windows の場合、それぞれ Device Instance ID が以下のように表示されます。
 
 - `USB\VID_CAFE&PID_1AB0&MI01` ... ターミナル用
 - `USB\VID_CAFE&PID_1AB0&MI03` ... ロジックアナライザ・プロッタなどのアプリケーション用
