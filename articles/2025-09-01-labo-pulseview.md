@@ -46,14 +46,25 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
 1. pico-jxgLABO を書き込んだ Pico ボードを USB ケーブルで PC に接続します
 
-2. ターミナルソフトで pico-jxgLABO のロジックアナライザコマンド `la` を実行して、測定する GPIO ピン番号を指定します。以下の例では GPIO2, GPIO3, GPIO4 を測定対象にしています
+2. シリアル通信をするため Tera Term を起動します。メニューバーから `[設定 (S)]`-`[シリアルポート (E)...]` を選択してください。
+
+   ![teraterm-setting.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-08-01-labo-intro/teraterm-setting.png)
+
+   pico-jxgLABO は 2 つの USB シリアルポートを提供します。Windows の場合、それぞれ Device Instance ID が以下のように表示されます。
+
+   - `USB\VID_CAFE&PID_1AB0&MI01` ... ターミナル用
+   - `USB\VID_CAFE&PID_1AB0&MI03` ... ロジックアナライザ・プロッタなどのアプリケーション用
+
+   アプリケーション用のシリアルポートは、後の手順 6 の PulseView の設定で使用するので、ポート番号をメモしておいてください。ここでは、ターミナル用のシリアルポートを選択して `[新規オープン (N)]` または `[現在の接続を再設定 (N)]` をクリックします。
+
+3. Tera Term 上で pico-jxgLABO のロジックアナライザコマンド `la` を実行して、測定する GPIO ピン番号を指定します。以下の例では GPIO2, GPIO3, GPIO4 を測定対象にしています
 
    ```text
    L:/>la -p 2,3,4
    disabled ---- 12.5MHz (samplers:1) pins:2-4 events:0/0 (heap-ratio:0.7)
    ```
 
-3. PulseView を起動すると以下のいずれかのメイン画面が表示されます。
+4. PulseView を起動すると以下のいずれかのメイン画面が表示されます。
 
    ![pulseview-main](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main.png)
 
@@ -61,19 +72,19 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
 
    `<No Device>` または `Demo device` と表示されている部分をクリックして「Connect to Device」ダイアログを表示します
 
-4. `Step 1: Choose the driver` のドロップダウンリストから `RaspberryPI PICO (raspberrypi-pico)` を選択します
+5. `Step 1: Choose the driver` のドロップダウンリストから `RaspberryPI PICO (raspberrypi-pico)` を選択します
 
    ![pulseview-connect-1](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-1.png)
 
-5. `Step 2: Choose the interface` で `Serial Port` を選択します。pico-jxgLABO は二つのシリアルポートを提供しますが、二つ目のポート (以下の例では `COM25`) がロジックアナライザ用になるので、これを選択します。ボーレートは空白のままで大丈夫です
+6. `Step 2: Choose the interface` で `Serial Port` を選択し、手順 2 でメモしたアプリケーション用シリアルポートを指定します。ボーレートは空白のままで大丈夫です
 
    ![pulseview-connect-2](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-2.png)
 
-6. `Step 3: Scan for devices` の `Scan for devices using driver above` ボタンをクリックします。`Step 4: Select the device` のリスト中に `RaspberryPi PICO with 3 channels` というアイテムが表示されているのを確認して `OK` ボタンをクリックします
+7. `Step 3: Scan for devices` の `Scan for devices using driver above` ボタンをクリックします。`Step 4: Select the device` のリスト中に `RaspberryPi PICO with 3 channels` というアイテムが表示されているのを確認して `OK` ボタンをクリックします
 
    ![pulseview-connect-3](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-connect-3.png)
 
-7. メイン画面が以下のようになります。
+8. メイン画面が以下のようになります。
 
    ![pulseview-main-connected](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-09-01-labo-pulseview/pulseview-main-connected.png)
 
@@ -82,7 +93,7 @@ pico-jxgLABO と PulseView の接続手順は以下の通りです。
    取得するサンプル数が `1k samples`、サンプリングレートが `5 kHz` になっていますが、これらを以下のように変更します。
 
    - 取得するサンプル数: 最大の `1 G samples` に変更します
-   - サンプリングレート: ターミナルソフトで `la` コマンドを実行すると、pico-jxgLABO のサンプリングレートを確認できます
+   - サンプリングレート: ターミナルソフト Tera Term で `la` コマンドを実行すると、pico-jxgLABO のサンプリングレートを確認できます
 
      ```text
      L:/>la
