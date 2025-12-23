@@ -30,6 +30,7 @@ Raspberry Pi Pico は Raspberry Pi Ltd. が提供する小型で安価 (約 800 
 ▶️ **ネットワーク機能** - [Pico ボードを WiFi ネットワークに接続! Telnet サーバを動かして遠隔コマンド操作もしてみよう](https://zenn.dev/ypsit/articles/2025-10-06-labo-wifi)
 ▶️ **SD カード・RTC 接続** - [プログラム不要! コマンド操作で Pico ボードに SD カード・RTC モジュールを接続しよう](https://zenn.dev/ypsit/articles/2025-10-22-labo-sdcard-rtc)
 ▶️ **フルカラーシリアル LED WS2812** - [Pico ボードでイルミネーションストリップを作ろう! ノーコードでフルカラーシリアル LED を制御する方法](https://zenn.dev/ypsit/articles/2025-11-11-labo-led)
+▶️ **カメラモジュール OV7670** - [プログラム不要! コマンド操作で Pico ボードと OV7670 カメラを簡単接続](https://zenn.dev/ypsit/articles/2025-12-22-labo-ov7670)
 ▶️ **任意のプログラムへの組み込み** - [Pico ボードプログラムにロジアナやネットワークの能力を授けよう! pico-jxgLABO はこうやって組み込むのだ](https://zenn.dev/ypsit/articles/2025-09-16-labo-embed)
 
 ## pico-jxgLABO の導入方法
