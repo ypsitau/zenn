@@ -1,9 +1,9 @@
 ---
-title: "[Pico で機械学習] タッチパネルの手書き文字を認識する"
+title: "組み込み機械学習: Pico とタッチパネルで手書き文字を認識する方法"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["組み込み", "pico", "raspberrypipico", "機械学習", "文字識別"]
-published: false
+published: true
 ---
 Raspberry Pi Pico と ILI9341 ディスプレイを使い、EMNIST データセットに基づく文字認識を行うデモです。[pico-jxglib](https://zenn.dev/ypsitau/articles/2025-01-24-jxglib-intro) ライブラリを利用し、TensorFlow Lite for Microcontrollers を用いています。
 
@@ -81,6 +81,26 @@ GPIO0 および GPIO1 は認識する TFLite モデルの選択に使います�
    ```
 
 2. プロジェクトフォルダで `code .` を実行して Visual Studio Code を開き、`F7` キーでビルドします。`build` フォルダ内に `pico-Recognizer-ILI9341.uf2` が生成されます。
+
+## 学習と TensorFlow Lite モデルの埋め込み
+
+Google Colab 上でモデルを学習し、TensorFlow Lite 形式でエクスポートする手順は[こちら](https://colab.research.google.com/github/ypsitau/pico-Recognizer-ILI9341/blob/main/pico-Recognizer-ILI9341.ipynb)のノートブックで解説しています。ノートブック内のスクリプトを実行すると、以下の tflite ファイルが生成・ダウンロードされます:
+
+- `Recognizer-emnist-mnist-binary.tflite`
+- `Recognizer-emnist-letters-binary.tflite`
+- `Recognizer-emnist-balanced-binary.tflite`
+- `Recognizer-emnist-bymerge-binary.tflite`
+
+**pico-jxglib** に定義されている `EmbedTfLiteModel` マクロを使うと、手作業で C 配列に変換することなく、生成したモデルファイルを Pico アプリケーションへ埋め込めます。以下のようにソースコードへ記述してください:
+
+```cpp
+EmbedTfLiteModel("Recognizer-emnist-mnist-binary.tflite", modelData_emnist_mnist, modelDataSize_emnist_mnist);
+EmbedTfLiteModel("Recognizer-emnist-letters-binary.tflite", modelData_emnist_letters, modelDataSize_emnist_letters);
+EmbedTfLiteModel("Recognizer-emnist-balanced-binary.tflite", modelData_emnist_balanced, modelDataSize_emnist_balanced);
+EmbedTfLiteModel("Recognizer-emnist-bymerge-binary.tflite", modelData_emnist_bymerge, modelDataSize_emnist_bymerge);
+```
+
+埋め込んだモデルの利用例は `pico-Recognizer-ILI9341.cpp` のソースコードを参照してください。
 
 ## 追記
 
