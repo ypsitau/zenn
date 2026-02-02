@@ -48,7 +48,7 @@ int main()
 }
 ```
 
-![lcdtest-apis.jpg](/images/2025-01-31-tft-lcd-cont/lcdtest-apis.jpg)
+![lcdtest-apis.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-31-tft-lcd-cont/lcdtest-apis.jpg)
 
 ソースファイルの前半でデバイスの初期化を行っています。
 
@@ -135,7 +135,7 @@ LCD デバイスに CS (Chip Select) 端子がついていれば、同じ SPI �
 
 ここでは、ST7789 を 2 個接続してみます。ブレッドボードの配線イメージは以下の通りです。
 
-![circuit-st7789-multi.png](/images/2025-01-31-tft-lcd-cont/circuit-st7789-multi.png)
+![circuit-st7789-multi.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-31-tft-lcd-cont/circuit-st7789-multi.png)
 
 ソースファイル `lcdtest.cpp` を以下のように書き換えます。
 
@@ -165,7 +165,7 @@ int main()
 }
 ```
 
-![lcdtest-multi.jpg](/images/2025-01-31-tft-lcd-cont/lcdtest-multi.jpg)
+![lcdtest-multi.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-01-31-tft-lcd-cont/lcdtest-multi.jpg)
 
 GPIO さえ確保すれば、同じ SPI インターフェースにいくつでも LCD をぶらさげられる ... と言いたいところですが、あまりつなげると信号波形が劣化するようです。4 個の LCD を同一の SPI に接続できる[^multi-connect]ことを確認しましたが、そのうちのひとつを ILI9341 にすると表示がされませんでした。
 

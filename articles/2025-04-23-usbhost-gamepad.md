@@ -76,11 +76,11 @@ git pull
 
 TFT LCD に ILI9341 を使うブレッドボードの配線イメージを以下に示します。USB ゲームパッドは、microB から A タイプに変換する OTG ケーブルで接続します。圧電ブザーがついているのは、後に紹介するゲームのためです。
 
-![circuit-ili9341.png](/images/2025-04-23-usbhost-gamepad/circuit-ili9341.png)
+![circuit-ili9341.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/circuit-ili9341.png)
 
 TFT LCD に ST7789 を使うブレッドボードの配線イメージを以下に示します。
 
-![circuit-st7789.png](/images/2025-04-23-usbhost-gamepad/circuit-st7789.png)
+![circuit-st7789.png](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/circuit-st7789.png)
 
 ### プロジェクトの作成
 
@@ -218,7 +218,7 @@ UF2 ファイル
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picopacman/raw/refs/heads/main/bin/lcd-pacman-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picopacman/raw/refs/heads/main/bin/lcd-pacman-pico2-st7789.uf2)
 
-![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picopacman.jpg)
+![picopacman.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/picopacman.jpg)
 
 ### テトリス
 
@@ -229,7 +229,7 @@ UF2 ファイル
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picotetris/raw/refs/heads/main/bin/tetrispico-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picotetris/raw/refs/heads/main/bin/tetrispico-pico2-st7789.uf2)
 
-![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picotetris.jpg)
+![picopacman.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/picotetris.jpg)
 
 ### インベーダーゲーム
 
@@ -240,12 +240,12 @@ UF2 ファイル
 - [Pico2 ボード + ILI9341](https://github.com/ypsitau/picoinvader/raw/refs/heads/main/bin/invaderpico-pico2-ili9341.uf2)
 - [Pico2 ボード + ST7789](https://github.com/ypsitau/picoinvader/raw/refs/heads/main/bin/invaderpico-pico2-st7789.uf2)
 
-![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picoinvader.jpg)
+![picopacman.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/picoinvader.jpg)
 
 ### 箱入り娘パズル
 
-![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picohakomusu.jpg)
+![picopacman.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/picohakomusu.jpg)
 
 ### ペグソリティア
 
-![picopacman.jpg](/images/2025-04-23-usbhost-gamepad/picopegsol.jpg)
+![picopacman.jpg](https://raw.githubusercontent.com/ypsitau/zenn/main/images/2025-04-23-usbhost-gamepad/picopegsol.jpg)
