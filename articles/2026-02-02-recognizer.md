@@ -15,8 +15,8 @@ GitHub リポジトリ: https://github.com/ypsitau/pico-Recognizer-ILI9341.git
 
 YouTube でデモ動画を視聴できます:
 
-https://youtu.be/p4s3oFeSuCg
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/p4s3oFeSuCg" frameborder="0" allowfullscreen></iframe> -->
+https://youtu.be/Vg-L-No7t5Q
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Vg-L-No7t5Q" frameborder="0" allowfullscreen></iframe> -->
 
 ## 必要なもの
 
