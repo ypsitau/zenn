@@ -6,7 +6,7 @@ topics: ["zennfes2025free", "raspberrypi", "pico", "raspberrypipico", "library"]
 published: true
 published_at: 2025-09-16 09:00
 ---
-[pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
+[pico-jxgLABO](https://ypsitau.github.io/pico-jxglib/shell/setup-labo/) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
 
 この記事では、pico-jxgLABO を既存のプログラムに組み込んだり、このプラットフォームをベースに新しい機能を追加したりする方法を紹介します。単なる実験プラットフォームにとどまらない、pico-jxgLABO の真の能力を引き出しましょう。
 

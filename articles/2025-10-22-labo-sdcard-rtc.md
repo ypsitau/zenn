@@ -6,7 +6,7 @@ topics: ["zennfes2025free", "raspberrypi", "pico", "sdcard", "rtc"]
 published: true
 published_at: 2025-10-20 09:00
 ---
-[pico-jxgLABO](https://zenn.dev/ypsitau/articles/2025-08-01-labo-intro) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
+[pico-jxgLABO](https://ypsitau.github.io/pico-jxglib/shell/setup-labo/) は、USB ケーブル一本でマイコンボード RaspberryPi Pico の様々な機能を試すことができる実験プラットフォームです。
 
 今回は、pico-jxgLABO を使って Pico ボードに SD カードと RTC (Real Time Clock) モジュールを接続します。
 
